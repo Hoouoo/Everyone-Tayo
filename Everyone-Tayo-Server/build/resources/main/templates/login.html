@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th = "https://www.thymeleaf.org"
+    th:replace="fragment/boarder ::layout(title='로그인', main=~{::main}, css=~{::#css})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<main>
+<form  method="POST" >
+    <div class="mb-3">
+        <label for="username" class="form-label">Email address</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div name = "username" id="username" class="form-text">We'll never share yourzemail with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input name = "password" type="password" class="form-control" id="password">
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</main>
+</html>

@@ -1,0 +1,21 @@
+.wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: "header header header"
+                         "aside board board"
+                         "footer footer footer";
+    grid-template-columns: 350px auto;
+    grid-template-rows: 4rem auto 4rem;
+}
+
+.wrapper > header{
+    grid-area: header ;
+}
+
+.wrapper > aside{
+    grid-area: aside;
+}
+
+.wrapper > footer{
+    grid-area: footer;
+}
