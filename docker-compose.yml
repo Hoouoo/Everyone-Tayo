@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    db:
+        image: mariadb:10.6.3
+        #command: --default-authenication-plugin=mysql_native_passward
+        restart: always
+        environment: 
+            - MYSQL_ROOT_PASSWORD=admin
+            - MYSQL_USER=tayo
+            - MYSQL_PASSWORD=1234
+            - MYSQL_DATABASE=everyonetayo
+        ports: 
+            - "3306:3306"
