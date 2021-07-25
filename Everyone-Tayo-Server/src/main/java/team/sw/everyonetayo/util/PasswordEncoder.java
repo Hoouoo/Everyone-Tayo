@@ -1,8 +1,11 @@
 package team.sw.everyonetayo.util;
 
+import org.springframework.stereotype.Component;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@Component
 public class PasswordEncoder {
 
     public static String encryptSHA256(String rawPassword) {
@@ -22,7 +25,8 @@ public class PasswordEncoder {
         return SHA;
     }
 
-    public boolean matches(String rawPassword, String encryptedPassword){
+    public static boolean matches(String rawPassword, String encryptedPassword){
+        encryptedPassword = encryptSHA256(rawPassword);
         return encryptedPassword.equals(encryptSHA256(rawPassword));
     }
 }
