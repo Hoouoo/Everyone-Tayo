@@ -2,13 +2,13 @@
 <html lang="ko" xmlns:th="https://www.thymeleaf.org"
       th:replace="fragment/boarder ::layout(title='관리자 페이지', main=~{::main}, css=~{::#css})">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
 <main class = "main">
   <div class="container">
-    <h2 class="mb-5">테이블입니당</h2>
+    <h2 class="mb-5">버스 현황</h2>
 
     <div class="table-responsive">
 
@@ -21,12 +21,13 @@
               <div class="control__indicator"></div>
             </label>
           </th>
-          <th scope="col">내</th>
-          <th scope="col">용</th>
-          <th scope="col">넣</th>
-          <th scope="col">기</th>
-          <th scope="col">^___^</th>
-          <th scope="col"></th>
+          <th scope="col">번호</th>
+          <th scope="col">버스상태</th>
+          <th scope="col">배차 시간</th>
+          <th scope="col">버스 위치</th>
+          <th scope="col">버스 기사</th>
+          <th scope="col">현 위치</th>
+          <th scope="col">상태</th>
         </tr>
         </thead>
         <tbody>
@@ -55,6 +56,7 @@
             <small class="d-block">버스정류장</small>
           </td>
           <td>+82 983 0962 971</td>
+          <td>버스정류장?</td>
           <td>버스정류장?</td>
           <td><a href="#" class="more">여기</a></td>
 
@@ -87,6 +89,7 @@
           </td>
           <td>+02 020 3994 929</td>
           <td>동의대학교 앞</td>
+          <td>버스정류장?</td>
           <td><a href="#" class="more">야훙</a></td>
         </tr>
         <tr>
@@ -114,6 +117,7 @@
           </td>
           <td>+01 352 1125 0192</td>
           <td>708번</td>
+          <td>버스정류장?</td>
           <td><a href="#" class="more">708번</a></td>
         </tr>
 

@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 @Component
 public class PasswordEncoder {
 
-    public static String encryptSHA256(String rawPassword) {
+    public String encryptSHA256(String rawPassword) {
         String SHA = null;
         try {
             MessageDigest sh = MessageDigest.getInstance("SHA-256"); // 이 부분을 SHA-1으로 바꿔도 된다!
@@ -25,8 +25,8 @@ public class PasswordEncoder {
         return SHA;
     }
 
-    public static boolean matches(String rawPassword, String encryptedPassword){
-        encryptedPassword = encryptSHA256(rawPassword);
-        return encryptedPassword.equals(encryptSHA256(rawPassword));
+    public boolean matches(String rawPassword, String encryptedPassword){
+        String encryption = encryptSHA256(rawPassword);
+        return encryptedPassword.equals(encryption);
     }
 }

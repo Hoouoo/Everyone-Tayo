@@ -1,13 +1,15 @@
-package team.sw.everyonetayo.login.dto;
+package team.sw.everyonetayo.auth.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @Getter
+@Setter
 public class LoginDto {
 
     @NotEmpty

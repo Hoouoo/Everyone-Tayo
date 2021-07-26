@@ -19,13 +19,16 @@
     <!-- 제목 -->
     <title th:text="${title} ? ${title} : 'Everyone-Tayo'"></title>
     <!-- 제목 -->
-    <div class = "header"><header th:replace="~{fragment/header :: layoutHeader}"></header></div>
 </head>
 <body>
 <div class = "wrapper">
-    <div class = "side"><side th:replace="~{fragment/side :: layoutSide}"></side></div>
-    <div class = "main"><main th:replace="${main} ? ${main} : ~{}"></main></div>
-    <div class = "footer"><footer th:replace="~{fragment/footer :: layoutFooter}"></footer></div>
+    <header th:replace="~{fragment/header :: layoutHeader}"></header>
+    <th:block th:if="${session['member']}">
+        <aside th:replace="~{fragment/aside :: layoutSide}"></aside>
+    </th:block>
+
+    <main th:replace="${main} ? ${main} : ~{}"></main></div>
+    <footer th:replace="~{fragment/footer :: layoutFooter}"></footer>
 </div>
 
 </body>

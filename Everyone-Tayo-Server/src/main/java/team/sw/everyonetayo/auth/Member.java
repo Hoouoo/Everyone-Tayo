@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.login;
+package team.sw.everyonetayo.auth;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

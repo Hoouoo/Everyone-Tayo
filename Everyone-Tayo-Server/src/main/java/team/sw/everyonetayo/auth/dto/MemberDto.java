@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.login.dto;
+package team.sw.everyonetayo.auth.dto;
 
 import lombok.Builder;
 import lombok.Getter;

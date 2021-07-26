@@ -5,20 +5,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<main class = "main">
-    <form  method="POST" >
-        <div class="mb-3">
+<main class = "mb-3">
+    <form  th:action="@{/login}" th:object="${loginDTO}" method="POST">
+        <div class="mb-3" style = "width: 50vh">
             <label for="username" class="form-label">Email address</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div name = "username" id="username" class="form-text">We'll never share yourzemail with anyone else.</div>
+            <input th:field="*{username}" type="text" class="form-control" id="inputI" aria-describedby="emailHelp">
+            <div name = "username" id="username" class="form-text ">We'll never share yourzemail with anyone else.</div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3" style = "width: 50vh">
             <label for="password" class="form-label">Password</label>
-            <input name = "password" type="password" class="form-control" id="password">
+            <input th:field ="*{password}" name = "password" type="password" class="form-control" id="password">
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <div class="row text-center" th:if="${errors}" style ="width: 50vh">
+            <p th:text="${errors}" class="alert alert-danger"></p>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

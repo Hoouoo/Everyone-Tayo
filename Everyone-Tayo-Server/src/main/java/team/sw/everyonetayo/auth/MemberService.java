@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.login;
+package team.sw.everyonetayo.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
