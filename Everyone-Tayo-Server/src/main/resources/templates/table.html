@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org"
+      th:replace="fragment/boarder ::layout(title='관리자 페이지', main=~{::main}, css=~{::#css})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main class = "main">
+  <div class="container">
+    <h2 class="mb-5">테이블입니당</h2>
+
+    <div class="table-responsive">
+
+      <table class="table table-striped custom-table">
+        <thead>
+        <tr>
+          <th scope="col">
+            <label class="control control--checkbox">
+              <input type="checkbox" class="js-check-all">
+              <div class="control__indicator"></div>
+            </label>
+          </th>
+          <th scope="col">내</th>
+          <th scope="col">용</th>
+          <th scope="col">넣</th>
+          <th scope="col">기</th>
+          <th scope="col">^___^</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr scope="row">
+          <td>
+            <label class="control control--checkbox">
+              <input type="checkbox">
+              <div class="control__indicator"></div>
+            </label>
+          </td>
+          <td>
+            702번
+          </td>
+          <td class="pl-0">
+            <div class="d-flex align-items-center">
+              <label class="custom-control ios-switch">
+                <input type="checkbox" class="ios-switch-control-input" checked="">
+                <span class="ios-switch-control-indicator"></span>
+              </label>
+
+              <a href="#">702번</a>
+            </div>
+          </td>
+          <td>
+            몇분?
+            <small class="d-block">버스정류장</small>
+          </td>
+          <td>+82 983 0962 971</td>
+          <td>버스정류장?</td>
+          <td><a href="#" class="more">여기</a></td>
+
+        </tr>
+
+        <tr>
+
+          <td>
+            <label class="control control--checkbox">
+              <input type="checkbox">
+              <div class="control__indicator"></div>
+            </label>
+          </td>
+
+          <td>703번</td>
+          <td class="pl-0">
+            <div class="d-flex align-items-center">
+              <label class="custom-control ios-switch">
+                <input type="checkbox" class="ios-switch-control-input" checked="">
+                <span class="ios-switch-control-indicator"></span>
+              </label>
+
+              <a href="#">703번</a>
+            </div>
+
+          </td>
+          <td>
+            703번
+            <small class="d-block">동의대학교앞</small>
+          </td>
+          <td>+02 020 3994 929</td>
+          <td>동의대학교 앞</td>
+          <td><a href="#" class="more">야훙</a></td>
+        </tr>
+        <tr>
+          <td>
+            <label class="control control--checkbox">
+              <input type="checkbox">
+              <div class="control__indicator"></div>
+            </label>
+          </td>
+          <td>708번</td>
+          <td class="pl-0">
+            <div class="d-flex align-items-center">
+              <label class="custom-control ios-switch">
+                <input type="checkbox" class="ios-switch-control-input">
+                <span class="ios-switch-control-indicator"></span>
+              </label>
+
+              <a href="#">708번</a>
+            </div>
+
+          </td>
+          <td>
+            708번
+            <small class="d-block">도서관앞</small>
+          </td>
+          <td>+01 352 1125 0192</td>
+          <td>708번</td>
+          <td><a href="#" class="more">708번</a></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</main>
+</body>
+</html>

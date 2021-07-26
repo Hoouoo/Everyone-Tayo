@@ -16,4 +16,11 @@ public class MemberController {
         System.out.println("sha" + PasswordEncoder.encryptSHA256("test"));
         return "login";
     }
+
+    @GetMapping("/table")
+    public String table() {
+
+        System.out.println("sha" + PasswordEncoder.encryptSHA256("test"));
+        return "table";
+    }
 }
