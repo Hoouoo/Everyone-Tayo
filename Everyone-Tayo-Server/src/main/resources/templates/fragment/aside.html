@@ -2,9 +2,30 @@
 <html lang="ko" xmlns:th = "https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<side th:fragment="layoutSide" >
+    <div id = "wrapper">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div id="sidebar-wrapper" class="sidebar-toggle">
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="#item1">SO</a>
+                        </li>
+                        <li>
+                            <a href="#item2">EASY</a>
+                        </li>
+                        <li>
+                            <a href="#item3">AND FUNNY</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</side>
+
 
 </body>
 </html>

@@ -10,7 +10,12 @@
     <!-- 부트스트랩 CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.css}">
     <!-- 부트스트랩 CSS -->
-
+    <!-- 부트스트랩 JS -->
+    <script th:src="@{/webjars/bootstrap/5.0.1/js/bootstrap.js}"></script>
+    <!-- 부트스트랩 JS -->
+    <!-- jquery JS -->
+    <script th:src="@{/webjars/jquery/1.11.1/js/jquery.js}"></script>
+    <!-- jquery JS -->
     <!-- 제목 -->
     <title th:text="${title} ? ${title} : 'Everyone-Tayo'"></title>
     <!-- 제목 -->
@@ -18,11 +23,13 @@
 <body>
 <div class = "wrapper">
     <header th:replace="~{fragment/header :: layoutHeader}"></header>
-    <main th:replace="${main} ? ${main} : ~{}"></main>
+    <th:block th:if="${session['member']}">
+        <aside th:replace="~{fragment/aside :: layoutSide}"></aside>
+    </th:block>
+
+    <main th:replace="${main} ? ${main} : ~{}"></main></div>
+    <footer th:replace="~{fragment/footer :: layoutFooter}"></footer>
 </div>
-<!-- 부트스트랩 JS -->
-    <script th:src="@{/webjars/bootstrap/5.0.1/js/bootstrap.js}"></script>
-<!-- 부트스트랩 JS -->
 
 </body>
 </html>
