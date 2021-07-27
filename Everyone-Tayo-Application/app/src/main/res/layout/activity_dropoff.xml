@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4699FF"
+    tools:context=".DropOff">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="411dp"
+        android:layout_height="598dp"
+        app:srcCompat="@android:drawable/screen_background_light"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="67dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/tayo_logo1"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="10dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="414dp"
+        android:layout_height="162dp"
+        android:layout_marginTop="240dp"
+        android:background="@drawable/riding"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="예"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-2dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="413dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/stopover"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="아니오"
+        android:textAlignment="center"
+        android:textColor="#00307C"
+        android:textSize="48sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="128dp"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text='"이번 정류장에서\n하차를 하시겠습니까?"'
+        android:textAlignment="center"
+        android:textColor="#005490"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
