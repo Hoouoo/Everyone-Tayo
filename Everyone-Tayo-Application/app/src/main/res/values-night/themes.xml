@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Everyonetayo" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/white</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="colorPrimary">#4C4C4C</item>
+        <item name="colorPrimaryDark">#4C4C4C</item>
+        <item name="colorAccent">#4C4C4C</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

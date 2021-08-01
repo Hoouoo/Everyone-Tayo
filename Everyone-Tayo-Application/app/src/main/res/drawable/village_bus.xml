@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <layer-list>
-            <!-- shadow (밑으로) : 그림자 -->
-            <item android:top="5dp">
-                <shape>
-                    <corners android:radius="8dp" />
-                    <solid android:color="#1f000000" />
-                </shape>
-            </item>
-            <!-- background (위로) -->
-            <item android:bottom="5dp">
-                <shape>
-                    <corners android:radius="8dp" ></corners>
-                    <solid android:color="#FFFFFF" />
-                    <stroke android:width="3dp" android:color="#24538C" />
-                </shape>
-            </item>
-        </layer-list>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#00D400">
+    <!-- shadow (밑으로) : 그림자 -->
+    <item android:top="4dp" android:left="4dp">
+        <shape>
+            <corners android:radius="15dp" />
+            <solid android:color="#1f000000" />
+        </shape>
     </item>
-</selector>
+    <item android:id="@android:id/mask" android:bottom="4dp" android:right="4dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="15dp" />
+            <solid android:color="#00D400" />
+        </shape>
+    </item>
+    <item android:id="@android:id/background" android:bottom="4dp" android:right="4dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="15dp" />
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+</ripple>
