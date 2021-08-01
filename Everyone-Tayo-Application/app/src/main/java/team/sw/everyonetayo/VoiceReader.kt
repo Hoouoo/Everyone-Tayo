@@ -4,20 +4,18 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_selectservice.*
+import kotlinx.android.synthetic.main.activity_voicereader.*
 
-class DropOff : AppCompatActivity() {
+class VoiceReader : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dropoff)
+        setContentView(R.layout.activity_voicereader)
 
-        setTitle("하차 서비스")
+        setTitle("음성인식 버스 예약")
 
-
-        home.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
+        keypad_call.setOnClickListener{
+            val intent = Intent(this, KeyPad::class.java)
             startActivity(intent)
-            finish()
         }
 
         //뒤로가기 버튼

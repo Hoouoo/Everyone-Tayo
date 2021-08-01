@@ -4,39 +4,33 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_choicebus.*
-import kotlinx.android.synthetic.main.activity_selectservice.home
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_selectservice.*
+import team.sw.everyonetayo.ui.login.LoginActivity
 
-class ChoiceBus : AppCompatActivity() {
+class SelectService : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_choicebus)
+        setContentView(R.layout.activity_selectservice)
 
-        setTitle("버스 종류 선택")
+        setTitle("서비스 선택")
 
+
+        riding2.setOnClickListener{
+            val intent = Intent(this, ChoiceBus::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        stopover.setOnClickListener{
+            val intent = Intent(this, DropOff::class.java)
+            startActivity(intent)
+        }
 
         home.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }
-
-
-        regular_bus.setOnClickListener{
-            val intent = Intent(this, VoiceReader::class.java)
-            startActivity(intent)
-        }
-
-
-        village_bus.setOnClickListener{
-            val intent = Intent(this, VoiceReader::class.java)
-            startActivity(intent)
-        }
-
-
-        express_bus.setOnClickListener{
-            val intent = Intent(this, VoiceReader::class.java)
-            startActivity(intent)
         }
 
         //뒤로가기 버튼

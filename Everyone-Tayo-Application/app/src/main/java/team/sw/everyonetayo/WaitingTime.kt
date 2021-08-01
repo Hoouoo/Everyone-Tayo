@@ -4,39 +4,19 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_choicebus.*
-import kotlinx.android.synthetic.main.activity_selectservice.home
+import kotlinx.android.synthetic.main.activity_selectservice.*
 
-class ChoiceBus : AppCompatActivity() {
+class WaitingTime : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_choicebus)
+        setContentView(R.layout.activity_waitingtime)
 
-        setTitle("버스 종류 선택")
-
+        setTitle("대기시간 확인")
 
         home.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }
-
-
-        regular_bus.setOnClickListener{
-            val intent = Intent(this, VoiceReader::class.java)
-            startActivity(intent)
-        }
-
-
-        village_bus.setOnClickListener{
-            val intent = Intent(this, VoiceReader::class.java)
-            startActivity(intent)
-        }
-
-
-        express_bus.setOnClickListener{
-            val intent = Intent(this, VoiceReader::class.java)
-            startActivity(intent)
         }
 
         //뒤로가기 버튼
