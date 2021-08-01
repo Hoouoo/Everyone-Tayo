@@ -1,18 +1,18 @@
-package team.sw.everyonetayo
+package team.sw.everyonetayo.view
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_selectservice.*
+import kotlinx.android.synthetic.main.activity_select_service.*
+import team.sw.everyonetayo.R
 
-class VoiceCheck : AppCompatActivity() {
+class WaitingTime : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_voicecheck)
+        setContentView(R.layout.activity_waitingtime)
 
-        setTitle("음성인식 번호 확인")
-
+        setTitle("대기시간 확인")
 
         home.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
@@ -23,6 +23,7 @@ class VoiceCheck : AppCompatActivity() {
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
     }
+
 
     //뒤로가기 버튼 동작 코드
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
