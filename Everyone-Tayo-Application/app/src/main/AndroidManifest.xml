@@ -10,12 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Everyonetayo">
         <activity
-            android:name=".ui.login.LoginActivity"
+
+            android:name=".view.login.LoginActivity"
             android:label="@string/title_activity_login"></activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".select_service" />
-        <activity android:name=".ChoiceBus" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.SignUp" />
+        <activity android:name=".view.SelectService" />
+        <activity android:name=".view.ChoiceBus" />
+        <activity android:name=".view.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

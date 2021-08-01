@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
-    tools:context=".voice_check">
+
+    tools:context=".view.voice_check">
+
 
     <ImageView
         android:id="@+id/imageView5"
