@@ -1,15 +1,16 @@
-package team.sw.everyonetayo
+package team.sw.everyonetayo.view
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_voicereader.*
+import kotlinx.android.synthetic.main.activity_voice_reader.*
+import team.sw.everyonetayo.R
 
 class VoiceReader : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_voicereader)
+        setContentView(R.layout.activity_voice_reader)
 
         setTitle("음성인식 버스 예약")
 

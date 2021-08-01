@@ -5,13 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
-<<<<<<< HEAD:Everyone-Tayo-Application/app/src/main/res/layout/activity_waitingtime.xml
-    tools:context=".WaitingTime">
-=======
+    tools:context=".view.WaitingTime">
 
-    tools:context=".view.waiting_time">
-
->>>>>>> b0fba00d85b310a03218410ef52525ac854d3496:Everyone-Tayo-Application/app/src/main/res/layout/activity_waiting_time.xml
 
     <Button
         android:id="@+id/home"

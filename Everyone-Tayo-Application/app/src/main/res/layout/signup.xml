@@ -4,14 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    android:background="#4699FF"
-    tools:context=".SignUp">
-=======
 
+    android:background="#4699FF"
     tools:context=".view.SignUp">
 
->>>>>>> b0fba00d85b310a03218410ef52525ac854d3496
 
     <EditText
         android:id="@+id/check_password"
