@@ -13,7 +13,6 @@
 
     tools:context=".view.login.LoginActivity">
 
-
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="0dp"
@@ -31,7 +30,7 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <Button
-        android:id="@+id/login2"
+        android:id="@+id/sign_up"
         android:layout_width="315dp"
         android:layout_height="35dp"
         android:layout_gravity="start"

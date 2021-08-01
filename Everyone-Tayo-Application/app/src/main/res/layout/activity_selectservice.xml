@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4699FF"
+    tools:context=".SelectService">
+
+    <Button
+        android:id="@+id/stopover"
+        android:layout_width="319dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/stopover"
+        android:fontFamily="@font/nanum_square_r"
+        android:text="하차\n서비스"
+        android:textColor="#005490"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="22dp"
+        android:fontFamily="@font/nanum_square_r"
+        android:text='"버스 하차를 원하시나요?"'
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riding2" />
+
+    <Button
+        android:id="@+id/riding2"
+        android:layout_width="319dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="46dp"
+        android:background="@drawable/riding"
+        android:fontFamily="@font/nanum_square_r"
+        android:text="승차\n서비스"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="156dp"
+        android:background="@drawable/home_button"
+        android:drawableTop="@drawable/home_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stopover" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="22dp"
+        android:fontFamily="@font/nanum_square_r"
+        android:text='"버스 승차를 원하시나요?"'
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -5,25 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
+<<<<<<< HEAD:Everyone-Tayo-Application/app/src/main/res/layout/activity_waitingtime.xml
+    tools:context=".WaitingTime">
+=======
 
     tools:context=".view.waiting_time">
 
+>>>>>>> b0fba00d85b310a03218410ef52525ac854d3496:Everyone-Tayo-Application/app/src/main/res/layout/activity_waiting_time.xml
 
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/tayo_logo1"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="10dp" />
-
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="411dp"
-        android:layout_height="598dp"
-        app:srcCompat="@android:drawable/screen_background_light"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="67dp" />
+    <Button
+        android:id="@+id/home"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginEnd="156dp"
+        android:background="@drawable/home_button"
+        android:drawableTop="@drawable/home_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="618dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -34,7 +35,7 @@
         android:fontFamily="@font/nanum_square_round_eb"
         android:text="3분"
         android:textAlignment="center"
-        android:textColor="#005490"
+        android:textColor="#FFFFFF"
         android:textSize="60sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +64,7 @@
         android:fontFamily="@font/nanum_square_round_eb"
         android:text="0번 버스\n예상 대기시간"
         android:textAlignment="center"
-        android:textColor="#005490"
+        android:textColor="#FFFFFF"
         android:textSize="48sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

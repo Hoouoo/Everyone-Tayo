@@ -10,95 +10,87 @@
 
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="355dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="480dp"
+        android:id="@+id/home"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="156dp"
+        android:background="@drawable/home_button"
+        android:drawableTop="@drawable/home_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/express_bus" />
+
+    <Button
+        android:id="@+id/express_bus"
+        android:layout_width="330dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="448dp"
+        android:layout_marginEnd="41dp"
         android:background="@drawable/express_bus"
         android:drawableLeft="@drawable/express_bus_size"
-        android:fontFamily="@font/nanum_square_round_eb"
+        android:fontFamily="@font/nanum_square_r"
         android:text="급행\n버스"
         android:textAlignment="center"
         android:textColor="#FA5154"
         android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="104dp"
-        android:fontFamily="@font/nanum_square_round_eb"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="56dp"
+        android:fontFamily="@font/nanum_square_r"
         android:text="버스를 선택해 주세요."
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button6"
-        android:layout_width="355dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="320dp"
+        android:id="@+id/village_bus"
+        android:layout_width="330dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="41dp"
         android:background="@drawable/village_bus"
         android:drawableLeft="@drawable/village_bus_size"
-        android:fontFamily="@font/nanum_square_round_eb"
+        android:fontFamily="@font/nanum_square_r"
         android:text="마을\n버스"
         android:textAlignment="center"
         android:textColor="#00D400"
         android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="355dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="160dp"
+        android:id="@+id/regular_bus"
+        android:layout_width="330dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="41dp"
         android:background="@drawable/regular_bus"
         android:drawableLeft="@drawable/regular_bus_size"
-        android:fontFamily="@font/nanum_square_round_eb"
+        android:fontFamily="@font/nanum_square_r"
         android:text="일반\n버스"
         android:textAlignment="center"
         android:textColor="#0000D5"
         android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="413dp"
-        android:layout_height="65dp"
-        android:background="#FFFFFF"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-1dp" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="413dp"
-        android:layout_height="65dp"
-        android:background="#FFFFFF"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="667dp" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tayo_logo2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
