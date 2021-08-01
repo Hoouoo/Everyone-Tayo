@@ -1,11 +1,12 @@
-package team.sw.everyonetayo
+package team.sw.everyonetayo.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import team.sw.everyonetayo.R
 
-class select_service : AppCompatActivity() {
+class ChoiceBus : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_select_service)
+        setContentView(R.layout.activity_choicebus)
     }
 }

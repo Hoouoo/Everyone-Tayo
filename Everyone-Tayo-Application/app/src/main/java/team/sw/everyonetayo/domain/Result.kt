@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.data
+package team.sw.everyonetayo.domain
 
 /**
  * A generic class that holds a value with its loading status.

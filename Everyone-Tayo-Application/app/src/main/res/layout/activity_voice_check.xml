@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
-    tools:context=".voice_reader">
+    tools:context=".view.voice_reader">
 
     <ImageView
         android:id="@+id/imageView4"
