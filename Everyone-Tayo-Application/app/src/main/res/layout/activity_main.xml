@@ -5,7 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
+
     tools:context=".view.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="246dp"
+        android:layout_height="173dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/tayo_logo1" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="이동에 차이가\n사라지다."
+        android:textColor="#FFFCFC"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="156dp"
+        android:fontFamily="@font/nanum_square_round_r"
+        android:text="시각장애인을 위한 버스 승하차 앱"
+        android:textColor="#0406A5"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
 
     <ImageView
         android:id="@+id/imageView6"
