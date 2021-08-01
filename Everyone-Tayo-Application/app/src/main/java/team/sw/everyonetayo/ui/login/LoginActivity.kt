@@ -16,9 +16,12 @@ import android.widget.EditText
 import android.widget.Toast
 import team.sw.everyonetayo.databinding.ActivityLoginBinding
 import kotlinx.android.synthetic.main.activity_login.*
-import team.sw.everyonetayo.MainActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import team.sw.everyonetayo.BusDriver
+
 
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.SignUp
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        titleColor
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -95,19 +99,28 @@ class LoginActivity : AppCompatActivity() {
                 false
             }
 
-            login.setOnClickListener {
-                loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
-            }
+//            login.setOnClickListener {
+//                loading.visibility = View.VISIBLE
+//                loginViewModel.login(username.text.toString(), password.text.toString())
+//            }
+        }
+        //뒤로가기 버튼
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+
+
+        sign_up.setOnClickListener{
+            val intent = Intent(this, SignUp::class.java)
+            startActivity(intent)
+        }
+        login.setOnClickListener{
+            val intent = Intent(this,BusDriver::class.java)
+            startActivity(intent)
         }
 
-
-
-        // 뒤로가기 버튼
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
 
+    //뒤로가기 버튼 동작 코드
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId){
             android.R.id.home -> {
