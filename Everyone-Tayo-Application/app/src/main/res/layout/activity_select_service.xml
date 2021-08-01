@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4699FF"
+
+    tools:context=".view.SelectService">
+
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="411dp"
+        android:layout_height="598dp"
+        app:srcCompat="@android:drawable/screen_background_light"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="67dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="412dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="428dp"
+        android:background="@drawable/stopover"
+        android:fontFamily="@font/nanum_square_eb"
+        android:text="하차\n서비스"
+        android:textColor="#005490"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_eb"
+        android:text='"버스 하차를 원하시나요?"'
+        android:textColor="#005595"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_eb"
+        android:text='"버스 승차를 원하시나요?"'
+        android:textColor="#005490"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <Button
+        android:id="@+id/riding2"
+        android:layout_width="410dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="192dp"
+        android:background="@drawable/riding"
+        android:fontFamily="@font/nanum_square_eb"
+        android:text="승차\n서비스"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+</android.support.constraint.ConstraintLayout>
