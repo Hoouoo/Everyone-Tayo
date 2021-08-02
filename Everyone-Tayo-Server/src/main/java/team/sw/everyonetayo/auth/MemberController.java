@@ -9,12 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import team.sw.everyonetayo.auth.dto.LoginDto;
-import team.sw.everyonetayo.auth.dto.MemberDto;
-import team.sw.everyonetayo.util.PasswordEncoder;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Slf4j  // log를 쓰기위해 사용
@@ -63,9 +59,9 @@ public class MemberController {
         return "table";
     }
 
-    @GetMapping("/busStatus")
+    @GetMapping("/bus_status")
     public String busStatus() {
 
-        return "busStatus";
+        return "bus_status";
     }
 }
