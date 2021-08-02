@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{bootstrap, font-awesome, jquery, simple-datatables}" />
+    <file url="file://$PROJECT_DIR$/build/generated/sources/annotationProcessor/java/main" libraries="{bootstrap, font-awesome, jquery, simple-datatables}" />
+    <file url="file://$PROJECT_DIR$/src/main" libraries="{bootstrap, font-awesome, jquery, simple-datatables}" />
+    <file url="file://$PROJECT_DIR$/src/test" libraries="{bootstrap, font-awesome, jquery, simple-datatables}" />
+  </component>
+</project>

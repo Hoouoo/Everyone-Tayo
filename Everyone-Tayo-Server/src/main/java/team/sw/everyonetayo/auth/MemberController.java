@@ -13,6 +13,8 @@ import team.sw.everyonetayo.auth.dto.MemberDto;
 import team.sw.everyonetayo.util.PasswordEncoder;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j  // log를 쓰기위해 사용
@@ -59,5 +61,11 @@ public class MemberController {
     public String table() {
 
         return "table";
+    }
+
+    @GetMapping("/busStatus")
+    public String busStatus() {
+
+        return "busStatus";
     }
 }

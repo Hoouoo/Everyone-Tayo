@@ -71,3 +71,53 @@
         left: 200px;
     }
 }
+
+/* busStatus css */
+#sidetable-wrapper {
+    top: 75px;
+    left: -400px;
+    width: 600px;
+    background-color: #ffffff;
+    color: #000000;
+    position: fixed;
+    height: 100%;
+    z-index: 1;
+}
+.sidetable-nav {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    list-style: none;
+}
+.sidetabler-nav li {
+    text-indent: 20px;
+    line-height: 50px;
+}
+.sidetable-nav li a {
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+.sidetable-nav li a:hover {
+    background: rgba(255,255,255,0.25);
+    color: white;
+    text-decoration: none;
+}
+.sidetable-nav li a:active, .sidetable-nav li a:focus {
+    text-decoration: none;
+}
+#sidetable-wrapper.sidetable-toggle {
+    transition: all 0.3s ease-out;
+    margin-left: -200px;
+}
+
+/* 최소 단위로 슥삭 줄어듬*/
+@media (min-width: 1010px) {
+    #sidetable-wrapper.sidetable-toggle {
+        transition: 0s;
+        left: 200px;
+    }
+}
+
