@@ -30,6 +30,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compileOnly 'org.webjars:bootstrap:5.0.1'
     compileOnly 'org.webjars:jquery:1.11.1'
+    implementation 'org.json:json:20210307'
 }
 
 test {
