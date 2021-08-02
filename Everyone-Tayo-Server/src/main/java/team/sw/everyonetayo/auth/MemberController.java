@@ -9,8 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import team.sw.everyonetayo.auth.dto.LoginDto;
-import team.sw.everyonetayo.auth.dto.MemberDto;
-import team.sw.everyonetayo.util.PasswordEncoder;
 
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
@@ -59,5 +57,11 @@ public class MemberController {
     public String table() {
 
         return "table";
+    }
+
+    @GetMapping("/bus_status")
+    public String busStatus() {
+
+        return "bus_status";
     }
 }
