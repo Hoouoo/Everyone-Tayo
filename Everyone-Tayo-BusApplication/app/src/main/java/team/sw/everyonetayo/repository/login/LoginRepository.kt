@@ -4,6 +4,6 @@ import team.sw.everyonetayo.domain.LoggedInUser
 import team.sw.everyonetayo.domain.Result
 
 interface LoginRepository {
-    fun login(username: String, password: String): Result<LoggedInUser>;
+    fun login(loggedInUser: LoggedInUser): Result<LoggedInUser>;
     fun logout();
 }

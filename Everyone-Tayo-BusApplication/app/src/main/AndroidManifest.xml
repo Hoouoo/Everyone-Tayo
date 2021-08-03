@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Everyonetayo">
         <activity android:name=".view.KeyPad"></activity>
         <activity android:name=".view.BusDriver" />
-        <activity android:name=".ui.login.LoginActivity"
+        <activity android:name=".view.login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".view.SignUp" />
         <activity android:name=".view.SelectService" />
