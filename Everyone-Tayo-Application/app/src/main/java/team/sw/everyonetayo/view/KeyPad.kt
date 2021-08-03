@@ -10,7 +10,7 @@ class KeyPad : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_key_pad)
 
-        setTitle("번호 키패드 입력")
+        setTitle("키패드 입력")
 
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
