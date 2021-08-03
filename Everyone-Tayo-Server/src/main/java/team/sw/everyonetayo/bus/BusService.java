@@ -2,6 +2,9 @@ package team.sw.everyonetayo.bus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import team.sw.everyonetayo.util.PasswordEncoder;
+
+import java.util.Objects;
 
 @Service
 public class BusService {
@@ -9,21 +12,16 @@ public class BusService {
     @Autowired
     private BusRepository busRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    /**
-     *
-     * 버스 계정 추가
-     * @param bus : Bus Entity 클래스
-     * @return Bus 계정을 생성한 후 Id 값을 저장
-     */
-    public Long createBusAccount(Bus bus){
-        return busRepository.save(bus).getId();
-    }
-
-    // 버스 계정 삭제
-    public void deleteBusAccount(String username){
+    public BusDto login_check(String username, String password){
         Bus bus = busRepository.findByUsername(username);
-        busRepository.delete(bus);
+        if(Objects.nonNull(bus) && passwordEncoder.matches(password, bus.getPassword())){
+            return new BusDto(bus.getUuid(), bus.getToken(), bus.getBusNumber());
+        }else{
+            return null;
+        }
     }
 
 

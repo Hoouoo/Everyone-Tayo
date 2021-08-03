@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.util.buslocate;
+package team.sw.everyonetayo.util.toJson;
 
 import org.json.XML;
 import org.json.JSONObject;
@@ -14,14 +14,15 @@ import java.net.URL;
 @RestController
 public class BusLocateController {
 
-    @GetMapping("/jsonLocate")
+    @GetMapping("/toJsonLocate")
     public String callApiWithJson(){
         StringBuffer result = new StringBuffer();
         String jsonPrintString = null;
         try{
             String apiUrl = "http://openapi.tago.go.kr/openapi/service/BusRouteInfoInqireService/getRouteNoList?"
                     + "ServiceKey=CgnbAYE4XUYPkQC7evWWGhuYlYW7NBsnpm7PFhbqBEpuM1Hoe8XQq6xRQRt%2BleOg1IQD4WulnDCRDueEMao%2FCA%3D%3D"
-                    + "&cityCode=25";
+                    + "&cityCode=21]"
+                    + "&pageNo=2";
             URL url = new URL(apiUrl);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.connect();
