@@ -18,10 +18,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        busdriver.setOnClickListener{
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
 
         var actionBar : ActionBar?
         actionBar = supportActionBar

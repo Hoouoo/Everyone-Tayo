@@ -16,8 +16,10 @@
         android:layout_marginStart="155dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="156dp"
+        android:layout_marginBottom="125dp"
         android:background="@drawable/home_button"
         android:drawableTop="@drawable/home_size"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +30,9 @@
         android:layout_width="330dp"
         android:layout_height="130dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="448dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="41dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/express_bus"
         android:drawableLeft="@drawable/express_bus_size"
         android:fontFamily="@font/nanum_square_r"
@@ -37,9 +40,10 @@
         android:textAlignment="center"
         android:textColor="#FA5154"
         android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/village_bus" />
 
     <TextView
         android:id="@+id/textView3"
@@ -48,11 +52,13 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="84dp"
         android:layout_marginEnd="56dp"
+        android:layout_marginBottom="23dp"
         android:fontFamily="@font/nanum_square_r"
         android:text="버스를 선택해 주세요."
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/regular_bus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +68,7 @@
         android:layout_width="330dp"
         android:layout_height="130dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="296dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="41dp"
         android:background="@drawable/village_bus"
         android:drawableLeft="@drawable/village_bus_size"
@@ -71,16 +77,17 @@
         android:textAlignment="center"
         android:textColor="#00D400"
         android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/express_bus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/regular_bus" />
 
     <Button
         android:id="@+id/regular_bus"
         android:layout_width="330dp"
         android:layout_height="130dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="41dp"
         android:background="@drawable/regular_bus"
         android:drawableLeft="@drawable/regular_bus_size"
@@ -89,8 +96,9 @@
         android:textAlignment="center"
         android:textColor="#0000D5"
         android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/village_bus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </android.support.constraint.ConstraintLayout>
