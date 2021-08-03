@@ -17,6 +17,7 @@ class VoiceReader : AppCompatActivity() {
         keypad_call.setOnClickListener{
             val intent = Intent(this, KeyPad::class.java)
             startActivity(intent)
+            finish()
         }
 
         //뒤로가기 버튼

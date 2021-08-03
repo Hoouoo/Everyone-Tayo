@@ -1,9 +1,11 @@
 package team.sw.everyonetayo.view
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import team.sw.everyonetayo.R
+import kotlinx.android.synthetic.main.activity_key_pad.*
 
 class KeyPad : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +16,12 @@ class KeyPad : AppCompatActivity() {
 
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
+
+        check.setOnClickListener{
+            val intent = Intent(this, VoiceCheck::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
 

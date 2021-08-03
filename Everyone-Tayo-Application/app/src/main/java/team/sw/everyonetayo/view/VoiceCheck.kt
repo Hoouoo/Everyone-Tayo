@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_select_service.*
+import kotlinx.android.synthetic.main.activity_select_service.home
+import kotlinx.android.synthetic.main.activity_voice_check.*
 import team.sw.everyonetayo.R
 
 class VoiceCheck : AppCompatActivity() {
@@ -17,6 +19,18 @@ class VoiceCheck : AppCompatActivity() {
 
         home.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        yes_button.setOnClickListener{
+            val intent = Intent(this, WaitingTime::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        no_button.setOnClickListener{
+            val intent = Intent(this, VoiceReader::class.java)
             startActivity(intent)
             finish()
         }
