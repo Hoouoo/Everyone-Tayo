@@ -42,7 +42,7 @@ class LoginService {
                 val loginResponse:LoginResponse? = postLogin.execute().body()
 
                 val uuid = loginResponse!!.uuid
-                val displayName = loginResponse!!.displayName
+                val displayName = loginResponse!!.busNumber
                 val token = loginResponse!!.token
 
                 //throw error
