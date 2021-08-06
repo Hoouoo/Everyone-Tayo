@@ -9,5 +9,7 @@ class LoginController {
         this.loginService = loginService;
     }
 
-
+    fun login(id:String, password:String){
+        loginService.login(id, password);
+    }
 }
