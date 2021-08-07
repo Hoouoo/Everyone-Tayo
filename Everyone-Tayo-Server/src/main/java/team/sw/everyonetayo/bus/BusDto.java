@@ -7,13 +7,13 @@ import java.util.UUID;
 @Getter
 public class BusDto {
 
-    private UUID uuid;
-    private String Token;
+    private String uuid;
+    private String token;
     private String busNumber;
 
-    public BusDto(UUID uuid, String token, String busNumber) {
+    public BusDto(String uuid, String token, String busNumber) {
         this.uuid = uuid;
-        Token = token;
+        this.token = token;
         this.busNumber = busNumber;
     }
 
