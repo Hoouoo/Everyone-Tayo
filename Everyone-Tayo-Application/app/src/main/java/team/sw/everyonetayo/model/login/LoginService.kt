@@ -9,6 +9,7 @@ import team.sw.everyonetayo.http.domain.LoginResponse
 import team.sw.everyonetayo.http.domain.ReservationResponse
 import team.sw.everyonetayo.repository.login.LoginRepository
 import java.io.IOException
+import java.net.SocketTimeoutException
 import java.util.*
 
 /**
@@ -32,14 +33,25 @@ class LoginService {
 
         try {
             if(!loginRepository.isLogin()){
-                val loginResponse:LoginResponse? = postLogin.execute().body();
+                var result:Result<LoggedInUser>? = null
+                val thread:Thread = Thread(Runnable {
+                    try {
+                        val loginResponse: LoginResponse? = postLogin.execute().body();
 
-                val token = loginResponse!!.token;
+                        val token = loginResponse!!.token;
 
-                val loggedInUser:LoggedInUser = LoggedInUser(token)
-                loginRepository.login(loggedInUser)
+                        val loggedInUser: LoggedInUser = LoggedInUser(token)
+                        loginRepository.login(loggedInUser)
+                        result = Result.Success(loggedInUser)
+                    }catch (e:SocketTimeoutException){
+                        result = Result.Error(e)
+                    }
+                })
 
-                return Result.Success(loggedInUser)
+                thread.start() // 통신시작
+                thread.join()  // 통신종료까지 대기
+
+                return result!!
             }else{
                 return Result.Success(loginRepository.getLoggedInUser()!!)
             }

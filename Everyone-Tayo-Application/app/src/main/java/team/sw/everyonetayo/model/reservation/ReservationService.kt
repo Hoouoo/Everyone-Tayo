@@ -9,6 +9,7 @@ import team.sw.everyonetayo.http.domain.ReservationResponse
 import team.sw.everyonetayo.repository.reservation.ReservationRepository
 import java.io.IOException
 import java.lang.Exception
+import java.net.SocketTimeoutException
 
 class ReservationService {
 
@@ -23,19 +24,31 @@ class ReservationService {
         val postReservation: Call<ReservationResponse> = httpService.reservation(busNumber, latitude, longitude);
 
         try {
-            val reservationResponse: ReservationResponse? = postReservation.execute().body();
+            var result:Result<ReservationResponse>? = null
+            val thread:Thread = Thread(Runnable {
+                try {
+                    val reservationResponse: ReservationResponse? =
+                        postReservation.execute().body();
 
-            if(reservationResponse==null){
-                throw Exception();
-            }
+                    if (reservationResponse == null) {
+                        throw Exception();
+                    }
 
-            val busNumber = busNumber;
-            val busStop = reservationResponse.busStop;
-            val timeStamp = reservationResponse.timeStamp;
+                    val busNumber = busNumber;
+                    val busStop = reservationResponse.busStop;
+                    val timeStamp = reservationResponse.timeStamp;
 
-            reservationRepository.updateReservation(busNumber, busStop, timeStamp)
+                    reservationRepository.updateReservation(busNumber, busStop, timeStamp)
+                    result = Result.Success(reservationResponse)
+                }catch (e:SocketTimeoutException){
+                    result = Result.Error(e)
+                }
+            })
 
-            return Result.Success(reservationResponse!!)
+            thread.start() //통신시작
+            thread.join() //통신종료까지 대기
+
+            return result!!
         }catch (e:IOException){
             return Result.Error(e);
         }catch (e:Throwable){
