@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class BusRouteController {
     @Autowired
     BusRouteRepository busRouteRepository;
 
-    @GetMapping("/toJsonLocate/{cityCode}")
+    @GetMapping("/toJsonBusRoute/toJsonBusStop/{cityCode}")
     public List<RouteDto> callApiWithJson(@PathVariable String cityCode) {
 
         List<RouteDto> routeDtoList = new ArrayList<>();
@@ -34,7 +35,7 @@ public class BusRouteController {
             while (next) {
                 page++;
                 String apiUrl = "http://openapi.tago.go.kr/openapi/service/BusRouteInfoInqireService/getRouteNoList?"
-                        + "ServiceKey=CgnbAYE4XUYPkQC7evWWGhuYlYW7NBsnpm7PFhbqBEpuM1Hoe8XQq6xRQRt%2BleOg1IQD4WulnDCRDueEMao%2FCA%3D%3D"
+                        + "ServiceKey=tO6fJs7AxOJ%2Bf9N5nWEgSE16%2BuOewB1LlIMM%2Fs5NB6bHtZ%2B3iO%2BcOIKgzK4QrYfZmIzh0iwJ1XKdbhxKEK2FtA%3D%3D"
                         + "&cityCode=" + cityCode
                         + "&pageNo=" + page;
                 URL url = new URL(apiUrl);
@@ -64,7 +65,7 @@ public class BusRouteController {
                 JSONArray item = (JSONArray) itemObject.get("item");
                 for (int i = 0; i < item.length(); i++) {
                     JSONObject targetItem = (JSONObject) item.get(i);
-                    RouteDto routeDto = new RouteDto();
+                    RouteDto routeDto;
 
                     if (!targetItem.isNull("startvehicletime")) {
                         routeDto = new RouteDto.RouteDtoBuilder()
