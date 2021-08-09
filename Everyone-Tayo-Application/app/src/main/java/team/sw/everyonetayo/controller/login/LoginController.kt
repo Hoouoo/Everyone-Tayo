@@ -9,5 +9,7 @@ class LoginController {
         this.loginService = loginService;
     }
 
-
+    fun login() {
+        loginService.login();
+    }
 }
