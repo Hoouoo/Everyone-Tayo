@@ -4,9 +4,10 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBar
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import team.sw.everyonetayo.R
-import team.sw.everyonetayo.view.login.LoginActivity
+import team.sw.everyonetayo.util.GpsTracker
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,14 +19,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        busdriver.setOnClickListener{
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
 
         var actionBar : ActionBar?
         actionBar = supportActionBar
         actionBar?.hide()
-
     }
 }

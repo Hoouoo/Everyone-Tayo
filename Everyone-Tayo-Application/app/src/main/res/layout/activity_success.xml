@@ -13,31 +13,13 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="155dp"
-        android:layout_marginTop="89dp"
         android:layout_marginEnd="156dp"
         android:background="@drawable/home_button"
         android:drawableTop="@drawable/home_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noButton" />
-
-    <Button
-        android:id="@+id/yesButton"
-        android:layout_width="320dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="268dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/riding"
-        android:fontFamily="@font/nanum_square_r"
-        android:text="예"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="617dp" />
 
     <TextView
         android:id="@+id/confirmTextView"
@@ -47,29 +29,11 @@
         android:layout_marginTop="188dp"
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/nanum_square_r"
-        android:text='"0번 버스가 맞습니까?"'
+        android:text='0번 버스가 예약되었습니다.'
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/noButton"
-        android:layout_width="320dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="408dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/stopover"
-        android:fontFamily="@font/nanum_square_r"
-        android:text="아니오"
-        android:textAlignment="center"
-        android:textColor="#00307C"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
