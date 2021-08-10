@@ -21,10 +21,4 @@ public class AdminController {
         }
         return "/table";
     }
-
-    @GetMapping("/bus_status")
-    public String busStatus() {
-
-        return "bus_status";
-    }
 }

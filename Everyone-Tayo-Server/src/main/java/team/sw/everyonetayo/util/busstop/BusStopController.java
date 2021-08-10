@@ -4,12 +4,10 @@ import org.json.JSONArray;
 import org.json.XML;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import team.sw.everyonetayo.util.busroute.BusRouteRepository;
-import team.sw.everyonetayo.util.busroute.Route;
-import team.sw.everyonetayo.util.busroute.RouteDto;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -20,12 +18,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@RestController
+@Controller
 public class BusStopController {
 
     @Autowired
     BusStopRepository busRouteRepository;
 
+    @Autowired
+    BusStopService busStopService;
+
+    @ResponseBody
     @GetMapping("/toJsonBusStopAll")
     public List<BusStopDto> callApiWithJson() {
 
@@ -122,6 +124,7 @@ public class BusStopController {
         return busStopDtoList;
     }
 
+    @ResponseBody
     @GetMapping("/toJsonBusStop/{cityCode}")
     public List<BusStopDto> callApiWithJson(@PathVariable String cityCode) {
 
@@ -205,4 +208,14 @@ public class BusStopController {
 
         return busStopDtoList;
     }
+
+    @GetMapping("/bus_status")
+    public ModelAndView getBusStop() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("bus_status");
+        mv.addObject("bus_stop", busStopService.getAllBusStop());
+        System.out.println("hello :");
+        return mv;
+    }
 }
+

@@ -23,7 +23,7 @@ public class BusRouteController {
     @Autowired
     BusRouteRepository busRouteRepository;
 
-    @GetMapping("/toJsonBusRoute/toJsonBusStop/{cityCode}")
+    @GetMapping("/toJsonBusRoute/{cityCode}")
     public List<RouteDto> callApiWithJson(@PathVariable String cityCode) {
 
         List<RouteDto> routeDtoList = new ArrayList<>();
@@ -67,33 +67,15 @@ public class BusRouteController {
                     JSONObject targetItem = (JSONObject) item.get(i);
                     RouteDto routeDto;
 
-                    if (!targetItem.isNull("startvehicletime")) {
-                        routeDto = new RouteDto.RouteDtoBuilder()
-                                .routeTp(String.valueOf(targetItem.get("routetp")))
-                                .routeId(String.valueOf(targetItem.get("routeid")))
-                                .startVehicleTime(String.valueOf(targetItem.get("startvehicletime")))
-                                .endVehicleTime(String.valueOf(targetItem.get("endvehicletime")))
-                                .startNodeNm(String.valueOf(targetItem.get("startnodenm")))
-                                .endNodeNm(String.valueOf(targetItem.get("endnodenm")))
-                                .routeNo(String.valueOf(targetItem.get("routeno")))
-                                .build();
-                    } else {
-                        routeDto = new RouteDto.RouteDtoBuilder()
-                                .routeTp(String.valueOf(targetItem.get("routetp")))
-                                .routeId(String.valueOf(targetItem.get("routeid")))
-                                .startNodeNm(String.valueOf(targetItem.get("startnodenm")))
-                                .endNodeNm(String.valueOf(targetItem.get("endnodenm")))
-                                .routeNo(String.valueOf(targetItem.get("routeno")))
-                                .build();
-                    }
+                    routeDto = new RouteDto.RouteDtoBuilder()
+                            .routeTp(String.valueOf(targetItem.get("routetp")))
+                            .routeId(String.valueOf(targetItem.get("routeid")))
+                            .routeNo(String.valueOf(targetItem.get("routeno")))
+                            .build();
 
                     Route route = new Route.RouteBuilder()
                             .routeTp(String.valueOf(routeDto.getRouteTp()))
                             .routeId(String.valueOf(routeDto.getRouteId()))
-                            .startVehicleTime(String.valueOf(routeDto.getStartVehicleTime()))
-                            .endVehicleTime(String.valueOf(routeDto.getEndVehicleTime()))
-                            .startNodeNm(String.valueOf(routeDto.getStartNodeNm()))
-                            .endNodeNm(String.valueOf(routeDto.getEndNodeNm()))
                             .routeNo(String.valueOf(routeDto.getRouteNo()))
                             .cityCode(cityCode)
                             .build();

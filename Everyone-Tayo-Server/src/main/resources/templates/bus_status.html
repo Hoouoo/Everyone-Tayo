@@ -43,8 +43,21 @@
                                 <td>노포-> 다대포</td>
                                 <td style = "text-align: center"><button class="btn btn-info">사용 중??</button></td>
                             </tr>
+                            <tr>
+                                <td>933</td>
+                                <td>가야대앞</td>
+                                <td>노포-> 다대포</td>
+                                <td style = "text-align: center"><button class="btn btn-info">사용 중??</button></td>
+                            </tr>
+                            <tr th:each="busStop : ${bus_stop}">
+                                <td th:text = "${busStop.nodeid}"></td>
+                                <td>가야대앞</td>
+                                <td>노포-> 다대포</td>
+                                <td style = "text-align: center"><button class="btn btn-info">사용 중??</button></td>
+                            </tr>
                             </tbody>
                             <tfoot>
+
                             <!--              <tr>-->
                             <!--                <td>133</td>-->
                             <!--                <td>동의대앞</td>-->
