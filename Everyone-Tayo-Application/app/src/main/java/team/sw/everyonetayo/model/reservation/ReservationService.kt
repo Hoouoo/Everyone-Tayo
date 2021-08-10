@@ -42,6 +42,8 @@ class ReservationService {
                     result = Result.Success(reservationResponse)
                 }catch (e:SocketTimeoutException){
                     result = Result.Error(e)
+                }catch(e:Exception){
+                    result = Result.Error(e)
                 }
             })
 

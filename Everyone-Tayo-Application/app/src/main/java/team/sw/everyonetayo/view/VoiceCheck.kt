@@ -27,6 +27,13 @@ class VoiceCheck : AppCompatActivity() {
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 
+        //네 버튼
+        yesButton.setOnClickListener{
+            val intent = Intent(this, Success::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         //아니요 버튼
         noButton.setOnClickListener{
             val intent = Intent(this, VoiceReader::class.java)

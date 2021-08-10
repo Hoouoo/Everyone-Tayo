@@ -14,12 +14,13 @@
         android:layout_height="100dp"
         android:layout_marginStart="155dp"
         android:layout_marginEnd="156dp"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/home_button"
         android:drawableTop="@drawable/home_size"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="617dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/confirmTextView"

@@ -11,13 +11,17 @@ import team.sw.everyonetayo.R
 import team.sw.everyonetayo.container.ReservationContainer
 import team.sw.everyonetayo.container.SttContainer
 import team.sw.everyonetayo.controller.reservation.ReservationController
+import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.http.HttpClient
+import team.sw.everyonetayo.http.domain.ReservationResponse
 import team.sw.everyonetayo.util.GpsTracker
+import java.io.IOException
+import java.lang.Exception
 
 class Success : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_voice_check)
+        setContentView(R.layout.activity_success)
 
         setTitle("예약 성공")
 
@@ -37,15 +41,29 @@ class Success : AppCompatActivity() {
         val longitude:String = GpsTracker(this).longitude.toString()
 
         //예약
-        val reservationController:ReservationController = ReservationContainer.instance.reservationController()
-        reservationController.reservation(busNumber, latitude, longitude)
+        val reservationController: ReservationController =
+            ReservationContainer.instance.reservationController()
 
-        //예약 성공 텍스트
-        val confirmStateOfBus:String = (
-                SttContainer.instance.sttRepository().recodeString.myString
-                        + "번 버스 예약되었습니다."
-                )
-        
+        val result:Result<ReservationResponse> = reservationController.reservation(busNumber, latitude, longitude)
+        if(result is Result.Success){
+            //예약 성공 텍스트
+            val confirmStateOfBus:String = (
+                    SttContainer.instance.sttRepository().recodeString.myString
+                            + "번 버스 예약되었습니다. \n"
+                            + latitude + " \n"
+                            + longitude
+                    )
+            //예약 성공 텍스트 적용
+            confirmTextView.setText(confirmStateOfBus)
+        }else if(result is Result.Error){
+            //예약 실패 텍스트
+            val confirmStateOfBus:String = ("연결 또는 서버에 문제가 있습니다. \n"
+            + latitude + " \n"
+            + longitude
+                    )
+            //예약 실패 텍스트 적용
+            confirmTextView.setText(confirmStateOfBus)
+        }
     }
 
 
