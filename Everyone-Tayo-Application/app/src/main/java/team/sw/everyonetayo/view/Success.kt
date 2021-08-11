@@ -57,7 +57,7 @@ class Success : AppCompatActivity() {
             confirmTextView.setText(confirmStateOfBus)
         }else if(result is Result.Error){
             //예약 실패 텍스트
-            val confirmStateOfBus:String = ("연결 또는 서버에 문제가 있습니다.")
+            val confirmStateOfBus:String = ("서버와 연결되지 않았습니다.")
             //예약 실패 텍스트 적용
             confirmTextView.setText(confirmStateOfBus)
         }
