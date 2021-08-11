@@ -14,7 +14,7 @@ class ReservationController {
 
     //TODO:Implement
 
-    fun reservation(busNumber:String, latitude:String, longitude:String):Result<ReservationResponse>{
-        return reservationService.reservation(busNumber, latitude, longitude)
+    fun reservation(busNumber:String, latitude:String, longitude:String, token:String):Result<ReservationResponse>{
+        return reservationService.reservation(busNumber, latitude, longitude, token)
     }
 }

@@ -46,7 +46,7 @@ class Success : AppCompatActivity() {
         val reservationController: ReservationController =
             ReservationContainer.instance.reservationController()
 
-        val result:Result<ReservationResponse> = reservationController.reservation(busNumber, latitude, longitude)
+        val result:Result<ReservationResponse> = reservationController.reservation(busNumber, latitude, longitude, token)
         if(result is Result.Success){
             //예약 성공 텍스트
             val confirmStateOfBus:String = (

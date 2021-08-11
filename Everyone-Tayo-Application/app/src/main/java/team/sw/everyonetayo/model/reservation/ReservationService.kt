@@ -19,9 +19,9 @@ class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    fun reservation(busNumber:String, latitude:String, longitude:String):Result<ReservationResponse>{
+    fun reservation(busNumber:String, latitude:String, longitude:String, token:String):Result<ReservationResponse>{
         val httpService:HttpService = HttpClient.getApiService();
-        val postReservation: Call<ReservationResponse> = httpService.reservation(busNumber, latitude, longitude);
+        val postReservation: Call<ReservationResponse> = httpService.reservation(busNumber, latitude, longitude, token);
 
         try {
             var result:Result<ReservationResponse>? = null
