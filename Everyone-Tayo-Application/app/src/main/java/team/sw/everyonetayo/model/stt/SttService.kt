@@ -120,6 +120,7 @@ class SttService {
             //다음 화면으로 이동
             val intent = Intent(appCompatActivity!!, VoiceCheck::class.java) 
             appCompatActivity!!.startActivity(intent)
+            appCompatActivity!!.finish()
         }
 
         override fun onPartialResults(partialResults: Bundle) {}
