@@ -111,7 +111,7 @@ class SttService {
         override fun onResults(results: Bundle) {
             val matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             for (i in matches!!.indices) {
-                result.myString = result.myString + matches[i]
+                result.myString = matches[i]
             }
 
             // 레포지토리에 저장

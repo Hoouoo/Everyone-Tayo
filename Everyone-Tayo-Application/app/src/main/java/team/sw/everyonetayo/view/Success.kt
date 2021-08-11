@@ -49,18 +49,13 @@ class Success : AppCompatActivity() {
             //예약 성공 텍스트
             val confirmStateOfBus:String = (
                     SttContainer.instance.sttRepository().recodeString.myString
-                            + "번 버스 예약되었습니다. \n"
-                            + latitude + " \n"
-                            + longitude
+                            + "번 버스 예약되었습니다."
                     )
             //예약 성공 텍스트 적용
             confirmTextView.setText(confirmStateOfBus)
         }else if(result is Result.Error){
             //예약 실패 텍스트
-            val confirmStateOfBus:String = ("연결 또는 서버에 문제가 있습니다. \n"
-            + latitude + " \n"
-            + longitude
-                    )
+            val confirmStateOfBus:String = ("연결 또는 서버에 문제가 있습니다.")
             //예약 실패 텍스트 적용
             confirmTextView.setText(confirmStateOfBus)
         }
