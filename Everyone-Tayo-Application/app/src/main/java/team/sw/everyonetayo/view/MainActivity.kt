@@ -37,7 +37,9 @@ class MainActivity : AppCompatActivity() {
             //토큰 확인 후 없다면 요청
             val loginController:LoginController = LoginContainer.instance.loginController()
             val loginRepository:LoginRepository = LoginContainer.instance.loginRepository()
-            loginController.login()
+            if(loginRepository.isLogin()){
+                loginController.login()
+            }
         }
 
 

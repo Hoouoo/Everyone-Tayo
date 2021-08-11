@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_select_service.*
 import kotlinx.android.synthetic.main.activity_select_service.home
 import kotlinx.android.synthetic.main.activity_voice_check.*
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.container.LoginContainer
 import team.sw.everyonetayo.container.ReservationContainer
 import team.sw.everyonetayo.container.SttContainer
 import team.sw.everyonetayo.controller.reservation.ReservationController
@@ -39,6 +40,7 @@ class Success : AppCompatActivity() {
         val busNumber:String = SttContainer.instance.sttRepository().recodeString.myString
         val latitude:String = GpsTracker(this).latitude.toString()
         val longitude:String = GpsTracker(this).longitude.toString()
+        val token:String = LoginContainer.instance.loginRepository().getLoggedInUser()!!.token;
 
         //예약
         val reservationController: ReservationController =
