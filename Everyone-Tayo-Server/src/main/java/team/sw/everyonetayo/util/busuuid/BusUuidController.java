@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 public class BusUuidController {
@@ -84,9 +86,18 @@ public class BusUuidController {
                                 .routenm(String.valueOf(targetItem.get("routenm")))
                                 .build();
 
+                        String routenm = String.valueOf(busUuidDto.getRoutenm());
+                        char checkRouteNm = routenm.charAt(0);
+
+                        if (checkRouteNm >= '0' && checkRouteNm <= '9') {
+                            Pattern pattern = Pattern.compile("([0-9a-zA-z-])+");
+                            Matcher match = pattern.matcher(String.valueOf(busUuidDto.getRoutenm()));
+                            if (match.find()) routenm = match.group();
+                        }
+
                         BusUuid busUuid = new BusUuid.BusUuidBuilder()
                                 .uuid(String.valueOf(busUuidDto.getUuid()))
-                                .routenm(String.valueOf(busUuidDto.getRoutenm()))
+                                .routenm(routenm)
                                 .cityCode(cityCode)
                                 .build();
 

@@ -16,25 +16,34 @@ public class BusController {
 
     @Autowired
     BusService busService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-    @GetMapping("/auth/signup")
+    @GetMapping("/signup")
     public String signUp(Model model){
         model.addAttribute("busDto", new BusDto());
         return "/signup";
     }
 
-    @PostMapping("/auth/signup")
-    public String signUpForm(@Validated @ModelAttribute BusDto busDto,
+    @PostMapping("/signup")
+    public String signUpForm(BusDto busDto, Model model,
                              BindingResult result,
                              RedirectAttributes redirectAttributes){
+        System.out.println("busDto.getClass() = " + busDto.getUsername());
         if(result.hasErrors()){
             String errormessage = "It is not verfied";
             redirectAttributes.addFlashAttribute("errors", errormessage);
-        }
-        Bus bus =
-        if(busService.signup_check( busDto.getPassword()){
 
+        }else {
+            busService.createUser(busDto);
         }
+//        Bus bus = Bus.builder()
+//                .uuid(busDto.getUuid())
+//                .username(busDto.getUsername())
+//                .password(passwordEncoder.encryptSHA256(busDto.getPassword()))
+//                .busNumber(busDto.getBusNumber())
+//                .token("1").build();
+        return "redirect:login";
     }
 
 

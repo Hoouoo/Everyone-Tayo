@@ -9,53 +9,35 @@
 <body>
 <main>
     <div id="wrapper">
-        <br>
-        <div
-        <form class="row g-3 needs-validation" style="margin-top: auto" novalidate
-              th:action="@{/signup}" th:object="${busDto}" method="POST">
+        <form role = "form" th:action="@{/signup}"  th:object="${busDto}"
+              class="row g-3"  style="margin-top: auto" method="POST">
             <div class = "col-md-12">
             <div class="row ">
-                <div class="col-md-4">
-                    <label for="validationCustom01" class="form-label">차량 번호(ex. 14카 1234)</label>
-                    <input th:field = "*{uuid}" type="text" class="form-control" id="validationCustom01" value="uuid" required>
-                    <div class="valid-feedback">
-                        차량 번호를 입력해 주세요!
-
-                    </div>
+                <div class="form-group col-md-4">
+                    <label th:for="uuid" class="form-label">차량 번호(ex. 14카 1234)</label>
+                    <input th:field = "*{uuid}" type="text" class="form-control">
                 </div>
-                <div class="col-md-4">
-                    <label for="validationCustom03" class="form-label">버스 번호(ex. 1001)</label>
-                    <input th:field = "*{busNumber}" type="text" class="form-control" id="validationCustom04" value="busNumber" required>
-                    <div class="invalid-feedback">
-                        버스 번호(ex. 1001)
-                    </div>
+                <div class="form-group col-md-4">
+                    <label th:for="busNumber" class="form-label">버스 번호(ex. 1001)</label>
+                    <input th:field = "*{busNumber}" type="text" class="form-control">
                 </div>
             </div>
             </div>
             <div class = "col-md-12">
             <div class="row">
-                <div class="col-md-4">
-                    <label for="validationCustom02" class="form-label">ID</label>
-                    <input th:field ="*{username}"type="text" class="form-control" id="validationCustom02" value="username" required>
-                    <div class="valid-feedback">
-                        ID
-                    </div>
+                <div class="form-group col-md-4">
+                    <label th:for="username" class="form-label">ID</label>
+                    <input th:field ="*{username}"type="text" class="form-control">
                 </div>
-
-
-                <div class="col-md-4">
-                    <label for="validationCustom02" class="form-label">Password</label>
-                    <input th:field ="*{password}" type="text" class="form-control" id="validationCustom03" value="password" required>
-                    <div class="valid-feedback">
-                        Password
-                    </div>
+                <div class="form-group col-md-4">
+                    <label th:for="password" class="form-label">Password</label>
+                    <input th:field ="*{password}" type="password" class="form-control">
                 </div>
             </div>
             </div>
             <div class="d-grid gap-4 col-md-8">
                 <button class="btn btn-primary" type="submit">Submit form</button>
             </div>
-
         </form>
     </div>
 </main>
