@@ -49,12 +49,12 @@
                                 <td>노포-> 다대포</td>
                                 <td style = "text-align: center"><button class="btn btn-info">사용 중??</button></td>
                             </tr>
-                            <tr th:each="busStop : ${bus_stop}">
-                                <td th:text = "${busStop.nodeid}"></td>
-                                <td>가야대앞</td>
-                                <td>노포-> 다대포</td>
-                                <td style = "text-align: center"><button class="btn btn-info">사용 중??</button></td>
-                            </tr>
+<!--                            <tr th:each="busStop : ${bus_stop}">-->
+<!--&lt;!&ndash;                                <td th:text = "${busStop.nodeid}"></td>&ndash;&gt;-->
+<!--                                <td>가야대앞</td>-->
+<!--                                <td>노포-> 다대포</td>-->
+<!--                                <td style = "text-align: center"><button class="btn btn-info">사용 중??</button></td>-->
+<!--                            </tr>-->
                             </tbody>
                             <tfoot>
 
@@ -77,24 +77,58 @@
         </nav>
     </div>
 
-
     <h2 class="mb-5" style = "transform: translateX(300px);">버스 현황</h2>
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0212d8210f9524bd73de128efb7f7163"></script>
     <div id="map" style="width:80%;height:700px; transform: translateX(200px);"></div>
     <script>
     </script>
-    <script>
+    <script th:each="busStop : ${bus_stop}">
+        // var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        //     mapOption = {
+        //         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        //         level: 3 // 지도의 확대 레벨
+        //     };
+        //
+        // var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+        //
+        // // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
+        // var markerPosition  = new kakao.maps.LatLng("${busStop.gps_lati}", "${busStop.gps_long}");
+        // // 마커를 생성합니다
+        // var marker = new kakao.maps.Marker({
+        //     position: markerPosition
+        // });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        // marker.setMap(map);
+
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
-                center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
                 level: 3 // 지도의 확대 레벨
             };
 
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-        // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
-        map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+        // 마커를 표시할 위치와 title 객체 배열입니다
+        var positions = [
+            {
+                title: '카카오',
+                latlng: new kakao.maps.LatLng("${busStop.gps_lati}",  "${busStop.gps_long}")
+            }
+        ];
+        // 마커 이미지의 이미지 주소입니다
+
+        for (var i = 0; i < positions.length; i ++) {
+
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커를 표시할 위치
+                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image : markerImage // 마커 이미지
+            });
+        }
         // var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         //         mapOption = {
         //           center: new kakao.maps.LatLng(35.153810, 129.030976), // 지도의 중심좌표

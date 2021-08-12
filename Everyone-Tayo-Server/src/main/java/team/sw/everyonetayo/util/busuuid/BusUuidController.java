@@ -92,8 +92,10 @@ public class BusUuidController {
 
                         busUuidDtoList.add(busUuidDto);
 
-                        if(Objects.nonNull(busUuidRepository.existsByUuid(busUuid.getUuid()))) {
+                        if(!busUuidRepository.existsByUuid(busUuid.getUuid())) {
                             busUuidRepository.save(busUuid);
+                        }else{
+                            System.out.println("\"중복 !!\" = " + "중복 !!");
                         }
                     }
 

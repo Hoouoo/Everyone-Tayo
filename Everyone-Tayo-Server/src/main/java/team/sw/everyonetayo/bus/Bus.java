@@ -12,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Entity
+@Builder
 public class Bus {
 
     @Id

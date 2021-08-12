@@ -15,14 +15,12 @@ public class BusService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public BusDto login_check(String username, String password){
-        Bus bus = busRepository.findByUsername(username);
-        if(Objects.nonNull(bus) && passwordEncoder.matches(password, bus.getPassword())){
-            return new BusDto(bus.getUuid(), bus.getToken(), bus.getBusNumber());
-        }else{
-            return null;
+    public boolean signup_check(Bus bus, String password){
+        Bus targetBus = busRepository.findByUsername(bus.getUsername());
+        if(Objects.isNull(targetBus) && passwordEncoder.matches(password, bus.getPassword())){
+            busRepository.save(bus);
+            return true;
         }
+        return false;
     }
-
-
 }

@@ -50,6 +50,5 @@ public class MemberController {
             System.out.println("No member Information");
             return "redirect:/login";
         }
-
     }
 }
