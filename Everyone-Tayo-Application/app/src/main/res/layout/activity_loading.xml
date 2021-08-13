@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4699FF"
+
+    tools:context=".view.MainActivity">
+
+    <ImageView
+        android:id="@+id/loadingMainLogo"
+        android:layout_width="246dp"
+        android:layout_height="173dp"
+        android:layout_marginStart="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/tayo_logo1"
+        tools:layout_editor_absoluteY="274dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/loadingState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="484dp"
+        android:fontFamily="@font/nanum_square_r"
+        android:text="로딩중"
+        android:textColor="#FFFCFC"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints"
+        tools:layout_editor_absoluteX="140dp" />
+
+
+</android.support.constraint.ConstraintLayout>

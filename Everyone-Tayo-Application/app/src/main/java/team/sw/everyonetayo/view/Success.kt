@@ -16,6 +16,7 @@ import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.http.HttpClient
 import team.sw.everyonetayo.http.domain.ReservationResponse
 import team.sw.everyonetayo.util.GpsTracker
+import team.sw.everyonetayo.util.TtsSpeaker
 import java.io.IOException
 import java.lang.Exception
 
@@ -24,7 +25,7 @@ class Success : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_success)
 
-        setTitle("예약 성공")
+        setTitle("예약 결과")
 
 
         home.setOnClickListener{
@@ -54,11 +55,13 @@ class Success : AppCompatActivity() {
                             + "번 버스 예약되었습니다."
                     )
             //예약 성공 텍스트 적용
+            TtsSpeaker.instance.speakOut(confirmStateOfBus)
             confirmTextView.setText(confirmStateOfBus)
         }else if(result is Result.Error){
             //예약 실패 텍스트
             val confirmStateOfBus:String = ("서버와 연결되지 않았습니다.")
             //예약 실패 텍스트 적용
+            TtsSpeaker.instance.speakOut(confirmStateOfBus)
             confirmTextView.setText(confirmStateOfBus)
         }
     }
