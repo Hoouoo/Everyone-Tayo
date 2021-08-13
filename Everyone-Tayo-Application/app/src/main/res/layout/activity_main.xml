@@ -37,13 +37,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
         android:fontFamily="@font/nanum_square_round_r"
         android:text="ⓒ 2021. (TEAM)EveryTayo  all rights reserved."
         android:textColor="#FDFDFD"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/busdriver" />
+        tools:layout_editor_absoluteY="729dp" />
 
     <Button
         android:id="@+id/start_button"
@@ -58,18 +57,6 @@
         android:textSize="48sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-    <Button
-        android:id="@+id/busdriver"
-        android:layout_width="190dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="68dp"
-        android:background="#00FFFFFF"
-        android:text="버스 기사님이신가요?"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_button" />
 
     <TextView
         android:id="@+id/textView2"

@@ -9,6 +9,7 @@ import team.sw.everyonetayo.http.domain.LoginResponse
 import team.sw.everyonetayo.http.domain.ReservationResponse
 import team.sw.everyonetayo.repository.login.LoginRepository
 import java.io.IOException
+import java.lang.Exception
 import java.net.SocketTimeoutException
 import java.util.*
 
@@ -44,6 +45,8 @@ class LoginService {
                         loginRepository.login(loggedInUser)
                         result = Result.Success(loggedInUser)
                     }catch (e:SocketTimeoutException){
+                        result = Result.Error(e)
+                    }catch (e: Exception){
                         result = Result.Error(e)
                     }
                 })

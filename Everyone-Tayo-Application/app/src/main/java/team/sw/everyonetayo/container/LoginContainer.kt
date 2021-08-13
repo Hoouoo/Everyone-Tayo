@@ -2,6 +2,7 @@ package team.sw.everyonetayo.container
 
 import team.sw.everyonetayo.controller.login.LoginController
 import team.sw.everyonetayo.model.login.LoginService
+import team.sw.everyonetayo.repository.login.DiskLoginRepository
 import team.sw.everyonetayo.repository.login.LoginRepository
 import team.sw.everyonetayo.repository.login.MemoryLoginRepository
 
@@ -23,7 +24,7 @@ class LoginContainer {
 
     fun loginRepository():LoginRepository{
         if(loginRepository==null){
-            loginRepository = MemoryLoginRepository();
+            loginRepository = DiskLoginRepository();
             return loginRepository!!
         }else{
             return loginRepository!!
