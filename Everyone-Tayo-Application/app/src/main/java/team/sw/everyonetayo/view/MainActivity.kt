@@ -12,14 +12,14 @@ import team.sw.everyonetayo.container.LoginContainer
 import team.sw.everyonetayo.controller.login.LoginController
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.repository.login.LoginRepository
-import team.sw.everyonetayo.util.GpsTracker
-import team.sw.everyonetayo.util.NetworkStatus
-import team.sw.everyonetayo.util.PermissionCheck
+import team.sw.everyonetayo.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        TtsSpeaker.instance.setActivity(this)
 
         start_button.setOnClickListener{
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this, VoiceReader::class.java)
                         startActivity(intent)
                     }else{
-                        Toast.makeText(this.getApplicationContext(), "서버와 연결되지 않았습니다.", Toast.LENGTH_SHORT).show()
+                        ToastWithSpeech.instance.toastShowWithSpeach("서버와 연결되지 않았습니다.")
                     }
                 }
             }
