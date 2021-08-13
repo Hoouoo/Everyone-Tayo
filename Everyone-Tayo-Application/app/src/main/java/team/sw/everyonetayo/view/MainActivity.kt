@@ -19,17 +19,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        TtsSpeaker.instance.setActivity(this)
-
         start_button.setOnClickListener{
 
             // 권한 체크
             if(!PermissionCheck.checkGps(applicationContext)){
-                Toast.makeText(this.getApplicationContext(), "앱 권한 설정에서 Gps를 활성화 시켜주세요.", Toast.LENGTH_SHORT).show()
+                ToastWithSpeech.instance.toastShowWithSpeach("앱 권한 설정에서 GPS를 활성화 시켜주세요.")
             }else if(!PermissionCheck.checkRecode(applicationContext)){
-                Toast.makeText(this.getApplicationContext(), "앱 권한 설정에서 음성녹음을 활성화 시켜주세요.", Toast.LENGTH_SHORT).show()
+                ToastWithSpeech.instance.toastShowWithSpeach("앱 권한 설정에서 음성녹음을 활성화 시켜주세요.")
             }else if(NetworkStatus.getConnectivityStatus(applicationContext) == NetworkStatus.TYPE_NOT_CONNECTED){
-                Toast.makeText(this.getApplicationContext(), "인터넷 연결을 활성화 시켜주세요.", Toast.LENGTH_SHORT).show()
+                ToastWithSpeech.instance.toastShowWithSpeach("인터넷 연결을 활성화 시켜주세요.")
             }else {
                 //권한 체크 통과
                 //토큰 확인 후 없다면 요청
