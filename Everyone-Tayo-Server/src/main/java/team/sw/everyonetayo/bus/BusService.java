@@ -1,13 +1,12 @@
 package team.sw.everyonetayo.bus;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import team.sw.everyonetayo.auth.Member;
-import team.sw.everyonetayo.util.PasswordEncoder;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class BusService {

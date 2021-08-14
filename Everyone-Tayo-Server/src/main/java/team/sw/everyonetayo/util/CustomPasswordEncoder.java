@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Component
-public class PasswordEncoder {
+public class CustomPasswordEncoder {
 
     public String encryptSHA256(String rawPassword) {
         String SHA = null;

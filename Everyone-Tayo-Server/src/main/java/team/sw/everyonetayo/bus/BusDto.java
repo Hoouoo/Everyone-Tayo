@@ -1,9 +1,7 @@
 package team.sw.everyonetayo.bus;
 
 import lombok.*;
-import team.sw.everyonetayo.util.PasswordEncoder;
-
-import java.util.UUID;
+import team.sw.everyonetayo.util.CustomPasswordEncoder;
 
 @NoArgsConstructor
 @Data
@@ -28,7 +26,7 @@ public class BusDto {
         return Bus.builder()
                 .uuid(uuid)
                 .username(username)
-                .password(new PasswordEncoder().encryptSHA256(password))
+                .password(new CustomPasswordEncoder().encryptSHA256(password))
                 .busNumber(busNumber)
                 .token(token).build();
     }

@@ -12,3 +12,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: youcantrevealthesecretkey1234012300040
