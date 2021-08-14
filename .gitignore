@@ -171,6 +171,9 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+### MariaDB Path ###
+dbdata/
+
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar

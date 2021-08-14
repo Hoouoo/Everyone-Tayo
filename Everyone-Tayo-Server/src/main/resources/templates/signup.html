@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org"
+      th:replace="fragment/boarder ::layout(title='회원가입', main=~{::main}, css=~{::#css})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<main>
+    <div id="wrapper">
+        <form role = "form" th:action="@{/signup}"  th:object="${busDto}"
+              class="row g-3"  style="margin-top: auto" method="POST">
+            <div class = "col-md-12">
+            <div class="row ">
+                <div class="form-group col-md-4">
+                    <label th:for="uuid" class="form-label">차량 번호(ex. 14카 1234)</label>
+                    <input th:field = "*{uuid}" type="text" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label th:for="busNumber" class="form-label">버스 번호(ex. 1001)</label>
+                    <input th:field = "*{busNumber}" type="text" class="form-control">
+                </div>
+            </div>
+            </div>
+            <div class = "col-md-12">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label th:for="username" class="form-label">ID</label>
+                    <input th:field ="*{username}"type="text" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label th:for="password" class="form-label">Password</label>
+                    <input th:field ="*{password}" type="password" class="form-control">
+                </div>
+            </div>
+            </div>
+            <div class="d-grid gap-4 col-md-8">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import team.sw.everyonetayo.auth.dto.LoginDto;
 
@@ -50,18 +51,8 @@ public class MemberController {
             System.out.println("No member Information");
             return "redirect:/login";
         }
-
     }
 
-    @GetMapping("/table")
-    public String table() {
 
-        return "table";
-    }
 
-    @GetMapping("/bus_status")
-    public String busStatus() {
-
-        return "bus_status";
-    }
 }
