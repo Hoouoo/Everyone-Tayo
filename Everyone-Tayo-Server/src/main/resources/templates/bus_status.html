@@ -83,7 +83,7 @@
     <div id="map" style="width:80%;height:700px; transform: translateX(200px);"></div>
     <script>
     </script>
-    <script th:each="busStop : ${bus_stop}">
+    <script>
         // var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         //     mapOption = {
         //         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -109,26 +109,17 @@
             };
 
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+        </script>
+        <script th:each="busStop : ${bus_stop}">
         // 마커를 표시할 위치와 title 객체 배열입니다
-        var positions = [
-            {
-                title: '카카오',
-                latlng: new kakao.maps.LatLng("${busStop.gps_lati}",  "${busStop.gps_long}")
-            }
-        ];
-        // 마커 이미지의 이미지 주소입니다
+        var coords = new kakao.maps.LatLng(<div th:text = "${busStop.gpsLati}" />,  <div "${busStop.gpsLong}"/>)
 
-        for (var i = 0; i < positions.length; i ++) {
 
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng, // 마커를 표시할 위치
-                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                image : markerImage // 마커 이미지
-            });
-        }
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: coords // 마커를 표시할 위치
+        });
+        marker.setMap(map);
         // var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         //         mapOption = {
         //           center: new kakao.maps.LatLng(35.153810, 129.030976), // 지도의 중심좌표

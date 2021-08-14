@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.sw.everyonetayo.util.PasswordEncoder;
+import team.sw.everyonetayo.util.busstop.BusStop;
+import team.sw.everyonetayo.util.busstop.BusStopRepository;
 
+import java.util.List;
 import java.util.Objects;
 
 @RequiredArgsConstructor
@@ -17,9 +20,6 @@ public class MemberService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public Member getMemberByUsername(String username){
-        return memberRepository.findByUsername(username);
-    }
 
     public Member login_check(String username, String password){
         Member member = memberRepository.findByUsername(username);
@@ -29,4 +29,5 @@ public class MemberService {
             return null;
         }
     }
+
 }

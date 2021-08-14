@@ -10,7 +10,7 @@
     <br>
     <h2> 버스 계정 목록 </h2>
     <hr>
-    <div class="container">
+    <div class="card-body">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
@@ -18,21 +18,20 @@
             <thead class = "text-center">
             <tr>
                 <th>UUID</th>
+                <th>버스 번호</th>
                 <th>아이디</th>
                 <th>패스워드</th>
-                <th>버스 번호</th>
             </tr>
             </thead>
             <tbody  class = "text-center">
+
+                 <tr th:each="Bus : ${bus}">
+                     <td th:text = "${Bus.uuid}"></td>
+                     <td th:text = "${Bus.busNumber}"></td>
+                     <td th:text = "${Bus.username}"></td>
+                     <td th:text = "${Bus.password}"></td>
+                 </tr>
             </tbody>
-            <tfoot>
-            <!--              <tr>-->
-            <!--                <td>133</td>-->
-            <!--                <td>동의대앞</td>-->
-            <!--                <td>다대포->노포</td>-->
-            <!--                <td style = "text-align: center"><button class="btn btn-info">사용 중??</button></td>-->
-            <!--              </tr>-->
-            </tfoot>
         </table>
     </div>
     <script>
