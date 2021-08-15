@@ -3,6 +3,9 @@ package team.sw.everyonetayo.view
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_voice_reader.*
@@ -15,21 +18,18 @@ class VoiceReader : AppCompatActivity() {
     var parent:AppCompatActivity =this;
     var result:WrappedString = WrappedString("")
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voice_reader)
 
-        setTitle("음성인식 버스 예약")
-
-        keypad_call.setOnClickListener{
-            val intent = Intent(this, KeyPad::class.java)
-            startActivity(intent)
-        }
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        
+
+
         //음성인식 버튼
         voiceRecodeButton.setOnClickListener(sttListener())
+
     }
 
     //뒤로가기 버튼 동작 코드
@@ -44,7 +44,7 @@ class VoiceReader : AppCompatActivity() {
             }
         }
     }
-
+    
     inner class sttListener : View.OnClickListener{
         override fun onClick(view: View?) {
             val sttController:SttController = SttContainer.instance.sttController()
@@ -53,4 +53,5 @@ class VoiceReader : AppCompatActivity() {
         }
     }
 }
+
 

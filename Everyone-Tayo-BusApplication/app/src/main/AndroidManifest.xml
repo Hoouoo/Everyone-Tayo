@@ -9,19 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Everyonetayo">
-        <activity android:name=".view.KeyPad"></activity>
         <activity android:name=".view.BusDriver" />
-        <activity android:name=".view.login.LoginActivity"
+        <activity
+            android:name=".view.login.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".view.SignUp" />
-        <activity android:name=".view.SelectService" />
-        <activity android:name=".view.ChoiceBus" />
-        <activity android:name=".view.DropOff" />
-        <activity android:name=".view.VoiceCheck" />
-        <activity android:name=".view.VoiceReader" />
-        <activity android:name=".view.WaitingTime" />
         <activity android:name=".view.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
