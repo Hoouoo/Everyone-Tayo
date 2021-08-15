@@ -1,25 +1,23 @@
 package team.sw.everyonetayo.view
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.speech.tts.TextToSpeech
 import android.support.v7.app.ActionBar
+
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import team.sw.everyonetayo.R
-import team.sw.everyonetayo.container.LoginContainer
-import team.sw.everyonetayo.controller.login.LoginController
-import team.sw.everyonetayo.domain.Result
-import team.sw.everyonetayo.repository.login.LoginRepository
-import team.sw.everyonetayo.util.GpsTracker
-import team.sw.everyonetayo.util.NetworkStatus
-import team.sw.everyonetayo.util.PermissionCheck
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         start_button.setOnClickListener{
 
