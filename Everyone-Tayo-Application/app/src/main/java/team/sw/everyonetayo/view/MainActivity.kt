@@ -15,9 +15,11 @@ import team.sw.everyonetayo.container.LoginContainer
 import team.sw.everyonetayo.controller.login.LoginController
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.repository.login.LoginRepository
+
 import team.sw.everyonetayo.util.NetworkStatus
 import team.sw.everyonetayo.util.PermissionCheck
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,11 +32,11 @@ class MainActivity : AppCompatActivity() {
 
             // 권한 체크
             if(!PermissionCheck.checkGps(applicationContext)){
-                Toast.makeText(this.getApplicationContext(), "앱 권한 설정에서 Gps를 활성화 시켜주세요.", Toast.LENGTH_SHORT).show()
+                ToastWithSpeech.instance.toastShowWithSpeach("앱 권한 설정에서 GPS를 활성화 시켜주세요.")
             }else if(!PermissionCheck.checkRecode(applicationContext)){
-                Toast.makeText(this.getApplicationContext(), "앱 권한 설정에서 음성녹음을 활성화 시켜주세요.", Toast.LENGTH_SHORT).show()
+                ToastWithSpeech.instance.toastShowWithSpeach("앱 권한 설정에서 음성녹음을 활성화 시켜주세요.")
             }else if(NetworkStatus.getConnectivityStatus(applicationContext) == NetworkStatus.TYPE_NOT_CONNECTED){
-                Toast.makeText(this.getApplicationContext(), "인터넷 연결을 활성화 시켜주세요.", Toast.LENGTH_SHORT).show()
+                ToastWithSpeech.instance.toastShowWithSpeach("인터넷 연결을 활성화 시켜주세요.")
             }else {
                 //권한 체크 통과
                 //토큰 확인 후 없다면 요청
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this, VoiceReader::class.java)
                         startActivity(intent)
                     }else{
-                        Toast.makeText(this.getApplicationContext(), "서버와 연결되지 않았습니다.", Toast.LENGTH_SHORT).show()
+                        ToastWithSpeech.instance.toastShowWithSpeach("서버와 연결되지 않았습니다.")
                     }
                 }
             }

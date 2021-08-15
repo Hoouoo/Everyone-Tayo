@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_select_service.home
 import kotlinx.android.synthetic.main.activity_voice_check.*
 import team.sw.everyonetayo.R
 import team.sw.everyonetayo.container.SttContainer
+
+import team.sw.everyonetayo.util.TtsSpeaker
 import java.util.*
 
 class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
@@ -84,6 +86,7 @@ class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
                         + "번 버스가 맞습니까?"
                 )
 
+        TtsSpeaker.instance.speakOut(confirmStateOfBus)
         confirmTextView.setText(confirmStateOfBus)
     }
 
