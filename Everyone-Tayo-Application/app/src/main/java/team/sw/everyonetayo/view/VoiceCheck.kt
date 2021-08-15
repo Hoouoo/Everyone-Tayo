@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_select_service.*
 import kotlinx.android.synthetic.main.activity_select_service.home
 import kotlinx.android.synthetic.main.activity_voice_check.*
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.container.SttContainer
 import java.util.*
 
 class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
@@ -39,7 +40,7 @@ class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
             }, DURATION)
         }
 
-        yes_button.setOnClickListener{
+        yesButton.setOnClickListener{
             speakOut("예")
             Handler().postDelayed({
                 val intent = Intent(this, WaitingTime::class.java)
@@ -49,7 +50,7 @@ class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
             }, DURATION)
         }
 
-        no_button.setOnClickListener{
+        noButton.setOnClickListener{
             speakOut("아니오")
             Handler().postDelayed({
                 val intent = Intent(this, VoiceReader::class.java)

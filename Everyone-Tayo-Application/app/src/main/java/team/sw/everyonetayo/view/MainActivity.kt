@@ -8,8 +8,15 @@ import android.support.v7.app.ActionBar
 
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.container.LoginContainer
+import team.sw.everyonetayo.controller.login.LoginController
+import team.sw.everyonetayo.domain.Result
+import team.sw.everyonetayo.repository.login.LoginRepository
+import team.sw.everyonetayo.util.NetworkStatus
+import team.sw.everyonetayo.util.PermissionCheck
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -31,8 +38,8 @@ class MainActivity : AppCompatActivity() {
             }else {
                 //권한 체크 통과
                 //토큰 확인 후 없다면 요청
-                val loginController:LoginController = LoginContainer.instance.loginController()
-                val loginRepository:LoginRepository = LoginContainer.instance.loginRepository()
+                val loginController: LoginController = LoginContainer.instance.loginController()
+                val loginRepository: LoginRepository = LoginContainer.instance.loginRepository()
                 if(!loginRepository.isLogin()){
                     if(loginController.login() is Result.Success){
                         //권한체크, 로그인 통과
@@ -43,6 +50,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+            val intent = Intent(this, VoiceReader::class.java)
+            startActivity(intent)
         }
 
 

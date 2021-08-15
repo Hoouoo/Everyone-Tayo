@@ -121,6 +121,7 @@ class SttService {
             val intent = Intent(appCompatActivity!!, VoiceCheck::class.java) 
             appCompatActivity!!.startActivity(intent)
             appCompatActivity!!.finish()
+            mRecognizer!!.destroy()
         }
 
         override fun onPartialResults(partialResults: Bundle) {}

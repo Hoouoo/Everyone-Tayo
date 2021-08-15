@@ -37,11 +37,11 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/no_button"
+        app:layout_constraintBottom_toTopOf="@+id/noButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmTextView" />
 
     <TextView
         android:id="@+id/confirmTextView"
@@ -56,7 +56,7 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/yes_button"
+        app:layout_constraintBottom_toTopOf="@+id/yesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,6 +80,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yes_button" />
+        app:layout_constraintTop_toBottomOf="@+id/yesButton" />
 
 </android.support.constraint.ConstraintLayout>
