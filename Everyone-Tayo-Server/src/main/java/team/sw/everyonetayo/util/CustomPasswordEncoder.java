@@ -27,6 +27,8 @@ public class CustomPasswordEncoder {
 
     public boolean matches(String rawPassword, String encryptedPassword){
         String encryption = encryptSHA256(rawPassword);
+        System.out.println("encryption = " + encryption);
+        System.out.println("encryptedPassword = " + encryptedPassword);
         return encryptedPassword.equals(encryption);
     }
 }

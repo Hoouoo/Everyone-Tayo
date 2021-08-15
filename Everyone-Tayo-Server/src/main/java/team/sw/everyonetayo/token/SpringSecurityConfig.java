@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.zebal;
+package team.sw.everyonetayo.token;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,9 +9,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * @author Sungho Park
+ *
+ * Spring security Configuration 설정 파일
+ * {jwt.secret}은 applicaiton.yml에서 설정 가능
+ */
+
 @Configuration
 @EnableWebSecurity
-public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${jwt.secret}")
     private String secret;
@@ -32,7 +39,7 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtUtil jwtUtil(){
-        return new JwtUtil(secret);
+    public TokenUtil jwtUtil(){
+        return new TokenUtil(secret);
     }
 }

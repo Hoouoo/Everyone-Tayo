@@ -1,12 +1,11 @@
 package team.sw.everyonetayo.bus;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import team.sw.everyonetayo.exception.AlreadyExistsBusAccountException;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BusService {
@@ -14,10 +13,18 @@ public class BusService {
     @Autowired
     private BusRepository busRepository;
 
-    @Transactional
+    public boolean diffUser(String username){
+        Bus bus = busRepository.findByUsername(username);
+        return !Objects.nonNull(bus.getUsername());
+    }
+
     public Long createUser(BusDto busDto){
         Bus bus = busDto.toEntity();
-        return busRepository.save(bus).getId();
+        if(diffUser(bus.getUsername())) {
+            return busRepository.save(bus).getId();
+        }else{
+            throw new AlreadyExistsBusAccountException("이미 존재하는 계정 정보입니다.");
+        }
     }
 
     public void deleteUser(String username){

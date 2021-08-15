@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface BusRepository extends JpaRepository<Bus, Long> {
     Bus findByUsername(String username);
+
     List<Bus> findAll();
 }
