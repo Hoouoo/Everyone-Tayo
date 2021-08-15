@@ -24,14 +24,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="286dp"
+        android:layout_height="102dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="84dp"
         android:layout_marginEnd="93dp"
         android:layout_marginBottom="3dp"
         android:fontFamily="@font/nanum_square_r"
-        android:text="이동에 차이가\n사라지다."
+        android:text="이동에 차이가 사라지다."
         android:textColor="#FFFCFC"
         android:textSize="48sp"
         android:textStyle="bold"

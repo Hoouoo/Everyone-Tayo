@@ -45,14 +45,14 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="302dp"
+        android:layout_height="88dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="23dp"
         android:layout_marginBottom="44dp"
         android:fontFamily="@font/nanum_square_r"
-        android:text='"이번 정류장에서\n하차를 하시겠습니까?"'
+        android:text="이번 정류장에서 하차하십니까?"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="40sp"

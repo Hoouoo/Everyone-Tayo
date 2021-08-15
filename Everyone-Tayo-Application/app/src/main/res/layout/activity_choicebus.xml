@@ -26,7 +26,7 @@
 
     <Button
         android:id="@+id/express_bus"
-        android:layout_width="330dp"
+        android:layout_width="317dp"
         android:layout_height="130dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="11dp"
@@ -35,7 +35,7 @@
         android:background="@drawable/express_bus"
         android:drawableLeft="@drawable/express_bus_size"
         android:fontFamily="@font/nanum_square_r"
-        android:text="급행\n버스"
+        android:text="급행 버스"
         android:textAlignment="center"
         android:textColor="#FA5154"
         android:textSize="48sp"
@@ -65,7 +65,7 @@
 
     <Button
         android:id="@+id/village_bus"
-        android:layout_width="330dp"
+        android:layout_width="317dp"
         android:layout_height="130dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="11dp"
@@ -74,7 +74,7 @@
         android:background="@drawable/village_bus"
         android:drawableLeft="@drawable/village_bus_size"
         android:fontFamily="@font/nanum_square_r"
-        android:text="마을\n버스"
+        android:text="마을 버스"
         android:textAlignment="center"
         android:textColor="#00D400"
         android:textSize="48sp"
@@ -86,7 +86,7 @@
 
     <Button
         android:id="@+id/regular_bus"
-        android:layout_width="330dp"
+        android:layout_width="317dp"
         android:layout_height="130dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="21dp"
@@ -95,7 +95,7 @@
         android:background="@drawable/regular_bus"
         android:drawableLeft="@drawable/regular_bus_size"
         android:fontFamily="@font/nanum_square_r"
-        android:text="일반\n버스"
+        android:text="일반 버스"
         android:textAlignment="center"
         android:textColor="#0000D5"
         android:textSize="48sp"

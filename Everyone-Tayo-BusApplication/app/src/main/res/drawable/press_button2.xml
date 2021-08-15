@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#0F6DD1">
+    android:color="#FFFFFF">
 
     <!-- shadow (밑으로) : 그림자 -->
     <item android:top="4dp" android:left="4dp">
@@ -12,13 +12,13 @@
     <item android:id="@android:id/mask" android:bottom="4dp" android:right="4dp">
         <shape android:shape="rectangle">
             <corners android:radius="5dp" />
-            <solid android:color="#0F6DD1" />
+            <solid android:color="#FFFFFF" />
         </shape>
     </item>
     <item android:id="@android:id/background" android:bottom="4dp" android:right="4dp">
         <shape android:shape="rectangle">
             <corners android:radius="5dp" />
-            <solid android:color="#FFFFFF" />
+            <solid android:color="#005490" />
         </shape>
     </item>
 </ripple>
