@@ -61,6 +61,29 @@ class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
 
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
+
+        //네 버튼
+        yesButton.setOnClickListener{
+            val intent = Intent(this, Success::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        //아니요 버튼
+        noButton.setOnClickListener{
+            val intent = Intent(this, VoiceReader::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
+        //음성인식으로 받아온 데이터 화면에 표시
+        val confirmStateOfBus:String = (
+                SttContainer.instance.sttRepository().recodeString.myString
+                        + "번 버스가 맞습니까?"
+                )
+
+        confirmTextView.setText(confirmStateOfBus)
     }
 
     //뒤로가기 버튼 동작 코드

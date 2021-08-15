@@ -2,17 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="team.sw.everyonetayo">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
+        android:name=".util.ApplicationContext"
+
+        android:usesCleartextTraffic="true"
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Everyonetayo">
+        android:theme="@style/Theme.Everyonetayo"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
+        >
+
         <activity android:name=".view.KeyPad"></activity>
         <activity android:name=".view.BusDriver" />
-        <activity android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
         <activity android:name=".view.SignUp" />
         <activity android:name=".view.SelectService" />
         <activity android:name=".view.ChoiceBus" />
@@ -20,14 +27,27 @@
         <activity android:name=".view.VoiceCheck" />
         <activity android:name=".view.VoiceReader" />
         <activity android:name=".view.WaitingTime" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.Success"/>
 
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
+
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 </manifest>

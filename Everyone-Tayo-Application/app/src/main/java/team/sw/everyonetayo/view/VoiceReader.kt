@@ -7,14 +7,17 @@ import android.os.Handler
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_voice_reader.*
 import team.sw.everyonetayo.R
-import java.util.*
+import team.sw.everyonetayo.container.SttContainer
+import team.sw.everyonetayo.controller.stt.SttController
+import team.sw.everyonetayo.domain.WrappedString
 
-class VoiceReader : AppCompatActivity(), TextToSpeech.OnInitListener {
+class VoiceReader : AppCompatActivity() {
+    var parent:AppCompatActivity =this;
+    var result:WrappedString = WrappedString("")
 
-    val DURATION:Long = 1000 //액티비티 이동의 1.5초 딜레이
-    private var tts: TextToSpeech? = null //tts 사용
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +42,12 @@ class VoiceReader : AppCompatActivity(), TextToSpeech.OnInitListener {
                 finish()
             }, DURATION)
         }
-
         //뒤로가기 버튼
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        
+        //음성인식 버튼
+        voiceRecodeButton.setOnClickListener(sttListener())
     }
-
 
     //뒤로가기 버튼 동작 코드
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -57,31 +61,14 @@ class VoiceReader : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
         }
     }
-    // TextToSpeech.OnInitListener를 상속하는 과정에서 필요한 부분
-    override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-            // set US English as language for tts
-            val result = tts!!.setLanguage(Locale.KOREAN)
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS","The Language specified is not supported!")
-            }
-        } else {
-            Log.e("TTS", "Initilization Failed!")
+    
+    inner class sttListener : View.OnClickListener{
+        override fun onClick(view: View?) {
+            val sttController:SttController = SttContainer.instance.sttController()
+            sttController.settingSst(parent, result, stateTextView)
+            sttController.startRecod()
         }
-    }
-
-    // tts 음성을 출력하기 위한 함수
-    private fun speakOut(text_s : String) {
-        tts!!.speak(text_s, TextToSpeech.QUEUE_FLUSH, null,"")
-    }
-
-    // tts 음성을 초기화 해주기 위한 함수
-    public override fun onDestroy() {
-        // Shutdown TTS
-        if (tts != null) {
-            tts!!.stop()
-            tts!!.shutdown()
-        }
-        super.onDestroy()
     }
 }
+
+

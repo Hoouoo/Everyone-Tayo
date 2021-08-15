@@ -22,6 +22,14 @@ class MemoryLoginRepository() : LoginRepository{
         user = null
     }
 
+    override fun getLoggedInUser(): LoggedInUser? {
+        return user
+    }
+
+    override fun isLogin(): Boolean {
+        return isLoggedIn;
+    }
+
     override fun login(loggedInUser: LoggedInUser): Result<LoggedInUser> {
         user = loggedInUser
         return Result.Success(loggedInUser)
