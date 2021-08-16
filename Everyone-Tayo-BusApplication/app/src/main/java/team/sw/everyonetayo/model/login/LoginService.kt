@@ -12,6 +12,8 @@ import team.sw.everyonetayo.http.HttpService
 import team.sw.everyonetayo.http.domain.LoginResponse
 import team.sw.everyonetayo.repository.login.LoginRepository
 import java.io.IOException
+import java.lang.Exception
+import java.net.ConnectException
 import java.net.SocketAddress
 import java.net.SocketTimeoutException
 import java.util.*
@@ -66,6 +68,10 @@ class LoginService {
 
                 result = Result.Success(loggedInUser)
             } catch (e: SocketTimeoutException) {
+                result = Result.Error(e)
+            } catch (e: ConnectException) {
+                result = Result.Error(e)
+            } catch (e: Exception) {
                 result = Result.Error(e)
             }
         })
