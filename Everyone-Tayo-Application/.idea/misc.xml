@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< Updated upstream
-=======
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_choicebus.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_key_pad.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/drawable/home_button.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/drawable/press_button2.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/drawable/regular_bus_size.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/drawable/start_button.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_bus_driver.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_choicebus.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_dropoff.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_key_pad.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_loading.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_login.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_select_service.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_success.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_voice_check.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_voice_reader.xml" value="0.21105072463768115" />
+        <entry key="..\:/Users/shpus/home/opensoftProject/Everyone-Tayo-Application/app/src/main/res/layout/activity_waitingtime.xml" value="0.23645833333333333" />
       </map>
     </option>
   </component>
->>>>>>> Stashed changes
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

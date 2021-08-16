@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">everyonetayo</string>
     <string name="home">Home</string>
-    <string name="시작하기" />
+    <string name="start">시작하기</string>
     <string name="title_activity_login">로그인 / 회원가입</string>
     <string name="prompt_email">아이디</string>
     <string name="prompt_password">비밀번호</string>

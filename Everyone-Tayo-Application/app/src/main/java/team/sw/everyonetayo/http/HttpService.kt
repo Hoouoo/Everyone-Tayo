@@ -13,7 +13,8 @@ public interface HttpService {
     fun reservation(
         @Field("busNumber") state:String,
         @Field("latitude") latitude:String,
-        @Field("longitude") longitude:String
+        @Field("longitude") longitude:String,
+        @Field("token") token:String
     ) : Call<ReservationResponse>
 
     @FormUrlEncoded

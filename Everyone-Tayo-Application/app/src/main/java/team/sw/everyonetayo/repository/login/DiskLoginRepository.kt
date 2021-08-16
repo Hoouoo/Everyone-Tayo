@@ -1,16 +1,19 @@
 package team.sw.everyonetayo.repository.login
 
+import android.app.Activity
+import android.content.Context
 import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import team.sw.everyonetayo.domain.LoggedInUser
 import team.sw.everyonetayo.domain.Result
+import team.sw.everyonetayo.util.ApplicationContext
 
-class DiskLoginRepository : LoginRepository, AppCompatActivity {
+class DiskLoginRepository : LoginRepository {
     val sp:SharedPreferences;
     val editor:SharedPreferences.Editor;
 
     constructor(){
-        sp = getSharedPreferences("loggedInUser", MODE_PRIVATE);
+        sp =  ApplicationContext.context().getSharedPreferences("loggedInUser", Context.MODE_PRIVATE);
         editor = sp.edit()
     }
 

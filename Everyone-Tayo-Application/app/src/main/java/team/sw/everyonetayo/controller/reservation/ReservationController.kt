@@ -1,5 +1,7 @@
 package team.sw.everyonetayo.controller.reservation
 
+import team.sw.everyonetayo.domain.Result
+import team.sw.everyonetayo.http.domain.ReservationResponse
 import team.sw.everyonetayo.model.reservation.ReservationService
 
 class ReservationController {
@@ -12,7 +14,7 @@ class ReservationController {
 
     //TODO:Implement
 
-    fun reservation(busNumber:String, latitude:String, longitude:String){
-        reservationService.reservation(busNumber, latitude, longitude);
+    fun reservation(busNumber:String, latitude:String, longitude:String, token:String):Result<ReservationResponse>{
+        return reservationService.reservation(busNumber, latitude, longitude, token)
     }
 }
