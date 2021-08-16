@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_bus_driver.*
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.container.ViewContainer
 
 
 class BusDriver : AppCompatActivity() {
@@ -21,6 +22,7 @@ class BusDriver : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_driver)
 
+        ViewContainer.instance.add("BusDriver",this)
 
         // 리스트에 값 추가
         drive_start.setOnClickListener {
@@ -66,7 +68,7 @@ class BusDriver : AppCompatActivity() {
     }
 
 
-    private fun additems(busstop: String, people_num: Int) {
+    fun additems(busstop: String, people_num: Int) {
         if (listView.count == 0){
             items.add(ListViewItem(busstop, people_num))
         }else{
@@ -84,7 +86,7 @@ class BusDriver : AppCompatActivity() {
         }
     }
 
-    private fun deleteitems(busstop: String) {
+    fun deleteitems(busstop: String) {
         for ( i in 0 until listView.count){
             if(items.get(i).busstop.equals(busstop)){
                 items.removeAt(i)
