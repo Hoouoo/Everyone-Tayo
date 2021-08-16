@@ -18,6 +18,7 @@ import team.sw.everyonetayo.repository.login.LoginRepository
 
 import team.sw.everyonetayo.util.NetworkStatus
 import team.sw.everyonetayo.util.PermissionCheck
+import team.sw.everyonetayo.util.ToastWithSpeech
 import java.util.*
 
 
@@ -52,8 +53,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-            val intent = Intent(this, VoiceReader::class.java)
-            startActivity(intent)
         }
 
 
