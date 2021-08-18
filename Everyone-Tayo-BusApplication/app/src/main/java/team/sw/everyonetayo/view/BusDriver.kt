@@ -1,6 +1,11 @@
 package team.sw.everyonetayo.view
 
-import android.graphics.Color
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.media.Ringtone
+import android.media.RingtoneManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBar
@@ -28,6 +33,13 @@ class BusDriver : AppCompatActivity() {
             val adapter = ListViewAdapter(items)
             listView.adapter = adapter
             ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_ride_textview))
+            try{
+                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell)
+                val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
+                r1.play()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
         // 리스트 값 삭제
@@ -36,16 +48,23 @@ class BusDriver : AppCompatActivity() {
             val adapter = ListViewAdapter(items)
             listView.adapter = adapter
             drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_drop_textview))
+            try{
+                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell2)
+                val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
+                r1.play()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
 
 
-        // 리스트 값 수정
-        replace.setOnClickListener {
-            additems("동의대00", 1)
-            val adapter = ListViewAdapter(items)
-            listView.adapter = adapter
-       }
+//        // 리스트 값 수정
+//        replace.setOnClickListener {
+//            additems("동의대00", 1)
+//            val adapter = ListViewAdapter(items)
+//            listView.adapter = adapter
+//       }
 
 
 
@@ -90,10 +109,11 @@ class BusDriver : AppCompatActivity() {
                 if(items.get(i).people_num == 1) {
                     items.removeAt(i)
                     break
-                }else{
-                    items.get(i).people_num -= 1
-                    break
                 }
+//                else{
+//                    items.get(i).people_num -= 1
+//                    break
+//                }
             }
         }
 
