@@ -14,5 +14,4 @@ spring:
         format_sql: true
 
 jwt:
-#  secret: youcantrevealthesecretkey1234012300040
   secret: everytayofighting203949586812938485895891

@@ -38,6 +38,11 @@
             <div class="d-grid gap-4 col-md-8">
                 <button class="btn btn-primary" type="submit">Submit form</button>
             </div>
+            <div class="row g-3 col-md-12" style="margin-top: 2%">
+            <div class="row text-center" th:if="${errors}" style ="width: 70%">
+                <p th:text="${errors}" class="alert alert-danger"></p>
+            </div>
+            </div>
         </form>
     </div>
 </main>
