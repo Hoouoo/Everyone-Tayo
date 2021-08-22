@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.util.nearBusStop;
+package team.sw.everyonetayo.util.reservation;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,14 +6,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class NearBusDto {
+public class ResponseNearBusDto {
 
     private String nodeId;
     private String nodeNm;
     private String cityCode;
 
     @Builder
-    public NearBusDto(String nodeId, String nodeNm, String cityCode) {
+    public ResponseNearBusDto(String nodeId, String nodeNm, String cityCode) {
         this.nodeId = nodeId;
         this.nodeNm = nodeNm;
         this.cityCode = cityCode;

@@ -16,6 +16,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 public class BusRouteController {
@@ -70,13 +72,23 @@ public class BusRouteController {
                     routeDto = new RouteDto.RouteDtoBuilder()
                             .routeTp(String.valueOf(targetItem.get("routetp")))
                             .routeId(String.valueOf(targetItem.get("routeid")))
-                            .routeNo(String.valueOf(targetItem.get("routeno")))
+                            .routeNo(String.valueOf(targetItem.get("routeno"))) //변경
                             .build();
+
+
+                    String routeNo = String.valueOf(routeDto.getRouteNo());
+                    char checkRouteNm = routeNo.charAt(0);
+
+                    if (checkRouteNm >= '0' && checkRouteNm <= '9') {
+                        Pattern pattern = Pattern.compile("([0-9a-zA-z-])+");
+                        Matcher match = pattern.matcher(String.valueOf(routeDto.getRouteNo()));
+                        if (match.find()) routeNo = match.group();
+                    }
 
                     Route route = new Route.RouteBuilder()
                             .routeTp(String.valueOf(routeDto.getRouteTp()))
                             .routeId(String.valueOf(routeDto.getRouteId()))
-                            .routeNo(String.valueOf(routeDto.getRouteNo()))
+                            .routeNo(routeNo)
                             .cityCode(cityCode)
                             .build();
 

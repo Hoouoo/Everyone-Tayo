@@ -1,13 +1,12 @@
-package team.sw.everyonetayo.util.nearBusStop;
+package team.sw.everyonetayo.util.reservation;
 
 import lombok.Getter;
 
 @Getter
-public class NearBusRequestDto {
+public class RequestNearBusDto {
 
     private String busNumber;
     private String latitude;
     private String longitude;
-    private String token;
 
 }
