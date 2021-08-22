@@ -9,5 +9,7 @@ services:
       - MYSQL_USER=tayo
       - MYSQL_PASSWORD=1234
       - MYSQL_DATABASE=everyonetayo
+    volumes:
+      - ./dbdata:/var/lib/mysql
     ports:
       - 3306:3306

@@ -8,7 +8,7 @@
     <header th:fragment="layoutHeader" >
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index">
                     <img width="50" height="50" src="../icon/logo.png" alt="School bus" title="School bus" class="loaded">
                     &nbsp&nbsp&nbspEveryone-Tayo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="true" aria-label="Toggle navigation">
@@ -18,19 +18,14 @@
                 <div class="navbar-collapse collapse show" id="navbarColor01" style="">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Home
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">버스 관리</a>
+                            <a class="nav-link" href="bus_status">버스 관리</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">버스 기사 관리</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">버스 기사 추가</a>
-                                <a class="dropdown-item" href="#">버스 기사 삭제</a>
-                                <a class="dropdown-item" href="#">버스 기사 목록</a>
+                                <a class="dropdown-item" href="signup">버스 기사 추가</a>
+                                <a class="dropdown-item" href="delete_bus_driver">버스 기사 삭제</a>
+                                <a class="dropdown-item" href="read_bus_driver">버스 기사 목록</a>
                             </div>
                         </li>
 

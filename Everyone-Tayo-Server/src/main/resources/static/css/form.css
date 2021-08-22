@@ -22,7 +22,10 @@
 .wrapper > footer{
     grid-area: footer;
 }
-
+/*글자*/
+body {
+    font-family: 'Do Hyeon', sans-serif!important;
+}
 /*사이드바 css*/
 #sidebar-wrapper {
     top: 75px;
@@ -120,4 +123,5 @@
         left: 200px;
     }
 }
+
 
