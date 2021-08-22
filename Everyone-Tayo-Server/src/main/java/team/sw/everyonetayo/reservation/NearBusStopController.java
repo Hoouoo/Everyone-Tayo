@@ -1,14 +1,14 @@
-package team.sw.everyonetayo.util.reservation;
+package team.sw.everyonetayo.reservation;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import team.sw.everyonetayo.exception.NoSuchRouteIdException;
-import team.sw.everyonetayo.util.busroute.BusRouteRepository;
+import team.sw.everyonetayo.api.busroute.BusRouteRepository;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -76,7 +76,12 @@ public class NearBusStopController {
 
         // 사용자가 입력한 버스 번호를 토대로 DB 조회
         List<String> targetRoutes = new ArrayList<>();
-        busRouteRepository.findAllByRouteNo(requestNearBusDto.getBusNumber()).forEach(item -> targetRoutes.add(item.getRouteId()));
+
+        if (busRouteRepository.existsByRouteNo(requestNearBusDto.getBusNumber())) {
+            busRouteRepository.findAllByRouteNo(requestNearBusDto.getBusNumber()).forEach(item -> targetRoutes.add(item.getRouteId()));
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("존재하지 않는 버스 번호 입니다.");
+        }
 
 //        String targetRouteId = busRouteRepository.findByRouteNo(requestNearBusDto.getBusNumber())
 //                .orElseThrow(() -> new NoSuchRouteIdException("존재하지 않는 RouteId 입니다.")).getRouteId();

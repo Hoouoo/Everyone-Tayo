@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.util.busuuid;
+package team.sw.everyonetayo.api.busuuid;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import team.sw.everyonetayo.util.busroute.BusRouteRepository;
-import team.sw.everyonetayo.util.busroute.Route;
+import team.sw.everyonetayo.api.busroute.BusRouteRepository;
+import team.sw.everyonetayo.api.busroute.Route;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

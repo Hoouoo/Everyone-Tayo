@@ -43,8 +43,6 @@ public class BusController {
 
             System.out.println("busDto.getUsername() = " + busDto.getUsername());
             busService.createUser(busDto);
-            // 여기서 죽네
-            System.out.println("여기까진 될까?");
         }
         return "redirect:login";
     }

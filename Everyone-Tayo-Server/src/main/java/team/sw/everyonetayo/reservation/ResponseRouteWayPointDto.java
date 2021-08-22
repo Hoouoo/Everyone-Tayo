@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.util.reservation;
+package team.sw.everyonetayo.reservation;
 
 import lombok.*;
 

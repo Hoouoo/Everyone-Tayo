@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.util.busroute;
+package team.sw.everyonetayo.api.busroute;
 
 import lombok.Builder;
 import lombok.Getter;

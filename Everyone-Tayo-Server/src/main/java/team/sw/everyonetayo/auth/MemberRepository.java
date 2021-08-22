@@ -2,7 +2,6 @@ package team.sw.everyonetayo.auth;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import team.sw.everyonetayo.util.busstop.BusStop;
 
 
 @Repository

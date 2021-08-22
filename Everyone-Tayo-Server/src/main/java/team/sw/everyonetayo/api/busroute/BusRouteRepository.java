@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.util.busroute;
+package team.sw.everyonetayo.api.busroute;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,4 +13,6 @@ public interface BusRouteRepository extends JpaRepository<Route, Long> {
     Optional<Route> findByRouteNo(String routeNo);  // 버스 번호 추출
 
     List<Route> findAllByRouteNo(String routeNo);
+
+    boolean existsByRouteNo(String routeNo); // 버스 번호 유무
 }

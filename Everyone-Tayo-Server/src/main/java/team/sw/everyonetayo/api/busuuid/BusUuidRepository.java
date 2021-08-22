@@ -1,4 +1,4 @@
-package team.sw.everyonetayo.util.busuuid;
+package team.sw.everyonetayo.api.busuuid;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
