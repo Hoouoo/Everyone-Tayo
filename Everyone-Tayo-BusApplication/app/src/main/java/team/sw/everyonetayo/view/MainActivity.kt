@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        // 화면을 landscape(가로) 화면으로 고정
+//
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//        // 화면을 landscape(가로) 화면으로 고정
 
         login.setOnClickListener{
             val intent = Intent(this, LoginActivity::class.java)
