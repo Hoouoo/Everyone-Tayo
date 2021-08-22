@@ -1,11 +1,8 @@
 package team.sw.everyonetayo.view
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBar
@@ -21,6 +18,7 @@ class BusDriver : AppCompatActivity() {
 
     var check: Boolean = false
 
+
     val items = mutableListOf<ListViewItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +32,7 @@ class BusDriver : AppCompatActivity() {
             listView.adapter = adapter
             ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_ride_textview))
             try{
-                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell)
+                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell2)
                 val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
                 r1.play()
             } catch (e: Exception) {
@@ -49,7 +47,7 @@ class BusDriver : AppCompatActivity() {
             listView.adapter = adapter
             drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_drop_textview))
             try{
-                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell2)
+                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell)
                 val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
                 r1.play()
             } catch (e: Exception) {
@@ -118,5 +116,7 @@ class BusDriver : AppCompatActivity() {
         }
 
     }
+
+
 
 }
