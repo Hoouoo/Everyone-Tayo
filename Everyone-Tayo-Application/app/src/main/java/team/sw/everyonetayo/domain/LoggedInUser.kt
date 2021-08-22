@@ -1,11 +1,16 @@
 package team.sw.everyonetayo.domain
 
+import java.io.Serializable
+
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
-data class LoggedInUser(
-    val userId: String,
-    val displayName: String,
+class LoggedInUser : Serializable{
     val token: String
-)
+
+    constructor(token:String){
+        this.token = token
+    }
+}
+

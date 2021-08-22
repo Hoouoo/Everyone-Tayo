@@ -14,20 +14,21 @@ class MemoryLoginRepository() : LoginRepository{
     var user: LoggedInUser? = null
         private set
 
-    val isLoggedIn: Boolean
-        get() = user != null
-
-
     override fun logout() {
         user = null
     }
 
-    override fun login(username: String, password: String): Result<LoggedInUser> {
-        // handle login
-        return Result.Success(LoggedInUser("hi","hi","hi"));
+    override fun getLoggedInUser(): LoggedInUser? {
+        return user!!;
     }
 
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
-        this.user = loggedInUser
+    override fun isLogin(): Boolean {
+        return user != null
+    }
+
+    override fun login(loggedInUser:LoggedInUser): Result<LoggedInUser> {
+        // handle login
+        this.user = loggedInUser;
+        return Result.Success(loggedInUser);
     }
 }
