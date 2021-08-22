@@ -19,8 +19,8 @@ class BusDriver : AppCompatActivity() {
 
     var check: Boolean = false
 
-
     val items = mutableListOf<ListViewItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_driver)
@@ -29,42 +29,13 @@ class BusDriver : AppCompatActivity() {
 
         // 리스트에 값 추가
         drive_start.setOnClickListener {
-            additems("동의대역", 1)
-            val adapter = ListViewAdapter(items)
-            listView.adapter = adapter
-            ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_ride_textview))
-            try{
-                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell2)
-                val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
-                r1.play()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            lightOnOfGreenBlink()
         }
 
         // 리스트 값 삭제
         drive_end.setOnClickListener {
-            deleteitems("동의대00")
-            val adapter = ListViewAdapter(items)
-            listView.adapter = adapter
-            drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_drop_textview))
-            try{
-                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell)
-                val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
-                r1.play()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+
         }
-
-
-
-//        // 리스트 값 수정
-//        replace.setOnClickListener {
-//            additems("동의대00", 1)
-//            val adapter = ListViewAdapter(items)
-//            listView.adapter = adapter
-//       }
 
 
 
@@ -73,8 +44,6 @@ class BusDriver : AppCompatActivity() {
             val item = parent.getItemAtPosition(position) as ListViewItem
             Toast.makeText(this, item.people_num, Toast.LENGTH_SHORT).show()
         }
-
-
 
         setTitle("운행 정보")
 
@@ -101,13 +70,15 @@ class BusDriver : AppCompatActivity() {
             }
             check = false
         }
+        val adapter = ListViewAdapter(items)
+        listView.adapter = adapter
     }
 
     fun deleteitems(busstop: String) {
         for ( i in 0 until listView.count){
             if(items.get(i).busstop.equals(busstop)){
 
-                if(items.get(i).people_num == 1) {
+                if(items.get(i).people_num >= 1) {
                     items.removeAt(i)
                     break
                 }
@@ -117,9 +88,56 @@ class BusDriver : AppCompatActivity() {
 //                }
             }
         }
-
+        val adapter = ListViewAdapter(items)
+        listView.adapter = adapter
     }
 
+    fun speakGreenBell(){
+        try{
+            val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell2)
+            val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
+            r1.play()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
+    fun speekReadBell(){
+        try{
+            val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell)
+            val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
+            r1.play()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
+    fun lightOnOfGreen(){
+        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_ride_textview))
+    }
+
+    fun lightOnOfGreenBlink(){
+        Thread(Runnable {
+            for (i in 1..10){
+                if(i % 2 == 1){
+                    lightOnOfGreen()
+                }else{
+                    lightOffOfGreen()
+                }
+                Thread.sleep(333)
+            }
+        }).start()
+    }
+
+    fun lightOffOfGreen(){
+        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+    }
+
+    fun lightOnOfRed(){
+        drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_drop_textview))
+    }
+
+    fun lightOffOfRed(){
+        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+    }
 }
