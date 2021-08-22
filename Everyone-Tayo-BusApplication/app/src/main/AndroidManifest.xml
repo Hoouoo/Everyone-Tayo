@@ -9,11 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Everyonetayo">
-        <activity android:name=".view.BusDriver" />
+
+        <activity
+            android:name=".view.BusDriver"
+            android:configChanges="screenSize|orientation"/>
         <activity
             android:name=".view.login.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".view.MainActivity">
+            android:label="@string/title_activity_login"
+            android:configChanges="screenSize|orientation"/>
+        <activity
+            android:name=".view.MainActivity"
+            android:configChanges="screenSize|orientation">
+          
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
