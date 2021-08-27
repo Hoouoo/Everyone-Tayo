@@ -1,9 +1,11 @@
 package team.sw.everyonetayo.repository.heap;
 
-import team.sw.everyonetayo.domain.Reservation
+import team.sw.everyonetayo.domain.ReservationDto
 
 class ReservationsRepository {
-    companion object{
-        val Reservations:List<Reservation> = ArrayList()
+    private val reservations:ArrayList<ReservationDto> = ArrayList()
+
+    fun getReservationList():ArrayList<ReservationDto>{
+        return reservations
     }
 }

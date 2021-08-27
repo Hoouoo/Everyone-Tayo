@@ -11,7 +11,7 @@ public class Distance {
      * @param unit 거리 표출단위
      * @return
      */
-    private static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
+    public static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
 
         double theta = lon1 - lon2;
         double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
