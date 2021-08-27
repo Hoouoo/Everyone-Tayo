@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_bus_driver.*
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.container.ReservationContainer
 import team.sw.everyonetayo.container.ViewContainer
 
 
@@ -24,8 +25,12 @@ class BusDriver : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_driver)
-
+        
+        //뷰 콘테이너에 추가
         ViewContainer.instance.add("BusDriver",this)
+
+        //예약 리스트 자동 관리 시작
+        ReservationContainer.instance.reservationManagement().start()
 
         // 리스트에 값 추가
         drive_start.setOnClickListener {
@@ -139,5 +144,11 @@ class BusDriver : AppCompatActivity() {
 
     fun lightOffOfRed(){
         ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+    }
+
+    override fun onDestroy() {
+        //예약 리스트 자동 관리 종료
+        ReservationContainer.instance.reservationManagement().stop()
+        super.onDestroy()
     }
 }
