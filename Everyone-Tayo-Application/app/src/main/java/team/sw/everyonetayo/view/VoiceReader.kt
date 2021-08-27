@@ -30,6 +30,12 @@ class VoiceReader : AppCompatActivity() {
         //음성인식 버튼
         voiceRecodeButton.setOnClickListener(sttListener())
 
+        //키패드 입력하기
+        keypad_call.setOnClickListener {
+            val intent = Intent(this, KeyPad::class.java)
+            startActivity(intent)
+        }
+
     }
 
     //뒤로가기 버튼 동작 코드
