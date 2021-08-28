@@ -2,7 +2,7 @@
     display: grid;
     grid-gap: 10px;
     grid-template-areas: "header header header"
-                         "side main main"
+                         "main main main"
                          "footer footer footer";
     grid-template-columns: 350px auto;
     grid-template-rows: 4rem auto 4rem;
@@ -123,5 +123,3 @@ body {
         left: 200px;
     }
 }
-
-

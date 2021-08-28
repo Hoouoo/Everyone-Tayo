@@ -8,12 +8,13 @@
     <header th:fragment="layoutHeader" >
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index">
+                <a class="navbar-brand" href="table">
                     <img width="50" height="50" src="../icon/logo.png" alt="School bus" title="School bus" class="loaded">
                     &nbsp&nbsp&nbspEveryone-Tayo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="true" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
 
                 <div class="navbar-collapse collapse show" id="navbarColor01" style="">
                     <ul class="navbar-nav me-auto">
@@ -40,9 +41,11 @@
                         <!--                            </div>-->
                         <!--                        </li>-->
                     </ul>
-                    <form class="d-flex">
-                        <button type="button" class="btn btn-warning">로그아웃</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">설정</button>
+                    <form class="d-flex" method = "post" th:action = "@{/logout.do}">
+                        <th:block th:if="${session['member']}">
+                            <button type="submit" class="btn btn-warning"> 로그아웃</button>&nbsp;&nbsp;&nbsp;
+                        </th:block>
+                        <!--                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">설정</button>-->
                     </form>
                 </div>
             </div>

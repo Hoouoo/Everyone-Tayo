@@ -6,6 +6,7 @@
     <title>Title</title>
 </head>
 <main class = "mb-3">
+    <div class="container" style = "width: 50vh; margin-top: 5vh">
     <form  th:action="@{/login}" th:object="${loginDTO}" style="margin-top: auto" method="POST">
         <div class="mb-3" style = "width: 50vh">
             <label for="username" class="form-label">Email address</label>
@@ -25,5 +26,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    </div>
 </main>
 </html>
