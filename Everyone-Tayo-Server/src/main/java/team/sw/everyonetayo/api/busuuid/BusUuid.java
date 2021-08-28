@@ -1,9 +1,6 @@
 package team.sw.everyonetayo.api.busuuid;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +13,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Setter // 나중에 지우기
 public class BusUuid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

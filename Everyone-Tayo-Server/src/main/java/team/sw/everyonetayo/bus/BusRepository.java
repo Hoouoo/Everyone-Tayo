@@ -13,4 +13,6 @@ public interface BusRepository extends JpaRepository<Bus, Long> {
     List<Bus> findAll();
 
     boolean existsByUsername(String username);
+
+    boolean existsByUuid(String Uuid);
 }

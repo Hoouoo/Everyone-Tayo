@@ -6,18 +6,21 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import team.sw.everyonetayo.api.busroute.BusRouteRepository;
+import team.sw.everyonetayo.exception.NoSuchBusArriverStatusExecption;
 import team.sw.everyonetayo.exception.NoSuchItemsException;
+import team.sw.everyonetayo.reservation.table.ReservationService;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Slf4j
 @RestController
@@ -25,21 +28,22 @@ public class NearBusStopController {
 
     @Autowired
     BusRouteRepository busRouteRepository;
+    @Autowired
+    ReservationService reservationService;
+
 
     private ResponseNearBusDto responseNearBusDto;
     private ResponseRouteWayPointDto busWayPoint;
+    private ResponseBusArrivalDto busArriverStatus;
     private ResponseReservationDto targetBus;
 
 
-    //        35.284041, 129.095096
     @SneakyThrows
-    @PostMapping(value = "/reservation-app-user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity callApiWithJson(@RequestBody RequestNearBusDto requestNearBusDto) {
+    @GetMapping(value = "/reservation-app-user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity callApiWithJson(@RequestBody RequestNearBusDto requestNearBusDto)  {
+        busArriverStatus = null;
         responseNearBusDto = new ResponseNearBusDto();
         StringBuffer result = new StringBuffer();
-        StringBuilder jsonPrintString1 = new StringBuilder();
-        StringBuilder jsonPrintString2 = new StringBuilder();
-        StringBuilder jsonPrintString3 = new StringBuilder();
 
         // Step 1. 가장 가까운 버스 정류소 추출
         try {
@@ -63,8 +67,7 @@ public class NearBusStopController {
             JSONObject responseObject = (JSONObject) jsonObject.get("response");
             JSONObject bodyObject = (JSONObject) responseObject.get("body");
             JSONObject itemObject = (JSONObject) bodyObject.get("items");
-            jsonPrintString1.append(itemObject.toString());
-            System.out.println(jsonPrintString1);
+
             JSONArray item = (JSONArray) itemObject.get("item");
             JSONObject targetItem = (JSONObject) item.get(0);
             responseNearBusDto = new ResponseNearBusDto.ResponseNearBusDtoBuilder()
@@ -91,34 +94,18 @@ public class NearBusStopController {
             ).forEach(
                     item -> targetRoutes.add(item.getRouteId()));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("존재하지 않는 버스 번호 입니다.");
+            throw new NoSuchBusArriverStatusExecption("버스 도착 정보가 존재하지 않습니다.");
         }
-        for (String targetRoute : targetRoutes) {
-            System.out.println("dklsfjklasdjkfljadsklfj" + targetRoute);
-        }
-//        String targetRouteId = busRouteRepository.findByRouteNo(requestNearBusDto.getBusNumber())
-//                .orElseThrow(() -> new NoSuchRouteIdException("존재하지 않는 RouteId 입니다.")).getRouteId();
-//        System.out.println("targetRouteId = " + targetRouteId);
-        String targetRouteId = null;
-        // 동일한 노선 Id를 가지는 버스 집합
-        List<ResponseBusLocationDto> busList = new ArrayList<>();
-        // Step2. 가장 가까운 버스 정류소의 버스 정류소 Id 추츨
-
-//        targetRoutes.removeIf(targetRoute -> !targetRoute.equals(responseNearBusDto.getCityCode()));
-        for (String targetRoute : targetRoutes) {
-            System.out.println("현재 버스 Route는 = " + targetRoute);
-        }
-
-        for (String targetRoute : targetRoutes) {
-            System.out.println("추출한 노선 ID " + targetRoute);
-            String apiUrl = "http://openapi.tago.go.kr/openapi/service/BusRouteInfoInqireService/getRouteAcctoThrghSttnList?"
+        // step2. 사용자가 입력한 버스 정류장에 이동하는 버스의 routeId를 들고 옴
+        int page = 0;
+        boolean next = true;
+        while (next) {
+            page++;
+            String apiUrl = "http://openapi.tago.go.kr/openapi/service/ArvlInfoInqireService/getSttnAcctoArvlPrearngeInfoList?"
                     + "ServiceKey=tO6fJs7AxOJ%2Bf9N5nWEgSE16%2BuOewB1LlIMM%2Fs5NB6bHtZ%2B3iO%2BcOIKgzK4QrYfZmIzh0iwJ1XKdbhxKEK2FtA%3D%3D"
-                    + "&numOfRows=100"
-                    + "&pageNo=1"
                     + "&cityCode=" + responseNearBusDto.getCityCode()
-                    + "&routeId=" + targetRoute;
+                    + "&nodeId=" + responseNearBusDto.getNodeId();
 
-            System.out.println("추출한 도시 코드 = " + responseNearBusDto.getCityCode());
             URL url = new URL(apiUrl);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.connect();
@@ -129,41 +116,84 @@ public class NearBusStopController {
                 result.append(returnLine);
             }
             JSONObject jsonObject = XML.toJSONObject(result.toString());
-            System.out.println("#1 가장 가까운 버스의 버스 정류소 Id 추출 = " + jsonObject);
+            System.out.println("jsonObject.toString() = " + jsonObject.toString());
             result.setLength(0);
             JSONObject responseObject = (JSONObject) jsonObject.get("response");
             JSONObject bodyObject = (JSONObject) responseObject.get("body");
-            JSONObject itemObject = (JSONObject) bodyObject.get("items");
-            jsonPrintString2.append(itemObject.toString());
-            JSONArray item = (JSONArray) itemObject.get("item");
-            for (int i = 0; i < item.length(); i++) {
-                JSONObject targetItem = (JSONObject) item.get(i);
-                if (responseNearBusDto.getNodeId().equals(targetItem.get("nodeid"))) {
-                    targetRouteId = targetRoute;
+            JSONObject itemObject = null;
+            if (bodyObject.get("items") != "") {
+                itemObject = (JSONObject) bodyObject.get("items");
+            } else {
+                throw new NoSuchItemsException("정류소가 존재하지 않습니다.");
+            }
+            if (itemObject.has("item")) {
+                JSONObject targetItems = itemObject.optJSONObject("item");
+                if (targetItems != null) {
+                    JSONObject item = (JSONObject) itemObject.get("item");
 
-                    // busWayPoint : 사용자와 가장 가까운 거리에 위치 한 버스 정류소의 순번과 id 저장
-                    busWayPoint = new ResponseRouteWayPointDto.ResponseRouteWayPointDtoBuilder()
-                            .nodeId(String.valueOf(targetItem.get("nodeid")))
-                            .nodeOrd(String.valueOf(targetItem.get("nodeord")))
-                            .build();
-                    System.out.println("현재 버스의 버스 정류소 순서 = " + busWayPoint.getNodeOrd());
-                    System.out.println("현재 버스의 버스 정류소 ID  = " + busWayPoint.getNodeId());
+                    String routenm = String.valueOf(item.get("routeno"));
+                    char checkRouteNm = routenm.charAt(0);
+
+                    if (checkRouteNm >= '0' && checkRouteNm <= '9') {
+                        Pattern pattern = Pattern.compile("([0-9a-zA-z-])+");
+                        Matcher match = pattern.matcher(String.valueOf(item.get("routeno")));
+                        if (match.find()) routenm = match.group();
+                    }
+
+                    if (requestNearBusDto.getBusNumber().equals(routenm)) {
+                        int arrtime = (int) item.get("arrtime")/60;
+                        busArriverStatus = new ResponseBusArrivalDto.ResponseBusArrivalDtoBuilder()
+                                .state(String.valueOf(arrtime))
+                                .routeId(String.valueOf(item.get("routeid")))
+                                .build();
+                    }
+                } else {
+                    JSONArray item = (JSONArray) itemObject.get("item");
+                    for (int i = 0; i < item.length(); i++) {
+                        JSONObject targetItem = (JSONObject) item.get(i);
+
+                        String routenm = String.valueOf(targetItem.get("routeno"));
+                        char checkRouteNm = routenm.charAt(0);
+
+                        if (checkRouteNm >= '0' && checkRouteNm <= '9') {
+                            Pattern pattern = Pattern.compile("([0-9a-zA-z-])+");
+                            Matcher match = pattern.matcher(String.valueOf(targetItem.get("routeno")));
+                            if (match.find()) routenm = match.group();
+                        }
+
+                        if (requestNearBusDto.getBusNumber().equals(routenm)) {
+                            System.out.println("byte");
+                            int targetArrtime = (int) targetItem.get("arrtime")/60;
+                            System.out.println(targetArrtime);
+                            busArriverStatus = new ResponseBusArrivalDto.ResponseBusArrivalDtoBuilder()
+                                    .state(String.valueOf(targetArrtime))
+                                    .routeId(String.valueOf(targetItem.get("routeid")))
+                                    .build();
+                        }
+
+                    }
                 }
+                Object count = bodyObject.get("totalCount");
+                if ((10 * page) >= (int) count) {
+                    next = false;
+                }
+
             }
         }
-        // 가장 가까운 버스 정류소의 버스 정류소 Id 추츨
+        // step2. 사용자가 입력한 버스 정류장에 이동하는 버스의 routeId를 들고 옴
 
-        // Step3. 해당 노선 Id를 가지는 모든 차량 정보 추출
-//        try {
-//            int page = 0;
-//            boolean next = true;
-//            while (next) {
-//                page++;
-        String apiUrl = "http://openapi.tago.go.kr/openapi/service/BusLcInfoInqireService/getRouteAcctoBusLcList?"
+        List<ResponseBusLocationDto> busList = new ArrayList<>(); //추출한 버스 정보를 담는 List
+
+
+        // Step3. 가장 가까운 버스 정류소의 버스 정류소 Id 추츨
+        String apiUrl = "http://openapi.tago.go.kr/openapi/service/BusRouteInfoInqireService/getRouteAcctoThrghSttnList?"
                 + "ServiceKey=tO6fJs7AxOJ%2Bf9N5nWEgSE16%2BuOewB1LlIMM%2Fs5NB6bHtZ%2B3iO%2BcOIKgzK4QrYfZmIzh0iwJ1XKdbhxKEK2FtA%3D%3D"
+                + "&numOfRows=100"
+                + "&pageNo=1"
                 + "&cityCode=" + responseNearBusDto.getCityCode()
-                + "&routeId=" + targetRouteId;
+                + "&routeId=" + busArriverStatus.getRouteId();
 
+        System.out.println("추출한 도시 코드 = " + responseNearBusDto.getCityCode());
         URL url = new URL(apiUrl);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.connect();
@@ -174,96 +204,125 @@ public class NearBusStopController {
             result.append(returnLine);
         }
         JSONObject jsonObject = XML.toJSONObject(result.toString());
+        System.out.println("#1 가장 가까운 버스의 버스 정류소 Id 추출 = " + jsonObject);
         result.setLength(0);
         JSONObject responseObject = (JSONObject) jsonObject.get("response");
         JSONObject bodyObject = (JSONObject) responseObject.get("body");
-//                Object count = bodyObject.get("totalCount");
-//                if ((10 * page) >= (int) count) {
-//                    next = false;
-//                }
-//            JSONObject itemObject = itemObject = (JSONObject) bodyObject.get("items");
-        JSONObject itemObject = null;
-        if (bodyObject.get("items") != "") {
-            itemObject = (JSONObject) bodyObject.get("items");
-        } else {
-            throw new NoSuchItemsException("현재 도착 예정인 버스가 없습니다.");
+        JSONObject itemObject = (JSONObject) bodyObject.get("items");
+        JSONArray item = (JSONArray) itemObject.get("item");
+        for (int i = 0; i < item.length(); i++) {
+            JSONObject targetItem = (JSONObject) item.get(i);
+            if (responseNearBusDto.getNodeId().equals(targetItem.get("nodeid"))) {
+                // busWayPoint : 사용자와 가장 가까운 거리에 위치 한 버스 정류소의 순번과 id 저장
+                busWayPoint = new ResponseRouteWayPointDto.ResponseRouteWayPointDtoBuilder()
+                        .nodeId(String.valueOf(targetItem.get("nodeid")))
+                        .nodeOrd(String.valueOf(targetItem.get("nodeord")))
+                        .build();
+
+                System.out.println("현재 버스의 버스 정류소 순서 = " + busWayPoint.getNodeOrd());
+                System.out.println("현재 버스의 버스 정류소 ID  = " + busWayPoint.getNodeId());
+            }
         }
-        jsonPrintString3.append(itemObject.toString());
-        if (itemObject.has("item")) {
-            JSONObject targetItems = itemObject.optJSONObject("item");
-            if (targetItems != null) {
-                JSONObject item = (JSONObject) itemObject.get("item");
-                if (Integer.parseInt(busWayPoint.getNodeOrd()) > Integer.parseInt(String.valueOf(item.get("nodeord")))) {
-                    ResponseBusLocationDto targetBusLocationDto = new ResponseBusLocationDto.ResponseBusLocationDtoBuilder()
-                            .uuid(String.valueOf(item.get("vehicleno")))
-                            .nodeId(String.valueOf(item.get("nodeid")))
-                            .nodeOrd(String.valueOf(item.get("nodeord")))
-                            .routeNo(String.valueOf(item.get("routenm")))
-                            .routeId(targetRouteId)
-                            .build();
 
-                    targetBus = new ResponseReservationDto.ResponseReservationDtoBuilder()
-                            .uuid(targetBusLocationDto.getUuid())
-                            .state("custom")
-                            .nodeId(responseNearBusDto.getNodeId())
-                            .time(LocalDateTime.now())
-                            .busNumber(targetBusLocationDto.getRouteNo())
-                            .build();
+        // Step3. 가장 가까운 버스 정류소의 버스 정류소 Id 추츨
 
-                    System.out.println("나는 오브젝트" + targetBusLocationDto.getUuid());
-                }
+        // Step4. 해당 노선 Id를 가지는 모든 차량 정보 추출 -> 국토교통부_버스위치정보
+        page = 0;
+        next = true;
+        while (next) {
+            page++;
+            apiUrl = "http://openapi.tago.go.kr/openapi/service/BusLcInfoInqireService/getRouteAcctoBusLcList?"
+                    + "ServiceKey=tO6fJs7AxOJ%2Bf9N5nWEgSE16%2BuOewB1LlIMM%2Fs5NB6bHtZ%2B3iO%2BcOIKgzK4QrYfZmIzh0iwJ1XKdbhxKEK2FtA%3D%3D"
+                    + "&cityCode=" + responseNearBusDto.getCityCode()
+                    + "&routeId=" + busArriverStatus.getRouteId();
+
+            url = new URL(apiUrl);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.connect();
+            bufferedInputStream = new BufferedInputStream(urlConnection.getInputStream());
+            bufferedReader = new BufferedReader(new InputStreamReader(bufferedInputStream, "UTF-8"));
+            while ((returnLine = bufferedReader.readLine()) != null) {
+                result.append(returnLine);
+            }
+            jsonObject = XML.toJSONObject(result.toString());
+            result.setLength(0);
+            responseObject = (JSONObject) jsonObject.get("response");
+            bodyObject = (JSONObject) responseObject.get("body");
+            Object count = bodyObject.get("totalCount");
+            if ((10 * page) >= (int) count) {
+                next = false;
+            }
+            itemObject = null;
+            if (bodyObject.get("items") != "") {
+                itemObject = (JSONObject) bodyObject.get("items");
             } else {
-                JSONArray item = (JSONArray) itemObject.get("item");
-                for (int i = 0; i < item.length(); i++) {
-                    JSONObject targetItem = (JSONObject) item.get(i);
-                    if (Integer.parseInt(busWayPoint.getNodeOrd()) > Integer.parseInt(String.valueOf(targetItem.get("nodeord")))) {
-                        ResponseBusLocationDto targetBusLocationDto = new ResponseBusLocationDto.ResponseBusLocationDtoBuilder()
-                                .uuid(String.valueOf(targetItem.get("vehicleno")))
-                                .nodeId(String.valueOf(targetItem.get("nodeid")))
-                                .nodeOrd(String.valueOf(targetItem.get("nodeord")))
-                                .routeNo(String.valueOf(targetItem.get("routenm")))
-                                .routeId(targetRouteId)
-                                .build();
-                        System.out.println("버스의 차량 번호 = " + targetBusLocationDto.getUuid());
-                        busList.add(targetBusLocationDto);
-                        final Comparator<ResponseBusLocationDto> comp = (p1, p2) -> Integer.compare(Integer.parseInt(p1.getNodeOrd()), Integer.parseInt(p2.getNodeOrd()));
-                        Optional<ResponseBusLocationDto> largest = busList.stream().max(comp);
-                        largest.ifPresent(
-                                target -> targetBus = new ResponseReservationDto.ResponseReservationDtoBuilder()
-                                        .uuid(target.getUuid())
-                                        .state("custom")
-                                        .nodeId(responseNearBusDto.getNodeId())
-                                        .time(LocalDateTime.now())
-                                        .busNumber(targetBusLocationDto.getRouteNo())
-                                        .build()
-                        );
-
-                        System.out.println("나는 배열" + targetBus.getUuid());
-                    }
-
-                }
+                throw new NoSuchItemsException("현재 도착 예정인 버스가 없습니다.");
             }
 
-//                JSONArray item = (JSONArray) itemObject.get("item");
+            if (itemObject.has("item")) {
+                JSONObject targetItems = itemObject.optJSONObject("item");
+                if (targetItems != null) {
+                    JSONObject item2 = (JSONObject) itemObject.get("item");
+                    if (Integer.parseInt(busWayPoint.getNodeOrd()) > Integer.parseInt(String.valueOf(item2.get("nodeord")))) {
+                        ResponseBusLocationDto targetBusLocationDto = new ResponseBusLocationDto.ResponseBusLocationDtoBuilder()
+                                .uuid(String.valueOf(item2.get("vehicleno")))
+                                .nodeId(String.valueOf(item2.get("nodeid")))
+                                .nodeOrd(String.valueOf(item2.get("nodeord")))
+                                .routeNo(String.valueOf(item2.get("routenm")))
+                                .routeId(busArriverStatus.getRouteId())
+                                .build();
+
+                        targetBus = new ResponseReservationDto.ResponseReservationDtoBuilder()
+                                .uuid(targetBusLocationDto.getUuid())
+                                .state(busArriverStatus.getState())
+                                .nodeId(responseNearBusDto.getNodeId())
+                                .time(LocalDateTime.now())
+                                .busNumber(targetBusLocationDto.getRouteNo())
+                                .build();
+
+                    }
+                } else {
+                    JSONArray item2 = (JSONArray) itemObject.get("item");
+                    for (int i = 0; i < item2.length(); i++) {
+                        JSONObject targetItem = (JSONObject) item2.get(i);
+                        if (Integer.parseInt(busWayPoint.getNodeOrd()) > Integer.parseInt(String.valueOf(targetItem.get("nodeord")))) {
+                            ResponseBusLocationDto targetBusLocationDto = new ResponseBusLocationDto.ResponseBusLocationDtoBuilder()
+                                    .uuid(String.valueOf(targetItem.get("vehicleno")))
+                                    .nodeId(String.valueOf(targetItem.get("nodeid")))
+                                    .nodeOrd(String.valueOf(targetItem.get("nodeord")))
+                                    .routeNo(String.valueOf(targetItem.get("routenm")))
+                                    .routeId(busArriverStatus.getRouteId())
+                                    .build();
+                            System.out.println("버스의 차량 번호 = " + targetBusLocationDto.getUuid());
+                            busList.add(targetBusLocationDto);
+                            final Comparator<ResponseBusLocationDto> comp = (p1, p2) -> Integer.compare(Integer.parseInt(p1.getNodeOrd()), Integer.parseInt(p2.getNodeOrd()));
+                            Optional<ResponseBusLocationDto> largest = busList.stream().max(comp);
+                            largest.ifPresent(
+                                    target -> targetBus = new ResponseReservationDto.ResponseReservationDtoBuilder()
+                                            .uuid(target.getUuid())
+                                            .state(busArriverStatus.getState())
+                                            .nodeId(responseNearBusDto.getNodeId())
+                                            .time(LocalDateTime.now())
+                                            .busNumber(targetBusLocationDto.getRouteNo())
+                                            .build());
+                        }
+
+                    }
+                }
+
+            }
         }
+        // Step4. 해당 노선 Id를 가지는 모든 차량 정보 추출 -> 국토교통부_버스위치정보
+        if(Objects.nonNull((targetBus))){
+            ReservationDto reservationDto = new ReservationDto.ReservationDtoBuilder()
+                    .uuid(targetBus.getUuid())
+                    .token(requestNearBusDto.getToken())
+                    .state(targetBus.getState())
+                    .build();
 
-//            }
-//        } catch (NoSuchItemsException me) {
-//            ResponseReservationDto responseReservationDto = new ResponseReservationDto.ResponseReservationDtoBuilder()
-//                    .uuid("nope").busNumber("nope").state("nope").nodeId("nope").time(LocalDateTime.now()).build();
-//
-//            return ResponseEntity.badRequest().body(responseReservationDto);
-//            return ResponseEntity.badRequest().build();
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
+            reservationService.addReservation(reservationDto);
+        }
         return ResponseEntity.ok(targetBus);
     }
-
-    /**
-     * 1. 버스 정류소의 현재 순번
-     * 2. busList의 순서 중 가장 가까운 순번인 버스를 추출
-     */
 }
 
