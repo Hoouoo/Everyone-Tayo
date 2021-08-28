@@ -24,6 +24,14 @@ public class BusController {
     @Autowired
     BusStopService busStopService;
 
+    @GetMapping("/")
+    public String main(HttpSession session){
+        if(Objects.nonNull(session.getAttribute("member"))){
+            return "redirect:table";
+        }
+        return "redirect:login";
+    }
+
     @GetMapping("/signup")
     public String signUp(Model model, HttpSession session) {
         if (Objects.nonNull(session.getAttribute("member"))) {
