@@ -207,14 +207,5 @@ public class BusStopController {
 
         return busStopDtoList;
     }
-
-    @GetMapping("/bus_status")
-    public ModelAndView getBusStop() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("bus_status");
-        mv.addObject("bus_stop", busStopService.getAllBusStop());
-        System.out.println("hello :");
-        return mv;
-    }
 }
 

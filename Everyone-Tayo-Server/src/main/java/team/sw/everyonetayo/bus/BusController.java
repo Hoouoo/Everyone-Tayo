@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import team.sw.everyonetayo.api.busstop.BusStopService;
 import team.sw.everyonetayo.util.CustomPasswordEncoder;
+
+import javax.servlet.http.HttpSession;
+import java.util.Objects;
 
 @Controller
 public class BusController {
@@ -17,50 +21,91 @@ public class BusController {
     BusService busService;
     @Autowired
     CustomPasswordEncoder customPasswordEncoder;
+    @Autowired
+    BusStopService busStopService;
 
     @GetMapping("/signup")
-    public String signUp(Model model){
-        model.addAttribute("busDto", new BusDto());
-        return "/signup";
+    public String signUp(Model model, HttpSession session) {
+        if (Objects.nonNull(session.getAttribute("member"))) {
+            model.addAttribute("busDto", new BusDto());
+            return "signup";
+        }
+
+        return "redirect:login";
     }
 
     @PostMapping("/signup")
-    public String signUpForm(BusDto busDto, Model model,
+    public String signUpForm(BusDto busDto,
                              BindingResult result,
-                             RedirectAttributes redirectAttributes){
-        System.out.println("busDto.getClass() = " + busDto.getUsername());
-        if(result.hasErrors()){
+                             RedirectAttributes redirectAttributes,
+                             HttpSession session) {
+        if (result.hasErrors()) {
             String errormessage = "It is not verfied";
             redirectAttributes.addFlashAttribute("errors", errormessage);
             return "redirect:signup";
-        }
-        else if(busService.isExitsUsername(busDto.getUsername())){
+        } else if (busService.isExitsUsername(busDto.getUsername())) {
             String errormessage = "This ID already exists.";
             redirectAttributes.addFlashAttribute("errors", errormessage);
             return "redirect:signup";
-        }
-        else {
+        } else {
 
             System.out.println("busDto.getUsername() = " + busDto.getUsername());
             busService.createUser(busDto);
         }
-        return "redirect:login";
+        return "redirect:table";
     }
 
     @GetMapping("/delete_bus_driver")
-    public ModelAndView getDeleteBus() {
+    public ModelAndView getDeleteBus(HttpSession session) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("delete_bus_driver");
-        mv.addObject("bus", busService.getAllBus());
-        return mv;
+
+        if (Objects.nonNull(session.getAttribute("member"))) {
+            mv.setViewName("delete_bus_driver");
+            mv.addObject("bus", busService.getAllBus());
+            return mv;
+        } else {
+            mv.setViewName("redirect:/login");
+            return mv;
+        }
     }
 
     @GetMapping("/read_bus_driver")
-    public ModelAndView getReadBus() {
+    public ModelAndView getReadBus(HttpSession session) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("read_bus_driver");
-        mv.addObject("bus", busService.getAllBus());
+        if (Objects.nonNull(session.getAttribute("member"))) {
+            mv.setViewName("read_bus_driver");
+            mv.addObject("bus", busService.getAllBus());
+            return mv;
+        } else {
+            mv.setViewName("redirect:/login");
+            return mv;
+        }
+    }
+
+    @GetMapping("/bus_status")
+    public ModelAndView getBusStop(HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+        if (Objects.nonNull(session.getAttribute("member"))) {
+            mv.setViewName("bus_status");
+            mv.addObject("bus_stop", busStopService.getAllBusStop());
+            System.out.println("hello :");
+            return mv;
+        } else {
+            mv.setViewName("redirect:/login");
+            return mv;
+        }
+    }
+
+    @PostMapping("/logout.do")
+    public ModelAndView logout(HttpSession session){
+        session.invalidate();
+        ModelAndView mv = new ModelAndView("redirect:login");
         return mv;
+    }
+
+    @GetMapping("team_info")
+    public String teamInfo(){
+        return "/team_info";
     }
 }
 

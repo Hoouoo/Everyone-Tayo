@@ -23,9 +23,15 @@ public class MemberController {
 
 
     @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("loginDTO", new LoginDto());
-        return "login";
+    public String login(Model model,
+                        HttpSession session) {
+
+        if (Objects.isNull(session.getAttribute("member"))) {
+            model.addAttribute("loginDTO", new LoginDto());
+            return "login";
+        }
+
+        return "redirect:table";
     }
 
     @PostMapping("/login")
@@ -52,7 +58,4 @@ public class MemberController {
             return "redirect:/login";
         }
     }
-
-
-
 }
