@@ -32,17 +32,6 @@ class BusDriver : AppCompatActivity() {
         //예약 리스트 자동 관리 시작
         ReservationContainer.instance.reservationManagement().start()
 
-        // 리스트에 값 추가
-        drive_start.setOnClickListener {
-            lightOnOfGreenBlink()
-        }
-
-        // 리스트 값 삭제
-        drive_end.setOnClickListener {
-
-        }
-
-
 
         listView.setOnItemClickListener {
                 parent: AdapterView<*>, view: View, position: Int, id: Long ->
@@ -55,6 +44,10 @@ class BusDriver : AppCompatActivity() {
         var actionBar : ActionBar?
         actionBar = supportActionBar
         actionBar?.hide()
+
+        drop_test.setOnClickListener{
+            lightOffOfRed()
+        }
 
     }
 
