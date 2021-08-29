@@ -18,9 +18,10 @@ public class ReservationDto {
     private String state;     // 상태(버스 존재 x: nope, 버스 존재 o: 분 단위 추출)
 
     @Builder
-    public ReservationDto(String token, String uuid, String state) {
+    public ReservationDto(String token, String uuid,LocalDateTime timeStamp,String state) {
         this.token = token;
         this.uuid = uuid;
+        this.timeStamp = timeStamp;
         this.state = state;
     }
 

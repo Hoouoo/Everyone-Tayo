@@ -21,8 +21,8 @@ public class BusService {
         busRepository.save(bus);
     }
 
-    public void deleteUser(String username) {
-        Bus bus = busRepository.findByUsername(username);
+    public void deleteUser(String uuid) {
+        Bus bus = busRepository.findByUuid(uuid);
         busRepository.delete(bus);
     }
 
