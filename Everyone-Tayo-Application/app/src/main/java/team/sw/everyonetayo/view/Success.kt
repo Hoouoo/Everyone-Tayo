@@ -50,9 +50,11 @@ class Success : AppCompatActivity() {
         val result:Result<ReservationResponse> = reservationController.reservation(busNumber, latitude, longitude, token)
         if(result is Result.Success){
             //예약 성공 텍스트
+            val remaining:String = result.data.state
             val confirmStateOfBus:String = (
                     SttContainer.instance.sttRepository().recodeString.myString
-                            + "번 버스 예약되었습니다."
+                            + "번 버스 예약되었습니다.\n" +
+                            "버스 도착까지${remaining}분 남았습니다."
                     )
             //예약 성공 텍스트 적용
             TtsSpeaker.instance.speakOut(confirmStateOfBus)

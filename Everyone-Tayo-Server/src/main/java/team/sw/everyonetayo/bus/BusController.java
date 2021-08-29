@@ -5,10 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import team.sw.everyonetayo.api.busstop.BusStopService;
+import team.sw.everyonetayo.auth.dto.LoginDto;
 import team.sw.everyonetayo.util.CustomPasswordEncoder;
 
 import javax.servlet.http.HttpSession;
@@ -23,6 +26,14 @@ public class BusController {
     CustomPasswordEncoder customPasswordEncoder;
     @Autowired
     BusStopService busStopService;
+
+    @GetMapping("/")
+    public String main(HttpSession session){
+        if(Objects.nonNull(session.getAttribute("member"))){
+            return "redirect:table";
+        }
+        return "redirect:login";
+    }
 
     @GetMapping("/signup")
     public String signUp(Model model, HttpSession session) {
@@ -69,6 +80,16 @@ public class BusController {
         }
     }
 
+    @GetMapping("/delete_bus_driver/{uuid}")
+    public String delete(@PathVariable("uuid") String uuid, Model model, HttpSession session) {
+        if (Objects.isNull(session.getAttribute("member"))) {
+            busService.deleteUser(uuid);
+            return "redirect:/delete_bus_driver";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
     @GetMapping("/read_bus_driver")
     public ModelAndView getReadBus(HttpSession session) {
         ModelAndView mv = new ModelAndView();
@@ -88,7 +109,6 @@ public class BusController {
         if (Objects.nonNull(session.getAttribute("member"))) {
             mv.setViewName("bus_status");
             mv.addObject("bus_stop", busStopService.getAllBusStop());
-            System.out.println("hello :");
             return mv;
         } else {
             mv.setViewName("redirect:/login");
