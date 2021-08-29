@@ -43,7 +43,7 @@ public class NearBusStopController {
 
 
     @SneakyThrows
-    @GetMapping(value = "/reservation-app-user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/reservation-app-user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity callApiWithJson(@RequestBody RequestNearBusDto requestNearBusDto)  {
         busArriverStatus = null;
         responseNearBusDto = new ResponseNearBusDto();
