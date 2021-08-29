@@ -12,58 +12,25 @@ import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_bus_driver.*
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.container.ReservationContainer
+import team.sw.everyonetayo.container.ViewContainer
 
 
 class BusDriver : AppCompatActivity() {
 
     var check: Boolean = false
 
-
     val items = mutableListOf<ListViewItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_driver)
+        
+        //뷰 콘테이너에 추가
+        ViewContainer.instance.add("BusDriver",this)
 
-
-        // 리스트에 값 추가
-        drive_start.setOnClickListener {
-            additems("동의대역", 1)
-            val adapter = ListViewAdapter(items)
-            listView.adapter = adapter
-            ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_ride_textview))
-            try{
-                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell2)
-                val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
-                r1.play()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-
-        // 리스트 값 삭제
-        drive_end.setOnClickListener {
-            deleteitems("동의대00")
-            val adapter = ListViewAdapter(items)
-            listView.adapter = adapter
-            drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_drop_textview))
-            try{
-                val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell)
-                val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
-                r1.play()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-
-
-
-//        // 리스트 값 수정
-//        replace.setOnClickListener {
-//            additems("동의대00", 1)
-//            val adapter = ListViewAdapter(items)
-//            listView.adapter = adapter
-//       }
-
+        //예약 리스트 자동 관리 시작
+        ReservationContainer.instance.reservationManagement().start()
 
 
         listView.setOnItemClickListener {
@@ -72,18 +39,20 @@ class BusDriver : AppCompatActivity() {
             Toast.makeText(this, item.people_num, Toast.LENGTH_SHORT).show()
         }
 
-
-
         setTitle("운행 정보")
 
         var actionBar : ActionBar?
         actionBar = supportActionBar
         actionBar?.hide()
 
+        drop_test.setOnClickListener{
+            lightOffOfRed()
+        }
+
     }
 
 
-    private fun additems(busstop: String, people_num: Int) {
+    fun additems(busstop: String, people_num: Int) {
         if (listView.count == 0){
             items.add(ListViewItem(busstop, people_num))
         }else{
@@ -99,13 +68,15 @@ class BusDriver : AppCompatActivity() {
             }
             check = false
         }
+        val adapter = ListViewAdapter(items)
+        listView.adapter = adapter
     }
 
-    private fun deleteitems(busstop: String) {
+    fun deleteitems(busstop: String) {
         for ( i in 0 until listView.count){
             if(items.get(i).busstop.equals(busstop)){
 
-                if(items.get(i).people_num == 1) {
+                if(items.get(i).people_num >= 1) {
                     items.removeAt(i)
                     break
                 }
@@ -115,9 +86,62 @@ class BusDriver : AppCompatActivity() {
 //                }
             }
         }
-
+        val adapter = ListViewAdapter(items)
+        listView.adapter = adapter
     }
 
+    fun speakGreenBell(){
+        try{
+            val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell2)
+            val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
+            r1.play()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
+    fun speekReadBell(){
+        try{
+            val notification = Uri.parse("android.resource://" + packageName + "/" + R.raw.bell)
+            val r1 : Ringtone = RingtoneManager.getRingtone(this, notification)
+            r1.play()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
+    fun lightOnOfGreen(){
+        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_ride_textview))
+    }
+
+    fun lightOnOfGreenBlink(){
+        Thread(Runnable {
+            for (i in 1..10){
+                if(i % 2 == 1){
+                    lightOnOfGreen()
+                }else{
+                    lightOffOfGreen()
+                }
+                Thread.sleep(333)
+            }
+        }).start()
+    }
+
+    fun lightOffOfGreen(){
+        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+    }
+
+    fun lightOnOfRed(){
+        drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_drop_textview))
+    }
+
+    fun lightOffOfRed(){
+        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+    }
+
+    override fun onDestroy() {
+        //예약 리스트 자동 관리 종료
+        ReservationContainer.instance.reservationManagement().stop()
+        super.onDestroy()
+    }
 }

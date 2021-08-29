@@ -16,7 +16,7 @@ import team.sw.everyonetayo.container.SttContainer
 import team.sw.everyonetayo.util.TtsSpeaker
 import java.util.*
 
-class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
+class VoiceCheck : AppCompatActivity() {
 
     val DURATION:Long = 1000 //액티비티 이동의 1.5초 딜레이
     private var tts: TextToSpeech? = null //tts 사용
@@ -25,14 +25,11 @@ class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voice_check)
-        tts = TextToSpeech(this, this)
 
         setTitle("음성인식 번호 확인")
 
 
         home.setOnClickListener{
-            // tts 음성 말하기
-            speakOut("홈으로")
             // tts 음성 출력 후 액티비티 이동을 위한 딜레이
             Handler().postDelayed({
                 val intent = Intent(this, MainActivity::class.java)
@@ -43,7 +40,6 @@ class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
         }
 
         yesButton.setOnClickListener{
-            speakOut("예")
             Handler().postDelayed({
                 val intent = Intent(this, WaitingTime::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -53,7 +49,6 @@ class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
         }
 
         noButton.setOnClickListener{
-            speakOut("아니오")
             Handler().postDelayed({
                 val intent = Intent(this, VoiceReader::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -101,33 +96,5 @@ class VoiceCheck : AppCompatActivity(),  TextToSpeech.OnInitListener {
                 return super.onOptionsItemSelected(item)
             }
         }
-    }
-
-    // TextToSpeech.OnInitListener를 상속하는 과정에서 필요한 부분
-    override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-            // set US English as language for tts
-            val result = tts!!.setLanguage(Locale.KOREAN)
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS","The Language specified is not supported!")
-            }
-        } else {
-            Log.e("TTS", "Initilization Failed!")
-        }
-    }
-
-    // tts 음성을 출력하기 위한 함수
-    private fun speakOut(text_s : String) {
-        tts!!.speak(text_s, TextToSpeech.QUEUE_FLUSH, null,"")
-    }
-
-    // tts 음성을 초기화 해주기 위한 함수
-    public override fun onDestroy() {
-        // Shutdown TTS
-        if (tts != null) {
-            tts!!.stop()
-            tts!!.shutdown()
-        }
-        super.onDestroy()
     }
 }

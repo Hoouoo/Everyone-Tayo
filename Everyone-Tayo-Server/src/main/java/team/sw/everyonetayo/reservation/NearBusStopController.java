@@ -9,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pusha.packet.Packet;
+import pusha.packet.StringPacket;
+import pusha.server.manager.ServerManager;
 import team.sw.everyonetayo.api.busroute.BusRouteRepository;
 import team.sw.everyonetayo.exception.NoSuchBusArriverStatusExecption;
 import team.sw.everyonetayo.exception.NoSuchItemsException;
+import team.sw.everyonetayo.pusha.PushaConfiguration;
 import team.sw.everyonetayo.reservation.table.ReservationService;
 
 import java.io.*;
@@ -321,6 +325,14 @@ public class NearBusStopController {
                     .build();
 
             reservationService.addReservation(reservationDto);
+
+            //Push message by Pusha
+            Packet packet = new StringPacket(
+                    "RESERVATION_NOTICE",
+                    "#",
+                    responseNearBusDto.getNodeNm()+"#"+requestNearBusDto.getLatitude()+"#"+requestNearBusDto.getLongitude()
+            );
+            ServerManager.instance.sendTarget(targetBus.getUuid(), packet);
         }
         return ResponseEntity.ok(targetBus);
     }
