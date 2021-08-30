@@ -50,7 +50,7 @@ public class MemberController {
             redirectAttributes.addFlashAttribute("errors", errormessage);
             System.out.println("loginDto = " + loginDto.getUsername());
             System.out.println("error");
-            return "redirect:/login";
+            return "redirect:login";
         }
         Member member = memberService.login_check(loginDto.getUsername(), loginDto.getPassword());
         if (Objects.nonNull(member)) {
@@ -59,12 +59,12 @@ public class MemberController {
             model.addAttribute("reservation", reservationDtoList);
             System.out.println("model = " + model);
             System.out.println("member = " + member);
-            return "/table";
+            return "table";
         } else {
             String errormessage = "No Member Information";
             redirectAttributes.addFlashAttribute("errors", errormessage);
             System.out.println("No member Information");
-            return "redirect:/login";
+            return "redirect:login";
         }
     }
 }

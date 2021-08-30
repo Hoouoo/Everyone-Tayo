@@ -27,12 +27,18 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 //    implementation 'io.jsonwebtoken:jjwt:0.9.1'
     compileOnly 'org.projectlombok:lombok'
+    implementation 'org.projectlombok:lombok'
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
     compileOnly 'org.webjars:bootstrap:5.0.1'
+    implementation 'org.webjars:bootstrap:5.0.1'
+
     compileOnly 'org.webjars:jquery:1.11.1'
+    implementation 'org.webjars:jquery:1.11.1'
 
     //Pusha
     implementation files('libs\\Pusha.jar')
@@ -45,4 +51,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+bootJar{
+    classpath("team.sw.everyonetayo.EveryoneTayoApplication")
+    jar.enabled=true
 }

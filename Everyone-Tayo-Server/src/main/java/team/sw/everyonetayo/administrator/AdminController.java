@@ -17,9 +17,9 @@ public class AdminController {
         session.getAttribute("member");
         System.out.println(session.getAttribute("member"));
         if(Objects.isNull(session.getAttribute("member"))){
-            return "redirect:/login";
+            return "redirect:login";
         }
-        return "/table";
+        return "table";
     }
 
 
