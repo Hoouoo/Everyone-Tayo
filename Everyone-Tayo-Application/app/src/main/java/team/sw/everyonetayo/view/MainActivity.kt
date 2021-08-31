@@ -46,15 +46,17 @@ class MainActivity : AppCompatActivity() {
                 if(!loginRepository.isLogin()){
                     if(loginController.login() is Result.Success){
                         //권한체크, 로그인 통과
+                            Log.d("ServerTest", loginRepository.getLoggedInUser()!!.token)
                         val intent = Intent(this, VoiceReader::class.java)
                         startActivity(intent)
                     }else{
                         ToastWithSpeech.instance.toastShowWithSpeach("서버와 연결되지 않았습니다.")
                     }
+                }else{
+                    val intent = Intent(this, VoiceReader::class.java)
+                    startActivity(intent)
                 }
             }
-            val intent = Intent(this, VoiceReader::class.java)
-            startActivity(intent)
         }
 
 

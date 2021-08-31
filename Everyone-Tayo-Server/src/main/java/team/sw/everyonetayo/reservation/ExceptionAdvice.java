@@ -19,7 +19,7 @@ public class ExceptionAdvice {
         System.out.println("존재 안함쓰");
         ResponseReservationDto responseReservationDto = new ResponseReservationDto.ResponseReservationDtoBuilder()
                 .uuid("nope").busNumber("nope").state("nope").nodeId("nope").time(LocalDateTime.now()).build();
-        return ResponseEntity.badRequest().body(responseReservationDto);
+        return ResponseEntity.ok().body(responseReservationDto);
     }
 
     @ExceptionHandler(Exception.class)
@@ -28,7 +28,7 @@ public class ExceptionAdvice {
         System.out.println("Exception?");
         ResponseReservationDto responseReservationDto = new ResponseReservationDto.ResponseReservationDtoBuilder()
                 .uuid("nope").busNumber("nope").state("nope").nodeId("nope").time(LocalDateTime.now()).build();
-        return ResponseEntity.badRequest().body(responseReservationDto);
+        return ResponseEntity.ok().body(responseReservationDto);
     }
 
     @ExceptionHandler(NoSuchBusArriverStatusExecption.class)
@@ -37,7 +37,7 @@ public class ExceptionAdvice {
         System.out.println("Exception?");
         ResponseReservationDto responseReservationDto = new ResponseReservationDto.ResponseReservationDtoBuilder()
                 .uuid("nope").busNumber("nope").state("nope").nodeId("nope").time(LocalDateTime.now()).build();
-        return ResponseEntity.badRequest().body(responseReservationDto);
+        return ResponseEntity.ok().body(responseReservationDto);
     }
 
 //    @ExceptionHandler(ClassCastException.class)

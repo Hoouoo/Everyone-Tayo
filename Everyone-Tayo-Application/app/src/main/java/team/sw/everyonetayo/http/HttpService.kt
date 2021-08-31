@@ -1,20 +1,23 @@
 package team.sw.everyonetayo.http;
 
+import com.google.gson.annotations.JsonAdapter
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.*
 import team.sw.everyonetayo.http.domain.LoginResponse
+import team.sw.everyonetayo.http.domain.ReservationRequest
 import team.sw.everyonetayo.http.domain.ReservationResponse
+import java.sql.SQLOutput
 
 public interface HttpService {
-    @FormUrlEncoded
+
+    @Headers("accept: application/json", "content-type: application/json")
     @POST("/reservation-app-user")
     fun reservation(
-        @Field("busNumber") state:String,
-        @Field("latitude") latitude:String,
-        @Field("longitude") longitude:String,
-        @Field("token") token:String
+        @Body body: ReservationRequest
+//        @Field("busNumber") busNumber:String,
+//        @Field("latitude") latitude:String,
+//        @Field("longitude") longitude:String,
+//        @Field("token") token:String
     ) : Call<ReservationResponse>
 
     @FormUrlEncoded

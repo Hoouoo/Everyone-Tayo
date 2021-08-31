@@ -3,6 +3,7 @@ package team.sw.everyonetayo.view
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_select_service.*
 import kotlinx.android.synthetic.main.activity_select_service.home
@@ -41,7 +42,11 @@ class Success : AppCompatActivity() {
         val busNumber:String = SttContainer.instance.sttRepository().recodeString.myString
         val latitude:String = GpsTracker(this).latitude.toString()
         val longitude:String = GpsTracker(this).longitude.toString()
+//        val latitude:String =  "35.56974"
+//        val longitude:String = "129.24821"
         val token:String = LoginContainer.instance.loginRepository().getLoggedInUser()!!.token;
+
+        Log.d("reservation", "${busNumber}  ${latitude} ${longitude} ${token}")
 
         //예약
         val reservationController: ReservationController =
@@ -50,15 +55,26 @@ class Success : AppCompatActivity() {
         val result:Result<ReservationResponse> = reservationController.reservation(busNumber, latitude, longitude, token)
         if(result is Result.Success){
             //예약 성공 텍스트
-            val remaining:String = result.data.state
-            val confirmStateOfBus:String = (
-                    SttContainer.instance.sttRepository().recodeString.myString
-                            + "번 버스 예약되었습니다.\n" +
-                            "버스 도착까지${remaining}분 남았습니다."
-                    )
-            //예약 성공 텍스트 적용
-            TtsSpeaker.instance.speakOut(confirmStateOfBus)
-            confirmTextView.setText(confirmStateOfBus)
+            val state:String = result.data.state
+
+            if(state!="nope") {
+                val confirmStateOfBus: String = (
+                        SttContainer.instance.sttRepository().recodeString.myString
+                                + "번 버스 예약되었습니다.\n" +
+                                "버스 도착까지${state}분 남았습니다."
+                        )
+                //예약 성공 텍스트 적용
+                TtsSpeaker.instance.speakOut(confirmStateOfBus)
+                confirmTextView.setText(confirmStateOfBus)
+            }else{
+                val errorStatusOfBus: String = (
+                        "현재 도착정보에 없는 버스입니다."
+                        )
+                //예약 성공 텍스트 적용
+                TtsSpeaker.instance.speakOut(errorStatusOfBus)
+                confirmTextView.setText(errorStatusOfBus)
+            }
+
         }else if(result is Result.Error){
             //예약 실패 텍스트
             val confirmStateOfBus:String = ("서버와 연결되지 않았습니다.")

@@ -43,12 +43,13 @@ public class NearBusStopController {
 
 
     @SneakyThrows
-    @PostMapping(value = "/reservation-app-user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/reservation-app-user")
     public ResponseEntity callApiWithJson(@RequestBody RequestNearBusDto requestNearBusDto)  {
         busArriverStatus = null;
         responseNearBusDto = new ResponseNearBusDto();
         StringBuffer result = new StringBuffer();
 
+        System.out.println("requestNearBusDto = " + requestNearBusDto.getBusNumber() + " "+ requestNearBusDto.getLongitude() + " "+requestNearBusDto.getLatitude() + " "+ requestNearBusDto.getToken());
         // Step 1. 가장 가까운 버스 정류소 추출
         try {
             boolean next = true;
@@ -56,6 +57,8 @@ public class NearBusStopController {
                     + "ServiceKey=tO6fJs7AxOJ%2Bf9N5nWEgSE16%2BuOewB1LlIMM%2Fs5NB6bHtZ%2B3iO%2BcOIKgzK4QrYfZmIzh0iwJ1XKdbhxKEK2FtA%3D%3D"
                     + "&gpsLati=" + requestNearBusDto.getLatitude()
                     + "&gpsLong=" + requestNearBusDto.getLongitude();
+
+
 
             URL url = new URL(apiUrl);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -323,6 +326,7 @@ public class NearBusStopController {
                     .token(requestNearBusDto.getToken())
                     .state(targetBus.getState())
                     .build();
+            System.out.println("reservationDto = " + reservationDto);
 
             reservationService.addReservation(reservationDto);
 

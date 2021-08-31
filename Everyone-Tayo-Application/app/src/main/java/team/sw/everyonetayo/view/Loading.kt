@@ -20,7 +20,7 @@ class Loading : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
-                Thread.sleep(100)
+                Thread.sleep(300)
             }
         })
 

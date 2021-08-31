@@ -26,9 +26,9 @@
         <activity android:name=".view.VoiceReader" />
         <activity android:name=".view.WaitingTime" />
         <activity android:name=".view.Success"/>
-        <activity android:name=".view.MainActivity"/>
 
-        <activity android:name=".view.Loading">
+
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
