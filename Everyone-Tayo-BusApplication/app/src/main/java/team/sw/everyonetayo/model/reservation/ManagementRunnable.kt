@@ -30,9 +30,8 @@ class ManagementRunnable : Runnable {
         }
 
         while(!Thread.interrupted()){
-            val location:Location = gpsTracker.location
-            val busLatitude:Double = location.latitude
-            val busLongitude:Double = location.longitude
+            val busLatitude:Double = GpsTracker(ApplicationContext.context()).latitude
+            val busLongitude:Double = GpsTracker(ApplicationContext.context()).longitude
             
             // 삭제 예정 리스트
             val removed:ArrayList<ReservationDto> = ArrayList()

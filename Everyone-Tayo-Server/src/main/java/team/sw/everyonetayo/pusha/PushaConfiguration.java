@@ -8,7 +8,7 @@ import pusha.server.repository.MemorySocketRepository;
 @Component
 public class PushaConfiguration {
 
-    int port = 3333;
+    int port = 9090;
 
     PushaConfiguration(){
         ServerManager.use();

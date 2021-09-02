@@ -9,9 +9,11 @@ import team.sw.everyonetayo.domain.LoggedInUser
 import team.sw.everyonetayo.exception.LoginException
 import team.sw.everyonetayo.http.HttpClient
 import team.sw.everyonetayo.http.HttpService
+import team.sw.everyonetayo.http.domain.LoginRequest
 import team.sw.everyonetayo.http.domain.LoginResponse
 import team.sw.everyonetayo.repository.login.LoginRepository
 import java.io.IOException
+import java.lang.Exception
 import java.net.SocketAddress
 import java.net.SocketTimeoutException
 import java.util.*
@@ -35,7 +37,7 @@ class LoginService {
             // TODO: handle loggedInUser authentication
         var result:Result<LoggedInUser>? = null
         val httpService : HttpService = HttpClient.getApiService()
-        val postLogin:Call<LoginResponse> = httpService.login(id, password)
+        val postLogin:Call<LoginResponse> = httpService.login(LoginRequest(id, password))
         val thread:Thread = Thread(Runnable {
             try {
                 /**
@@ -48,30 +50,48 @@ class LoginService {
                 val token = loginResponse!!.token
 
                 //throw error
-                if (uuid.equals("LOGIN_FAILD")) {
+                if (uuid.equals("nope")) {
                     LoginException("Login failed")
                 }
+
+                println("uuid = ${uuid}")
+                println("displayName = ${displayName}")
+                println("token = ${token}")
 
                 //add to login repository
                 val loggedInUser: LoggedInUser = LoggedInUser(uuid, displayName, token)
                 loginRepository.login(loggedInUser)
 
+                println("loggedInUser.displayName = ${loggedInUser.displayName}")
+                println("loggedInUser.uuid = ${loggedInUser.uuid}")
                 /**
                  * connect push server
                  */
+
+                println("Config.IP = ${Config.IP}")
+                println("Config.PORT = ${Config.PORT}")
+                println("loginRepository = ${loginRepository.getLoggedInUser()!!.uuid}")
+
+
                 ClientManager.instance.connect(
                     Config.IP, Config.PORT, loginRepository.getLoggedInUser()!!.uuid
                 );
-                ClientManager.instance.process();
 
                 result = Result.Success(loggedInUser)
+
             } catch (e: SocketTimeoutException) {
                 result = Result.Error(e)
+                e.printStackTrace()
+            } catch (e : Exception){
+                e.printStackTrace()
             }
         })
 
         thread.start() // 통신시작
         thread.join() // 통신종료 까지 대기
+
+        ClientManager.instance.process();
+
 
         return result!!
     }

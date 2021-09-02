@@ -41,6 +41,9 @@ public class NearBusStopController {
     private ResponseBusArrivalDto busArriverStatus;
     private ResponseReservationDto targetBus;
 
+    private String busstopLatitude;
+    private String busstopLongtitude;
+
 
     @SneakyThrows
     @PostMapping(value = "/reservation-app-user")
@@ -82,6 +85,8 @@ public class NearBusStopController {
                     .nodeNm(String.valueOf(targetItem.get("nodenm")))  // 버스 정류소 이름
                     .cityCode(String.valueOf(targetItem.get("citycode")))  // 도시 코드
                     .build();
+            busstopLatitude = String.valueOf(targetItem.get("gpslati"));
+            busstopLongtitude =  String.valueOf(targetItem.get("gpslong"));
 
             System.out.println("가장 가까이 있는 버스 정류소의 이름 = " + responseNearBusDto.getNodeNm());
             System.out.println("가장 가까이 있는 버스 정류소의 ID = " + responseNearBusDto.getNodeId());
@@ -334,7 +339,7 @@ public class NearBusStopController {
             Packet packet = new StringPacket(
                     "RESERVATION_NOTICE",
                     "#",
-                    responseNearBusDto.getNodeNm()+"#"+requestNearBusDto.getLatitude()+"#"+requestNearBusDto.getLongitude()
+                    responseNearBusDto.getNodeNm()+"#"+busstopLatitude+"#"+busstopLongtitude
             );
             ServerManager.instance.sendTarget(targetBus.getUuid(), packet);
         }

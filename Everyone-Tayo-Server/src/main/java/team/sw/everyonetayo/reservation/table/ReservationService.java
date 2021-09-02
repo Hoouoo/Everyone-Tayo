@@ -19,12 +19,12 @@ public class ReservationService {
     ReservationRepository reservationRepository;
 
     // 조회
-    public Reservation searchReservationByToken(String token){
+    public List<Reservation> searchReservationByToken(String token) {
         return reservationRepository.findByToken(token);
     }
 
     // 추가
-    public void addReservation(ReservationDto reservationDto){
+    public void addReservation(ReservationDto reservationDto) {
         Reservation targetReservation = reservationDto.ToEntity();
         reservationRepository.save(targetReservation);
     }
@@ -34,7 +34,7 @@ public class ReservationService {
         List<Reservation> reservationList = reservationRepository.findAll();
         List<ReservationDto> reservationDtoList = new ArrayList<>();
 
-        for(Reservation reservation : reservationList) {
+        for (Reservation reservation : reservationList) {
             ReservationDto reservationDto = ReservationDto.builder()
                     .uuid(reservation.getUuid())
                     .state(reservation.getState())
@@ -48,12 +48,14 @@ public class ReservationService {
 
     // 삭제
     public void deleteReservation(String token) throws NoSuchReservationException {
-        Reservation targetReservation = null;
-        if(reservationRepository.existsByToken(token)){
+        List<Reservation> targetReservation = new ArrayList<>();
+        if (reservationRepository.existsByToken(token)) {
             targetReservation = reservationRepository.findByToken(token);
 
-            if(Objects.nonNull(targetReservation)) reservationRepository.delete(targetReservation);
-        }else{
+            if (Objects.nonNull(targetReservation)) reservationRepository.delete(
+                    targetReservation.get(targetReservation.size() - 1)
+            );
+        } else {
             throw new NoSuchReservationException("존재하지 않는 예약내역 입니다.");
         }
 

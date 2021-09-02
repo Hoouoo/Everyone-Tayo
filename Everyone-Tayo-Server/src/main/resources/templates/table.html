@@ -27,7 +27,7 @@
       <tr th:each="Re : ${reservation}">
         <td th:text = "${Re.uuid}"></td>
         <td th:text = "${Re.timeStamp}"></td>
-        <td th:text = "${Re.state}"></td>
+        <td th:text = "${Re.state}">분</td>
       </tr>
       </tbody>
     </table>

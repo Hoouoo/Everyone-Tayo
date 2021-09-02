@@ -26,6 +26,7 @@
         <activity android:name=".view.VoiceReader" />
         <activity android:name=".view.WaitingTime" />
         <activity android:name=".view.Success"/>
+        <activity android:name=".view.ProcessEnd"/>
 
 
         <activity android:name=".view.MainActivity">
