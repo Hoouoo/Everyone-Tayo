@@ -1,6 +1,6 @@
 # [공개 SW] 시각 장애인을 위한 버스 승하차 시스템 : EveryOneTayo
 
-<p align="center"><img src="https://user-images.githubusercontent.com/56144682/131854127-e280ad53-023c-4f3d-9044-dd65842c2097.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/56144682/132002098-3396799c-4462-42e7-8892-cb7c8877c3d3.png"></p>
 
 ## 개요
 
