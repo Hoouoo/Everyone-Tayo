@@ -33,11 +33,11 @@ class BusDriver : AppCompatActivity() {
         ReservationContainer.instance.reservationManagement().start()
 
 
-        listView.setOnItemClickListener {
-                parent: AdapterView<*>, view: View, position: Int, id: Long ->
-            val item = parent.getItemAtPosition(position) as ListViewItem
-            Toast.makeText(this, item.people_num, Toast.LENGTH_SHORT).show()
-        }
+//        listView.setOnItemClickListener {
+//                parent: AdapterView<*>, view: View, position: Int, id: Long ->
+//            val item = parent.getItemAtPosition(position) as ListViewItem
+//            Toast.makeText(this, item.people_num, Toast.LENGTH_SHORT).show()
+//        }
 
         setTitle("운행 정보")
 
@@ -140,7 +140,7 @@ class BusDriver : AppCompatActivity() {
     }
 
     fun lightOffOfRed(){
-        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+        drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
     }
 
     override fun onDestroy() {

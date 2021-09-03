@@ -30,7 +30,7 @@ class GetOffService {
 
                     val response:GetOffResponse? = postGetOff.execute().body()
 
-                    if(response!!.state=="OK"){
+                    if(response!!.state!="OK"){
                         throw Exception()
                     }
 

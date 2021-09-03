@@ -97,17 +97,17 @@ public class NearBusStopController {
         // 가장 가까운 버스 정류소 추출
 
         // 사용자가 입력한 버스 번호를 토대로 DB 조회
-        List<String> targetRoutes = new ArrayList<>();
-
-        if (busRouteRepository.existsByRouteNo(requestNearBusDto.getBusNumber())) {
-
-            busRouteRepository.findAllByRouteNo(requestNearBusDto.getBusNumber()).stream().filter(
-                    item -> item.getCityCode().equals(responseNearBusDto.getCityCode())
-            ).forEach(
-                    item -> targetRoutes.add(item.getRouteId()));
-        } else {
-            throw new NoSuchBusArriverStatusExecption("버스 도착 정보가 존재하지 않습니다.");
-        }
+//        List<String> targetRoutes = new ArrayList<>();
+//
+//        if (busRouteRepository.existsByRouteNo(requestNearBusDto.getBusNumber())) {
+//
+//            busRouteRepository.findAllByRouteNo(requestNearBusDto.getBusNumber()).stream().filter(
+//                    item -> item.getCityCode().equals(responseNearBusDto.getCityCode())
+//            ).forEach(
+//                    item -> targetRoutes.add(item.getRouteId()));
+//        } else {
+//            throw new NoSuchBusArriverStatusExecption("버스 도착 정보가 존재하지 않습니다.");
+//        }
         // step2. 사용자가 입력한 버스 정류장에 이동하는 버스의 routeId를 들고 옴
         int page = 0;
         boolean next = true;

@@ -12,9 +12,12 @@ import kotlinx.android.synthetic.main.activity_main.login
 import team.sw.everyonetayo.R
 import team.sw.everyonetayo.container.LoginContainer
 import team.sw.everyonetayo.controller.login.LoginController
+import team.sw.everyonetayo.domain.LoggedInUser
 import team.sw.everyonetayo.domain.Result
+import team.sw.everyonetayo.http.domain.LoginResponse
 import team.sw.everyonetayo.repository.login.LoginRepository
 import team.sw.everyonetayo.view.BusDriver
+import javax.security.auth.login.LoginException
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,14 +30,19 @@ class LoginActivity : AppCompatActivity() {
             val loginController: LoginController = LoginContainer.instance.loginController()
             val loginRepository: LoginRepository = LoginContainer.instance.loginRepository()
             if(!loginRepository.isLogin()){
-                if(loginController.login(username.text.toString(), password.text.toString()) is Result.Success){
+                val loginResult:Result<LoggedInUser> = loginController.login(username.text.toString(), password.text.toString())
+                if(loginResult is Result.Success) {
                     //권한체크, 로그인 통과
                     Log.d("ServerTest", loginRepository.getLoggedInUser()!!.token)
                     val intent = Intent(this, BusDriver::class.java)
                     startActivity(intent)
                     finish()
-                }else{
-                    Toast.makeText(this, "서버와 연결되지 않았습니다", Toast.LENGTH_SHORT)
+                }else if(loginResult is Result.Error){
+                    if(loginResult.exception is LoginException){
+                        Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT)
+                    }else{
+                        Toast.makeText(this, "서버와 연결되지 않았습니다.", Toast.LENGTH_SHORT)
+                    }
                 }
             }else{
                 val intent = Intent(this, BusDriver::class.java)

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#4699FF"
 
-    tools:context=".view.DropOff">
+    tools:context=".view.ProcessEnd">
 
     <TextView
         android:id="@+id/textView6"
@@ -16,7 +16,7 @@
         android:layout_marginTop="280dp"
         android:layout_marginEnd="23dp"
         android:fontFamily="@font/nanum_square_r"
-        android:text="모든 과정이 완료되었습니다. \n 감사합니다."
+        android:text="모든 과정이\n 완료되었습니다. \n 감사합니다."
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
