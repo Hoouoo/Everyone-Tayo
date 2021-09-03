@@ -1,7 +1,6 @@
 # [공개 SW] 시각 장애인을 위한 버스 승하차 시스템 : EveryOneTayo
 
-<p align="center"><img src="https://user-images.githubusercontent.com/56144682/132002098-3396799c-4462-42e7-8892-cb7c8877c3d3.png"></p>
-
+<p align="center"><img src="https://user-images.githubusercontent.com/56144682/132003222-4ee2bd35-fcea-49e2-9462-cfb1cb9485c6.png"></p>
 ## 개요
 
 현재 시각장애인들은 교통수단에 많은 불편함을 겪고 있다 . 2019년에는 "시각 장애인도 버스를 탈 수 있게 해주세요." 라는 국민 청원도 올라왔다.
