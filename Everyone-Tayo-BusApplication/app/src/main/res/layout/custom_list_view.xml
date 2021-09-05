@@ -20,15 +20,15 @@
             android:gravity="center"
             android:layout_weight="2" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="탑승 인원(명)"
-            android:id="@+id/people_num"
-            android:textSize="24dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_weight="2" />
+<!--        <TextView-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:text="탑승 인원(명)"-->
+<!--            android:id="@+id/people_num"-->
+<!--            android:textSize="24dp"-->
+<!--            android:textColor="#000000"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_weight="2" />-->
 
     </LinearLayout>
 

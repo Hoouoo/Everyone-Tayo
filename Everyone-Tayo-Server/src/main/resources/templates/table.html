@@ -19,7 +19,6 @@
       <tr>
         <th>UUID</th>
         <th>예약 시간</th>
-        <th>예약 당시 버스 현황</th>
       </tr>
       </thead>
       <tbody  class = "text-center">
@@ -27,7 +26,6 @@
       <tr th:each="Re : ${reservation}">
         <td th:text = "${Re.uuid}"></td>
         <td th:text = "${Re.timeStamp}"></td>
-        <td th:text = "${Re.state}">분</td>
       </tr>
       </tbody>
     </table>

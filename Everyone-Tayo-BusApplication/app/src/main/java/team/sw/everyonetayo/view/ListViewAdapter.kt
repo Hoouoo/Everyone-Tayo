@@ -17,7 +17,6 @@ class ListViewAdapter (private val items: MutableList<ListViewItem>): BaseAdapte
         if (convertView == null) convertView = LayoutInflater.from(parent?.context).inflate(R.layout.custom_list_view, parent, false)
         val item: ListViewItem = items[position]
         convertView!!.busstop.text = item.busstop
-        convertView.people_num.text = item.people_num.toString()
         return convertView
     }
 

@@ -18,7 +18,6 @@ import team.sw.everyonetayo.container.ViewContainer
 
 class BusDriver : AppCompatActivity() {
 
-    var check: Boolean = false
 
     val items = mutableListOf<ListViewItem>()
 
@@ -55,19 +54,15 @@ class BusDriver : AppCompatActivity() {
     fun additems(busstop: String, people_num: Int) {
         runOnUiThread(Runnable {
             if (listView.count == 0){
-                items.add(ListViewItem(busstop, people_num))
+                items.add(ListViewItem(busstop))
             }else{
                 for ( i in 0 until listView.count){
                     if(items.get(i).busstop.equals(busstop)){
-                        items.get(i).people_num += 1
-                        check = true
-                        break
+
+                    }else{
+                        items.add(ListViewItem(busstop))
                     }
                 }
-                if(!check) {
-                    items.add(ListViewItem(busstop, people_num))
-                }
-                check = false
             }
             val adapter = ListViewAdapter(items)
             listView.adapter = adapter
@@ -78,15 +73,8 @@ class BusDriver : AppCompatActivity() {
         runOnUiThread(Runnable {
             for (i in 0 until listView.count) {
                 if (items.get(i).busstop.equals(busstop)) {
-
-                    if (items.get(i).people_num >= 1) {
-                        items.removeAt(i)
-                        break
-                    }
-//                else{
-//                    items.get(i).people_num -= 1
-//                    break
-//                }
+                    items.removeAt(i)
+                    break
                 }
             }
             val adapter = ListViewAdapter(items)
