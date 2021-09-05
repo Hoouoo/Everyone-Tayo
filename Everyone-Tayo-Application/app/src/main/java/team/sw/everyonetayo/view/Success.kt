@@ -20,6 +20,7 @@ import team.sw.everyonetayo.controller.reservation.ReservationController
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.http.HttpClient
 import team.sw.everyonetayo.http.domain.ReservationResponse
+import team.sw.everyonetayo.util.ApplicationContext
 import team.sw.everyonetayo.util.GpsTracker
 import team.sw.everyonetayo.util.ToastWithSpeech
 import team.sw.everyonetayo.util.TtsSpeaker
@@ -78,10 +79,10 @@ class Success : AppCompatActivity() {
             //예약을 위한 변수 정의
             val busNumber: String =
                 SttContainer.instance.sttRepository().recodeString.myString
-//        val latitude:String = GpsTracker(this).latitude.toString()
-//        val longitude:String = GpsTracker(this).longitude.toString()
-            val latitude: String = "35.56999679548885"
-            val longitude: String = "129.2479337603309"
+              val latitude:String = GpsTracker(ApplicationContext.context()).latitude.toString()
+              val longitude:String = GpsTracker(ApplicationContext.context()).longitude.toString()
+//            val latitude: String = "35.569997"
+//            val longitude: String = "129.247934"
             val token: String =
                 LoginContainer.instance.loginRepository().getLoggedInUser()!!.token;
 

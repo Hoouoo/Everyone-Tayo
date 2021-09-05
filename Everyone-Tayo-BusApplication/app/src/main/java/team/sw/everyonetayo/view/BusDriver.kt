@@ -51,7 +51,7 @@ class BusDriver : AppCompatActivity() {
     }
 
 
-    fun additems(busstop: String, people_num: Int) {
+    fun additems(busstop: String) {
         runOnUiThread(Runnable {
             if (listView.count == 0){
                 items.add(ListViewItem(busstop))

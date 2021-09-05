@@ -16,6 +16,7 @@ import team.sw.everyonetayo.domain.LoggedInUser
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.http.domain.LoginResponse
 import team.sw.everyonetayo.repository.login.LoginRepository
+import team.sw.everyonetayo.util.ApplicationContext
 import team.sw.everyonetayo.view.BusDriver
 import javax.security.auth.login.LoginException
 
@@ -39,9 +40,9 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                 }else if(loginResult is Result.Error){
                     if(loginResult.exception is LoginException){
-                        Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT)
+                        Toast.makeText(this.applicationContext, "로그인 실패", Toast.LENGTH_SHORT)
                     }else{
-                        Toast.makeText(this, "서버와 연결되지 않았습니다.", Toast.LENGTH_SHORT)
+                        Toast.makeText(this.applicationContext, "서버와 연결되지 않았습니다.", Toast.LENGTH_SHORT)
                     }
                 }
             }else{

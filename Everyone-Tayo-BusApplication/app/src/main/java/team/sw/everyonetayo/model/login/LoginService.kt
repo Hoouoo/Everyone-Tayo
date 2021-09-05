@@ -51,7 +51,7 @@ class LoginService {
 
                 //throw error
                 if (uuid.equals("nope")) {
-                    LoginException("Login failed")
+                    throw LoginException("Login failed")
                 }
 
                 println("uuid = ${uuid}")
@@ -82,7 +82,11 @@ class LoginService {
             } catch (e: SocketTimeoutException) {
                 result = Result.Error(e)
                 e.printStackTrace()
+            } catch (e: LoginException){
+                result = Result.Error(e)
+                e.printStackTrace()
             } catch (e : Exception){
+                result = Result.Error(e)
                 e.printStackTrace()
             }
         })

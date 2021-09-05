@@ -56,7 +56,7 @@ public class PushaConfig {
 
                 busDriverView.speakGreenBell()
                 busDriverView.lightOnOfGreenBlink()
-                busDriverView.additems(busStop, 1)
+                busDriverView.additems(busStop)
             }
         }
     }
