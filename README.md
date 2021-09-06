@@ -101,7 +101,9 @@ git clone "https://github.com/golagola2020/hango-server.git"
 cd Everone-Tayo-db
 (sudo) docker-compose up -d.yml
 ```
-3.  
+
+> docker docs : https://docs.docker.com/get-started/
+
 
 
 ---
