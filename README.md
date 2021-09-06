@@ -98,15 +98,15 @@
 
 ---
 
-### 개발 환경 
+### 개발 환경 (서버) 및 기술 명세
 
-**서버**
-- IDE : intelliJ IDEA ultimate
+**개발 환경**
+- IDE : IntelliJ IDEA ultimate
 - Java 11
 - MariaDB 10.5.12
 - Docker
 
-**서버 Dependency**
+**Dependency**
 ```gradle
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -128,6 +128,14 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.10.7'
 }
 ```
+
+---
+ 
+### 개발 환경(애플리케이션)
+
+**개발 환경**
+- IDE : Android Studio
+- Kotlin 1.5.30
 
 
 ## 시작하기
