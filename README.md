@@ -101,6 +101,24 @@ cd Everone-Tayo-db
 3.2-2. Application의 경우 :  
 (Android Os 기기에서 이용 가능) `Bus-EveryOne-Tayo.apk` 또는 `User-EveryOne-Tayo.apk` 실행
 
+**부가 설명**
+GCP, NCP, AWS와 같은 클라우드 서버를 이용하는 경우 다음 포트를 할당해주어야 한다.
+- Pusha `9090`, `9091` 포트 할당
+- 웹 `8080` 포트 할당
+
+> 만약 서버 IP 변경 시 수정할 파일 내용
+```gradle
+package team.sw.everyonetayo.configuration
+
+class Config {
+
+    companion object{
+        val BASE_URL:String = [접속할 서버 주소:포트]
+        val IP: String = [서버 IP 주소]
+        val PORT: Int = [포트]
+    }
+}
+```
 
 ---
 ## 실행 화면
