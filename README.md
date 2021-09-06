@@ -78,6 +78,27 @@
 ### 서비스 아키텍처
 <p align ="center"> <img height=600 src= "https://user-images.githubusercontent.com/56144682/132189511-c0271d8a-e834-4947-b7f6-e84d231147cc.jpg"></p>
 
+**모바일**
+- OS : Android OS
+- 버스 전용 애플리케이션
+- 사용자 전용 애플리케이션
+
+**웹 서버**
+- 애플리케이션 관리를 위한 관리자 전용 웹 페이지
+- 애플리케이션과 통신을 위해 구축
+
+---
+
+## 시작하기
+
+1. 해당 코드 내려받기(HTTPS)
+``` git clone "https://github.com/golagola2020/hango-server.git"```
+
+2. 데이터 베이스 구축을 위한 MariaDB를 도커로 환경 구축
+``` cd Everone-Tayo-db
+(sudo) docker-compose up -d.yml```
+
+
 ---
 
 ## 팀 구성원
