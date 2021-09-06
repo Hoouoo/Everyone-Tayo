@@ -21,78 +21,6 @@
 예약을 성공하면 하차 버튼을 눌러 사용자의 승차부터 하차까지 도울 수 있는 애플리케이션이다.  
 
 ---
-## 실행 화면
-### 버스 전용 애플리케이션
-
-#### 시작 화면
-버스 API를 활용하여 API에 존재하는 모든 차량 정보에 대한 ID/PW를 자동으로 생성하여 버스 차량 번호에 해당하는 ID/PW로 로그인  
-<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128260-edc0cd90-9002-4058-8a0a-a3fd0177e512.png></p>
-
-#### 로그인 성공 후  
-<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128302-fff4d99a-3eef-48f4-9ce7-178c653110a8.png></p>
-
-> 로그인 화면에서 ID / PW를 입력하면 정상적으로 로그인이 가능하다.
-
-#### 사용자가 해당 버스에 예약 시
-사용자가 해당 버스 번호 및 차량 번호에 해당하는 정보로 예약에 성공했을 시 알림음과 함께 승차 버튼에 초록불 점등  
-<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128488-e337d1ce-f945-4d2c-acb5-34a597a7a31d.png></p>
-
-> 자체 개발한 네트워크 소켓을 이용한 '알림 서비스(pusha)'를 이용하여 해당 기능을 구현하였다.
-
-#### 사용자가 해당 버스를 하차할 시
-해당 사용자가 하차에 대한 알림을 전송할 시 하차에 빨간불 점등  
-<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128526-0d14010c-d876-453a-9f78-6907ae244fe8.png></p>
-
-> 승차 알림과 동일한 방법을 이용하여 해당 기능을 구현하였다.
-
----
-
-### 사용자 전용 애플리케이션
-
-#### 시작화면
-사용자가 로그인을 하지 않고 바로 서비스를 이용할 수 있도록 시작하기 버튼 클릭과 동시에 예약 서비스 실행  
-<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132127801-1df75438-c31f-45c2-83cf-ebd585f42acf.png></p>
-
-> 해당 애플리케이션을 사용하는 대상을 고려하여 애플리케이션을 동작함에 있어 필요한 정보를 최소화 하였다.
-
-#### 버스 예약
-서비스 이용 대상자를 고려하여 음성으로 예약을 진행하며,  
-예약 성공시 '버스 전용 애플리케이션'에 승차 알림을 전송한다.  
-현재 사용자가 존재하는 위치를 기반으로 가장 가까운 버스 정류소에 필요한 버스 데이터 정보를 가져오며, 예약의 성공 여부는 음성으로 제공한다.  
-<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132127832-a775b8d1-0015-4d5d-8376-6cb505597507.png>
-<img height=400 src=https://user-images.githubusercontent.com/35298140/132127878-ea66f6f6-245f-47cd-a27e-0ba64b45115c.png>
-<img height=400 src=https://user-images.githubusercontent.com/35298140/132128097-9b801aa9-723d-49ea-b0d1-d060cc13b0ca.png></p>
-
-> 모든 서비스는 TTS(Text To Speach)를 이용하여 키패드의 입력이 아닌, 음성으로도 입력이 가능하도록 구현하였다.
-
-#### 버스 하차
-예약 성공시 하단에 생성되는 하차 버튼을 눌러 '버스 전용 애플리케이션'에 하차 알림 전송  
-<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128132-d76a82a2-537f-4bed-88d0-568ed0c1867c.png></p>
-
-> 자료 조사를 통해 시각 장애인은 '버스 하차 벨' 또한 찾기 어려운 것을 알 수 있었다.
-> 이에 해당 애플리케이션으로 버스 승차 뿐 아니라, 하차까지 도와 드릴 수 있도록 구현하였다.
-
----
-
-### 웹 서버 (관리자용) 페이지
-
-#### 관리자 계정 로그인 화면
-<p align="center"><img height=400 src=https://user-images.githubusercontent.com/56144682/132193221-78a8aa28-8956-4ad4-82e4-76dd95c12e39.png></p>
-
-> 부여된 관리자 계정으로 로그인할 수 있다.
-<!--초기 값 ID : `admin` PW : `admin`-->
-
-#### 관리자 계정 버스 예약 현황 조회
-<p align="center"><img height=600 src=https://user-images.githubusercontent.com/56144682/132198364-27d08cda-01cb-44d6-bbe9-3444224309da.png></p>
-
-> 관리자 버스의 정보 및 예약 시간을 확인할 수 있다.
-
-#### 버스 기사(버스 애플리케이션) 관리 탭
-
-버스 기사계정을 추가, 삭제, 조회 할 수 있다.
-<p align ="center"><img height=400 src= "https://user-images.githubusercontent.com/56144682/132202429-2fd4679a-2701-44ac-accc-c485c2d9eff3.png"></p>
-
----
 
 ## 실행하기 앞서
 
@@ -172,6 +100,79 @@ cd Everone-Tayo-db
 `EveryOne-Tayo-Server.jar` 실행  
 3.2-2. Application의 경우 :  
 (Android Os 기기에서 이용 가능) `Bus-EveryOne-Tayo.apk` 또는 `User-EveryOne-Tayo.apk` 실행
+
+
+---
+## 실행 화면
+### 버스 전용 애플리케이션
+
+#### 시작 화면
+버스 API를 활용하여 API에 존재하는 모든 차량 정보에 대한 ID/PW를 자동으로 생성하여 버스 차량 번호에 해당하는 ID/PW로 로그인  
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128260-edc0cd90-9002-4058-8a0a-a3fd0177e512.png></p>
+
+#### 로그인 성공 후  
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128302-fff4d99a-3eef-48f4-9ce7-178c653110a8.png></p>
+
+> 로그인 화면에서 ID / PW를 입력하면 정상적으로 로그인이 가능하다.
+
+#### 사용자가 해당 버스에 예약 시
+사용자가 해당 버스 번호 및 차량 번호에 해당하는 정보로 예약에 성공했을 시 알림음과 함께 승차 버튼에 초록불 점등  
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128488-e337d1ce-f945-4d2c-acb5-34a597a7a31d.png></p>
+
+> 자체 개발한 네트워크 소켓을 이용한 '알림 서비스(pusha)'를 이용하여 해당 기능을 구현하였다.
+
+#### 사용자가 해당 버스를 하차할 시
+해당 사용자가 하차에 대한 알림을 전송할 시 하차에 빨간불 점등  
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128526-0d14010c-d876-453a-9f78-6907ae244fe8.png></p>
+
+> 승차 알림과 동일한 방법을 이용하여 해당 기능을 구현하였다.
+
+---
+
+### 사용자 전용 애플리케이션
+
+#### 시작화면
+사용자가 로그인을 하지 않고 바로 서비스를 이용할 수 있도록 시작하기 버튼 클릭과 동시에 예약 서비스 실행  
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132127801-1df75438-c31f-45c2-83cf-ebd585f42acf.png></p>
+
+> 해당 애플리케이션을 사용하는 대상을 고려하여 애플리케이션을 동작함에 있어 필요한 정보를 최소화 하였다.
+
+#### 버스 예약
+서비스 이용 대상자를 고려하여 음성으로 예약을 진행하며,  
+예약 성공시 '버스 전용 애플리케이션'에 승차 알림을 전송한다.  
+현재 사용자가 존재하는 위치를 기반으로 가장 가까운 버스 정류소에 필요한 버스 데이터 정보를 가져오며, 예약의 성공 여부는 음성으로 제공한다.  
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132127832-a775b8d1-0015-4d5d-8376-6cb505597507.png>
+<img height=400 src=https://user-images.githubusercontent.com/35298140/132127878-ea66f6f6-245f-47cd-a27e-0ba64b45115c.png>
+<img height=400 src=https://user-images.githubusercontent.com/35298140/132128097-9b801aa9-723d-49ea-b0d1-d060cc13b0ca.png></p>
+
+> 모든 서비스는 TTS(Text To Speach)를 이용하여 키패드의 입력이 아닌, 음성으로도 입력이 가능하도록 구현하였다.
+
+#### 버스 하차
+예약 성공시 하단에 생성되는 하차 버튼을 눌러 '버스 전용 애플리케이션'에 하차 알림 전송  
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128132-d76a82a2-537f-4bed-88d0-568ed0c1867c.png></p>
+
+> 자료 조사를 통해 시각 장애인은 '버스 하차 벨' 또한 찾기 어려운 것을 알 수 있었다.
+> 이에 해당 애플리케이션으로 버스 승차 뿐 아니라, 하차까지 도와 드릴 수 있도록 구현하였다.
+
+---
+
+### 웹 서버 (관리자용) 페이지
+
+#### 관리자 계정 로그인 화면
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/56144682/132193221-78a8aa28-8956-4ad4-82e4-76dd95c12e39.png></p>
+
+> 부여된 관리자 계정으로 로그인할 수 있다.
+<!--초기 값 ID : `admin` PW : `admin`-->
+
+#### 관리자 계정 버스 예약 현황 조회
+<p align="center"><img height=600 src=https://user-images.githubusercontent.com/56144682/132198364-27d08cda-01cb-44d6-bbe9-3444224309da.png></p>
+
+> 관리자 버스의 정보 및 예약 시간을 확인할 수 있다.
+
+#### 버스 기사(버스 애플리케이션) 관리 탭
+
+버스 기사계정을 추가, 삭제, 조회 할 수 있다.
+<p align ="center"><img height=400 src= "https://user-images.githubusercontent.com/56144682/132202429-2fd4679a-2701-44ac-accc-c485c2d9eff3.png"></p>
 
 ---
 
