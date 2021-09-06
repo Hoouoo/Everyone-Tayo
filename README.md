@@ -167,9 +167,9 @@ cd Everone-Tayo-db
 
 3. 실행하기  
 3.1. `cd run` 디렉토리로 이동  
-3.2-1. - Server의 경우 :  
+3.2-1. Server의 경우 :  
 `EveryOne-Tayo-Server.jar` 실행  
-3.2-2. - Application의 경우 :  
+3.2-2. Application의 경우 :  
 (Android Os 기기에서 이용 가능) `Bus-EveryOne-Tayo.apk` 또는 `User-EveryOne-Tayo.apk` 실행
 
 ---
