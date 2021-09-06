@@ -96,8 +96,8 @@
 
 2. 데이터 베이스 구축을 위한 MariaDB를 도커로 환경 구축
 ``` cd Everone-Tayo-db
-(sudo) docker-compose up -d.yml```
-
+(sudo) docker-compose up -d.yml
+```
 
 ---
 
