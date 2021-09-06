@@ -91,11 +91,12 @@
 
 ## 시작하기
 
-1. 해당 코드 내려받기(HTTPS)
+1. 해당 코드 내려받기(HTTPS)  
 ``` git clone "https://github.com/golagola2020/hango-server.git"```
 
 2. 데이터 베이스 구축을 위한 MariaDB를 도커로 환경 구축
-``` cd Everone-Tayo-db
+``` 
+cd Everone-Tayo-db
 (sudo) docker-compose up -d.yml
 ```
 
