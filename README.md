@@ -104,8 +104,10 @@ cd Everone-Tayo-db
 
 > docker docs : https://docs.docker.com/get-started/
 
-
-
+3. run폴더의 각가 실행파일 실행
+- Server의 경우 : `EveryOne-Tayo-Server.jar` 실행
+- Application의 경우 : 
+(Android Os 기기에서 이용 가능) `Bus-EveryOne-Tayo.apk` 또는 `User-EveryOne-Tayo.apk` 실행
 ---
 
 ## 팀 구성원
