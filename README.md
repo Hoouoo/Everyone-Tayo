@@ -73,6 +73,15 @@
 
 ---
 
+### 웹 서버 (관리자용) 페이지
+
+#### 관리자 계정 로그인 화면
+<p align="center"><img height=400 src=https://user-images.githubusercontent.com/56144682/132193221-78a8aa28-8956-4ad4-82e4-76dd95c12e39.png></p>
+
+> 부여된 관리자 계정으로 로그인할 수 있다.
+<!--> 초기 값 ID : `admin` PW : `admin`-->
+
+
 ## 실행하기 앞서
 
 ### 서비스 아키텍처
@@ -88,6 +97,38 @@
 - 애플리케이션과 통신을 위해 구축
 
 ---
+
+### 개발 환경 
+
+**서버**
+- IDE : intelliJ IDEA ultimate
+- Java 11
+- MariaDB 10.5.12
+- Docker
+
+**서버 Dependency**
+```gradle
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly 'org.webjars:bootstrap:5.0.1'
+    compileOnly 'org.webjars:jquery:1.11.1'
+    implementation 'org.json:json:20210307'
+    implementation 'io.jsonwebtoken:jjwt-api:0.10.7'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.7'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.10.7'
+}
+```
+
 
 ## 시작하기
 
@@ -105,8 +146,9 @@ cd Everone-Tayo-db
 > docker docs : https://docs.docker.com/get-started/
 
 3. run폴더의 각가 실행파일 실행
-- Server의 경우 : `EveryOne-Tayo-Server.jar` 실행
-- Application의 경우 : 
+- Server의 경우 :  
+`EveryOne-Tayo-Server.jar` 실행
+- Application의 경우 :  
 (Android Os 기기에서 이용 가능) `Bus-EveryOne-Tayo.apk` 또는 `User-EveryOne-Tayo.apk` 실행
 ---
 
