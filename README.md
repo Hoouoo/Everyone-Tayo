@@ -84,23 +84,20 @@
 #### 관리자 계정 버스 예약 현황 조회
 <p align="center"><img height=600 src=https://user-images.githubusercontent.com/56144682/132198364-27d08cda-01cb-44d6-bbe9-3444224309da.png></p>
 
+> 관리자 버스의 정보 및 예약 시간을 확인할 수 있다.
+
 #### 버스 기사(버스 애플리케이션) 관리 탭
 
 버스 기사계정을 추가, 삭제, 조회 할 수 있다.
-<p align="center"><img height=600 src=https://user-images.githubusercontent.com/56144682/132202072-dc0a4f0e-9e0d-4720-9dc0-522b7f59406d.png></p>
+<p align ="center"><img height=400 src= "https://user-images.githubusercontent.com/56144682/132202429-2fd4679a-2701-44ac-accc-c485c2d9eff3.png"></p>
 
-
-
-**버스 계정 **
-
-> 관리자 버스의 정보 및 예약 시간을 확인할 수 있다.
-
-
+---
 
 ## 실행하기 앞서
 
 ### 서비스 아키텍처
-<p align ="center"><img height=400 src= "https://user-images.githubusercontent.com/56144682/132202429-2fd4679a-2701-44ac-accc-c485c2d9eff3.png"></p>
+<p align ="center"><img height=400 src= https://user-images.githubusercontent.com/56144682/132202886-f1a9f99d-3492-4a02-a772-1d405375e76c.jpg></p>
+
 
 **모바일**
 - OS : Android OS
