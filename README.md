@@ -177,3 +177,5 @@ Full-stack
 **손 민**
 Full-stack
 > 동의대학교 컴퓨터소프트웨어공학과 : 재학
+
+<a href="https://github.com/Hoouoo/Everyone-Tayo/blob/master/Everyone-Tayo-Server/src/main/resources/templates/team_info.html">
