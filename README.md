@@ -22,13 +22,11 @@
 
 ---
 ## 실행 화면
-
-
 ### 버스 전용 애플리케이션
 
 #### 시작 화면
-버스 API를 활용하여 API에 존재하는 모든 차량 정보에 대한 ID/PW를 자동으로 생성하여 버스 차량 번호에 해당하는 ID/PW로 로그인  
-<img height=400 src=https://user-images.githubusercontent.com/35298140/132128260-edc0cd90-9002-4058-8a0a-a3fd0177e512.png>
+버스 API를 활용하여 API에 존재하는 모든 차량 정보에 대한 ID/PW를 자동으로 생성하여,  버스 차량 번호에 해당하는 ID/PW로 로그인  
+<img height=400 src=https://user-images.githubusercontent.com/35298140/132128260-edc0cd90-9002-4058-8a0a-a3fd0177e512.png align="center">
 
 #### 로그인 성공 후  
 <img height=400 src=https://user-images.githubusercontent.com/35298140/132128302-fff4d99a-3eef-48f4-9ce7-178c653110a8.png>
@@ -60,11 +58,6 @@
 시각장애인의 경우 하차 벨의 위치도 찾기 어려울 것을 고려하여,
 예약을 진행했던 애플리케이션 하단부의 하차 버튼을 눌러 '버스 전용 애플리케이션'에 하차 알림 전송  
 <img height=400 src=https://user-images.githubusercontent.com/35298140/132128132-d76a82a2-537f-4bed-88d0-568ed0c1867c.png>
-
-<!--
-## 실행 화면
-// Jpg로 삽입
--->
 
 ---
 
