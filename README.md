@@ -1,6 +1,6 @@
 # 시각 장애인을 위한 버스 승하차 시스템 : EveryOneTayo
 
-<p align="center"><img src="https://user-images.githubusercontent.com/56144682/132005848-0b1a1d64-b8a5-4aab-a55f-d9455894a414.png"></p>
+<p align="center"><img height=300 width=600 img src="https://user-images.githubusercontent.com/56144682/132005848-0b1a1d64-b8a5-4aab-a55f-d9455894a414.png"></p>
 
 ## 개요
 
@@ -165,11 +165,13 @@ cd Everone-Tayo-db
 
 > docker docs : https://docs.docker.com/get-started/
 
-3. run폴더의 각가 실행파일 실행
-- Server의 경우 :  
+3. 실행하기
+1. `cd run` 디렉토리로 이동
+2-1. - Server의 경우 :  
 `EveryOne-Tayo-Server.jar` 실행
-- Application의 경우 :  
+2-2. - Application의 경우 :  
 (Android Os 기기에서 이용 가능) `Bus-EveryOne-Tayo.apk` 또는 `User-EveryOne-Tayo.apk` 실행
+
 ---
 
 ## 팀 구성원
