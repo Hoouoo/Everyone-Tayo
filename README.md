@@ -79,7 +79,7 @@
 <p align="center"><img height=400 src=https://user-images.githubusercontent.com/56144682/132193221-78a8aa28-8956-4ad4-82e4-76dd95c12e39.png></p>
 
 > 부여된 관리자 계정으로 로그인할 수 있다.
-<!--> 초기 값 ID : `admin` PW : `admin`-->
+<!--초기 값 ID : `admin` PW : `admin`-->
 
 
 ## 실행하기 앞서
