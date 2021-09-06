@@ -61,11 +61,13 @@
 <p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132127832-a775b8d1-0015-4d5d-8376-6cb505597507.png>
 <img height=400 src=https://user-images.githubusercontent.com/35298140/132127878-ea66f6f6-245f-47cd-a27e-0ba64b45115c.png>
 <img height=400 src=https://user-images.githubusercontent.com/35298140/132128097-9b801aa9-723d-49ea-b0d1-d060cc13b0ca.png></p>
+
 > 모든 서비스는 TTS(Text To Speach)를 이용하여 키패드의 입력이 아닌, 음성으로도 입력이 가능하도록 구현하였다.
 
 #### 버스 하차
 예약 성공시 하단에 생성되는 하차 버튼을 눌러 '버스 전용 애플리케이션'에 하차 알림 전송  
 <p align="center"><img height=400 src=https://user-images.githubusercontent.com/35298140/132128132-d76a82a2-537f-4bed-88d0-568ed0c1867c.png></p>
+
 > 자료 조사를 통해 시각 장애인은 '버스 하차 벨' 또한 찾기 어려운 것을 알 수 있었다.
 > 이에 해당 애플리케이션으로 버스 승차 뿐 아니라, 하차까지 도와 드릴 수 있도록 구현하였다.
 
@@ -74,7 +76,7 @@
 ## 실행하기 앞서
 
 ### 서비스 아키텍처
-<p align ="center"> <img height=400 src= "https://user-images.githubusercontent.com/56144682/132189511-c0271d8a-e834-4947-b7f6-e84d231147cc.jpg></p>
+<p align ="center"> <img height=400 src= "https://user-images.githubusercontent.com/56144682/132189511-c0271d8a-e834-4947-b7f6-e84d231147cc.jpg"></p>
 
 ---
 
