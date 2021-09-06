@@ -99,6 +99,8 @@
 cd Everone-Tayo-db
 (sudo) docker-compose up -d.yml
 ```
+3.  
+
 
 ---
 
