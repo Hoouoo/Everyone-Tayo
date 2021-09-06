@@ -76,7 +76,7 @@
 ## 실행하기 앞서
 
 ### 서비스 아키텍처
-<p align ="center"> <img height=400 src= "https://user-images.githubusercontent.com/56144682/132189511-c0271d8a-e834-4947-b7f6-e84d231147cc.jpg"></p>
+<p align ="center"> <img height=800 c= "https://user-images.githubusercontent.com/56144682/132189511-c0271d8a-e834-4947-b7f6-e84d231147cc.jpg"></p>
 
 ---
 
