@@ -173,6 +173,7 @@ cd Everone-Tayo-db
 ---
 
 ## 팀 구성원
+<p align ="center"><img height=400 src= https://user-images.githubusercontent.com/56144682/132203353-a8ee5ace-a06e-4294-a4f2-a8a7e9835110.png></p>
 
 **이상훈** 
 Leader 
