@@ -1,10 +1,12 @@
 package team.sw.everyonetayo.model.reservation
 
+import android.util.Log
 import retrofit2.Call
 import team.sw.everyonetayo.domain.Reservation
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.http.HttpClient
 import team.sw.everyonetayo.http.HttpService
+import team.sw.everyonetayo.http.domain.ReservationRequest
 import team.sw.everyonetayo.http.domain.ReservationResponse
 import team.sw.everyonetayo.repository.reservation.ReservationRepository
 import java.io.IOException
@@ -21,28 +23,33 @@ class ReservationService {
 
     fun reservation(busNumber:String, latitude:String, longitude:String, token:String):Result<ReservationResponse>{
         val httpService:HttpService = HttpClient.getApiService();
-        val postReservation: Call<ReservationResponse> = httpService.reservation(busNumber, latitude, longitude, token);
+        val postReservation: Call<ReservationResponse> = httpService.reservation(ReservationRequest(busNumber, latitude, longitude, token));
 
         try {
             var result:Result<ReservationResponse>? = null
             val thread:Thread = Thread(Runnable {
                 try {
+                    Log.d("reservation", "reservation start")
+
                     val reservationResponse: ReservationResponse? =
-                        postReservation.execute().body();
+                        postReservation.execute().body()
+
+                    Log.d("reservation", "${reservationResponse!!.nodeId}  ${reservationResponse!!.state}  ${reservationResponse!!.time}" )
 
                     if (reservationResponse == null) {
                         throw Exception();
                     }
 
                     val busNumber = busNumber;
-                    val busStop = reservationResponse.busStop;
-                    val timeStamp = reservationResponse.timeStamp;
+                    val busStop = reservationResponse.nodeId;
+                    val timeStamp = reservationResponse.time;
 
                     reservationRepository.updateReservation(busNumber, busStop, timeStamp)
                     result = Result.Success(reservationResponse)
                 }catch (e:SocketTimeoutException){
                     result = Result.Error(e)
                 }catch(e:Exception){
+                    e.printStackTrace()
                     result = Result.Error(e)
                 }
             })

@@ -18,7 +18,6 @@ import team.sw.everyonetayo.container.ViewContainer
 
 class BusDriver : AppCompatActivity() {
 
-    var check: Boolean = false
 
     val items = mutableListOf<ListViewItem>()
 
@@ -33,11 +32,11 @@ class BusDriver : AppCompatActivity() {
         ReservationContainer.instance.reservationManagement().start()
 
 
-        listView.setOnItemClickListener {
-                parent: AdapterView<*>, view: View, position: Int, id: Long ->
-            val item = parent.getItemAtPosition(position) as ListViewItem
-            Toast.makeText(this, item.people_num, Toast.LENGTH_SHORT).show()
-        }
+//        listView.setOnItemClickListener {
+//                parent: AdapterView<*>, view: View, position: Int, id: Long ->
+//            val item = parent.getItemAtPosition(position) as ListViewItem
+//            Toast.makeText(this, item.people_num, Toast.LENGTH_SHORT).show()
+//        }
 
         setTitle("운행 정보")
 
@@ -52,42 +51,35 @@ class BusDriver : AppCompatActivity() {
     }
 
 
-    fun additems(busstop: String, people_num: Int) {
-        if (listView.count == 0){
-            items.add(ListViewItem(busstop, people_num))
-        }else{
-            for ( i in 0 until listView.count){
-                if(items.get(i).busstop.equals(busstop)){
-                    items.get(i).people_num += 1
-                    check = true
-                    break
+    fun additems(busstop: String) {
+        runOnUiThread(Runnable {
+            if (listView.count == 0){
+                items.add(ListViewItem(busstop))
+            }else{
+                for ( i in 0 until listView.count){
+                    if(items.get(i).busstop.equals(busstop)){
+
+                    }else{
+                        items.add(ListViewItem(busstop))
+                    }
                 }
             }
-            if(!check) {
-                items.add(ListViewItem(busstop, people_num))
-            }
-            check = false
-        }
-        val adapter = ListViewAdapter(items)
-        listView.adapter = adapter
+            val adapter = ListViewAdapter(items)
+            listView.adapter = adapter
+        })
     }
 
     fun deleteitems(busstop: String) {
-        for ( i in 0 until listView.count){
-            if(items.get(i).busstop.equals(busstop)){
-
-                if(items.get(i).people_num >= 1) {
+        runOnUiThread(Runnable {
+            for (i in 0 until listView.count) {
+                if (items.get(i).busstop.equals(busstop)) {
                     items.removeAt(i)
                     break
                 }
-//                else{
-//                    items.get(i).people_num -= 1
-//                    break
-//                }
             }
-        }
-        val adapter = ListViewAdapter(items)
-        listView.adapter = adapter
+            val adapter = ListViewAdapter(items)
+            listView.adapter = adapter
+        })
     }
 
     fun speakGreenBell(){
@@ -136,7 +128,7 @@ class BusDriver : AppCompatActivity() {
     }
 
     fun lightOffOfRed(){
-        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+        drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
     }
 
     override fun onDestroy() {

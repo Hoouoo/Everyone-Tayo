@@ -75,7 +75,7 @@ public class BusController {
             mv.addObject("bus", busService.getAllBus());
             return mv;
         } else {
-            mv.setViewName("redirect:/login");
+            mv.setViewName("redirect:login");
             return mv;
         }
     }
@@ -84,9 +84,9 @@ public class BusController {
     public String delete(@PathVariable("uuid") String uuid, Model model, HttpSession session) {
         if (Objects.isNull(session.getAttribute("member"))) {
             busService.deleteUser(uuid);
-            return "redirect:/delete_bus_driver";
+            return "redirect:delete_bus_driver";
         } else {
-            return "redirect:/login";
+            return "redirect:login";
         }
     }
 
@@ -98,7 +98,7 @@ public class BusController {
             mv.addObject("bus", busService.getAllBus());
             return mv;
         } else {
-            mv.setViewName("redirect:/login");
+            mv.setViewName("redirect:login");
             return mv;
         }
     }
@@ -111,7 +111,7 @@ public class BusController {
             mv.addObject("bus_stop", busStopService.getAllBusStop());
             return mv;
         } else {
-            mv.setViewName("redirect:/login");
+            mv.setViewName("redirect:login");
             return mv;
         }
     }
@@ -125,7 +125,7 @@ public class BusController {
 
     @GetMapping("team_info")
     public String teamInfo(){
-        return "/team_info";
+        return "team_info";
     }
 }
 

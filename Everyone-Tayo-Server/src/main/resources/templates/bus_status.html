@@ -1,123 +1,123 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="https://www.thymeleaf.org"
-      th:replace="fragment/boarder ::layout(title='정류장 현황', main=~{::main}, css=~{::#css})">
-<head>
-    <meta charset="UTF-8">
-    <title>title</title>
-</head>
-<body>
-<main class="mb-3">
-    <div id="wrapper">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container">
-                <div id="sidetable-wrapper" class="sidetable-toggle">
-                    <div class="card-body">
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                        <link rel="stylesheet" type="text/css"
-                              href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-                        <script type="text/javascript" charset="utf8"
-                                src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-                        <table id="example" class="display" style="width:100%">
-                            <thead class = "text-center">
-                            <tr>
-                                <th>도시코드</th>
-                                <th>정류장 ID</th>
-                                <th>정류장 이름</th>
-                                <th>정류장 번호</th>
-                            </tr>
-                            </thead>
-                            <tbody  class = "text-center">
-                            <script th:inline="javascript">
-                                var gpsLati = [];
-                                var gpsLong = [];
-                                var title = [];
-                            </script>
-                            <tr th:each="Bus : ${bus_stop}">
-                                <td th:text = "${Bus.citycode}"></td>
-                                <td th:text = "${Bus.nodeid}"></td>
-                                <td th:text = "${Bus.nodenm}"></td>
-                                <td th:text = "${Bus.nodeno}"></td>
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko" xmlns:th="https://www.thymeleaf.org"-->
+<!--      th:replace="fragment/boarder ::layout(title='정류장 현황', main=~{::main}, css=~{::#css})">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<main class="mb-3">-->
+<!--    <div id="wrapper">-->
+<!--        <nav class="navbar navbar-default" role="navigation">-->
+<!--            <div class="container">-->
+<!--                <div id="sidetable-wrapper" class="sidetable-toggle">-->
+<!--                    <div class="card-body">-->
+<!--                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+<!--                        <link rel="stylesheet" type="text/css"-->
+<!--                              href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">-->
+<!--                        <script type="text/javascript" charset="utf8"-->
+<!--                                src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>-->
+<!--                        <table id="example" class="display" style="width:100%">-->
+<!--                            <thead class = "text-center">-->
+<!--                            <tr>-->
+<!--                                <th>도시코드</th>-->
+<!--                                <th>정류장 ID</th>-->
+<!--                                <th>정류장 이름</th>-->
+<!--                                <th>정류장 번호</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody  class = "text-center">-->
+<!--                            <script th:inline="javascript">-->
+<!--                                var gpsLati = [];-->
+<!--                                var gpsLong = [];-->
+<!--                                var title = [];-->
+<!--                            </script>-->
+<!--                            <tr th:each="Bus : ${bus_stop}">-->
+<!--                                <td th:text = "${Bus.citycode}"></td>-->
+<!--                                <td th:text = "${Bus.nodeid}"></td>-->
+<!--                                <td th:text = "${Bus.nodenm}"></td>-->
+<!--                                <td th:text = "${Bus.nodeno}"></td>-->
 
-                                <script th:inline="javascript">
-                                    /*<![CDATA[*/
-                                    gpsLati.push(/*[[${Bus.gpsLati}]]*/);
-                                    gpsLong.push(/*[[${Bus.gpsLong}]]*/);
-                                    title.push(/*[[${Bus.nodenm}]]*/);
-                                    /*]]>*/
-                                </script>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <script>
-                        $(document).ready(function () {
-                            $('#example').DataTable();
-                        });
-                    </script>
-                </div>
-            </div>
-        </nav>
-    </div>
+<!--                                <script th:inline="javascript">-->
+<!--                                    /*<![CDATA[*/-->
+<!--                                    gpsLati.push(/*[[${Bus.gpsLati}]]*/);-->
+<!--                                    gpsLong.push(/*[[${Bus.gpsLong}]]*/);-->
+<!--                                    title.push(/*[[${Bus.nodenm}]]*/);-->
+<!--                                    /*]]>*/-->
+<!--                                </script>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                    <script>-->
+<!--                        $(document).ready(function () {-->
+<!--                            $('#example').DataTable();-->
+<!--                        });-->
+<!--                    </script>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </nav>-->
+<!--    </div>-->
 
-    <h2 class="mb-5" style="transform: translateX(300px);">버스 현황</h2>
-    <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0212d8210f9524bd73de128efb7f7163"></script>
-    <div id="map" style="width:80%;height:700px; transform: translateX(200px);"></div>
-    <script>
-    </script>
-    <script th:inline="javascript">
+<!--    <h2 class="mb-5" style="transform: translateX(300px);">정류장 지원 현황</h2>-->
+<!--    <script type="text/javascript"-->
+<!--            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=003ee0856b517c17897e1893e5846768"></script>-->
+<!--    <div id="map" style="width:80%;height:700px; transform: translateX(200px);"></div>-->
+<!--    <script>-->
+<!--    </script>-->
+<!--    <script th:inline="javascript">-->
 
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-            mapOption = {
-                center: new kakao.maps.LatLng(35.15364, 129.0312), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            }
-        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-        var positions = [];
-        for(var i =0 ; i< gpsLati.length; i++)
-        {
-            positions.push({
-                "latlng": new kakao.maps.LatLng(gpsLati[i], gpsLong[i]),
-                "title": title[i]
-            });
-        }
-        var markers = [];
-        var imageSrc = "../icon/busstop.png";
-        for (var i = 0; i < positions.length; i ++) {
-            // 마커 이미지의 이미지 크기 입니다
-            var imageSize = new kakao.maps.Size(24, 35);
+<!--        var mapContainer = document.getElementById('map'), // 지도를 표시할 div-->
+<!--            mapOption = {-->
+<!--                center: new kakao.maps.LatLng(35.15364, 129.0312), // 지도의 중심좌표-->
+<!--                level: 3 // 지도의 확대 레벨-->
+<!--            }-->
+<!--        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다-->
+<!--        var positions = [];-->
+<!--        for(var i =0 ; i< gpsLati.length; i++)-->
+<!--        {-->
+<!--            positions.push({-->
+<!--                "latlng": new kakao.maps.LatLng(gpsLati[i], gpsLong[i]),-->
+<!--                "title": title[i]-->
+<!--            });-->
+<!--        }-->
+<!--        var markers = [];-->
+<!--        var imageSrc = "../icon/busstop.png";-->
+<!--        for (var i = 0; i < positions.length; i ++) {-->
+<!--            // 마커 이미지의 이미지 크기 입니다-->
+<!--            var imageSize = new kakao.maps.Size(24, 35);-->
 
-            // 마커 이미지를 생성합니다
-            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-            var marker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng, // 마커를 표시할 위치
-                image : markerImage // 마커 이미지
-            });
-            var infowindow = new kakao.maps.InfoWindow({
-                content : '<div>'+positions[i].title+'</div>' // 인포윈도우에 표시할 내용
-            });
-            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-            markers.push(marker);
-            console.log(marker);
-        }
-        function makeOverListener(map, marker, infowindow) {
-            return function() {
-                infowindow.open(map, marker);
-            };
-        }
+<!--            // 마커 이미지를 생성합니다-->
+<!--            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);-->
+<!--            var marker = new kakao.maps.Marker({-->
+<!--                map: map, // 마커를 표시할 지도-->
+<!--                position: positions[i].latlng, // 마커를 표시할 위치-->
+<!--                image : markerImage // 마커 이미지-->
+<!--            });-->
+<!--            var infowindow = new kakao.maps.InfoWindow({-->
+<!--                content : '<div>'+positions[i].title+'</div>' // 인포윈도우에 표시할 내용-->
+<!--            });-->
+<!--            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));-->
+<!--            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));-->
+<!--            markers.push(marker);-->
+<!--            console.log(marker);-->
+<!--        }-->
+<!--        function makeOverListener(map, marker, infowindow) {-->
+<!--            return function() {-->
+<!--                infowindow.open(map, marker);-->
+<!--            };-->
+<!--        }-->
 
-        // 인포윈도우를 닫는 클로저를 만드는 함수
-        function makeOutListener(infowindow) {
-            return function() {
-                infowindow.close();
-            };
-        }
+<!--        // 인포윈도우를 닫는 클로저를 만드는 함수-->
+<!--        function makeOutListener(infowindow) {-->
+<!--            return function() {-->
+<!--                infowindow.close();-->
+<!--            };-->
+<!--        }-->
 
 
 
-    </script>
-</main>
-</body>
-</html>
+<!--    </script>-->
+<!--</main>-->
+<!--</body>-->
+<!--</html>-->

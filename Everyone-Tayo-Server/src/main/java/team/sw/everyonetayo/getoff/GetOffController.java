@@ -13,6 +13,8 @@ import pusha.server.manager.ServerManager;
 import team.sw.everyonetayo.reservation.table.Reservation;
 import team.sw.everyonetayo.reservation.table.ReservationService;
 
+import java.util.List;
+
 @RestController
 public class GetOffController {
 
@@ -23,10 +25,11 @@ public class GetOffController {
         this.reservationService = reservationService;
     }
 
-    @PostMapping(value = "off-app-bus")
+    @PostMapping(value = "/off-app-bus")
     public ResponseEntity callGetOff(@RequestBody RequestGetOffDto requestGetOffDto){
 
-        Reservation reservation = reservationService.searchReservationByToken(requestGetOffDto.token);
+        List<Reservation> reservationList = reservationService.searchReservationByToken(requestGetOffDto.token);
+        Reservation reservation = reservationList.get(reservationList.size() - 1);
         String uuid = reservation.getUuid();
 
         //Push message by Pusha
@@ -37,7 +40,7 @@ public class GetOffController {
         );
         ServerManager.instance.sendTarget(uuid, packet);
 
-        ResponseGetOffDto responseGetOffDto = ResponseGetOffDto.builder()
+        ResponseGetOffDto responseGetOffDto = new ResponseGetOffDto.ResponseGetOffDtoBuilder()
                 .state("OK").build();
 
         return ResponseEntity.ok(responseGetOffDto);

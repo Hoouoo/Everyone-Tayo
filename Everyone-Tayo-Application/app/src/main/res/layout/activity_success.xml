@@ -9,18 +9,24 @@
 
 
     <Button
-        android:id="@+id/home"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginEnd="156dp"
-        android:layout_marginBottom="14dp"
-        android:background="@drawable/home_button"
-        android:drawableTop="@drawable/home_size"
+        android:id="@+id/check2"
+        android:layout_width="284dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="274dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="160dp"
+        android:background="@drawable/press_button2"
+        android:fontFamily="@font/nanum_square_round_r"
+        android:text="하차"
+        android:textColor="#005490"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmTextView" />
 
     <TextView
         android:id="@+id/confirmTextView"
@@ -30,7 +36,7 @@
         android:layout_marginTop="188dp"
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/nanum_square_r"
-        android:text='0번 버스가 예약되었습니다.'
+        android:text='예약 중 입니다.'
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"

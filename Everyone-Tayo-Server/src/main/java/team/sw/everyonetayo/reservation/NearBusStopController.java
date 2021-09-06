@@ -41,14 +41,18 @@ public class NearBusStopController {
     private ResponseBusArrivalDto busArriverStatus;
     private ResponseReservationDto targetBus;
 
+    private String busstopLatitude;
+    private String busstopLongtitude;
+
 
     @SneakyThrows
-    @PostMapping(value = "/reservation-app-user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/reservation-app-user")
     public ResponseEntity callApiWithJson(@RequestBody RequestNearBusDto requestNearBusDto)  {
         busArriverStatus = null;
         responseNearBusDto = new ResponseNearBusDto();
         StringBuffer result = new StringBuffer();
 
+        System.out.println("requestNearBusDto = " + requestNearBusDto.getBusNumber() + " "+ requestNearBusDto.getLongitude() + " "+requestNearBusDto.getLatitude() + " "+ requestNearBusDto.getToken());
         // Step 1. 가장 가까운 버스 정류소 추출
         try {
             boolean next = true;
@@ -56,6 +60,8 @@ public class NearBusStopController {
                     + "ServiceKey=tO6fJs7AxOJ%2Bf9N5nWEgSE16%2BuOewB1LlIMM%2Fs5NB6bHtZ%2B3iO%2BcOIKgzK4QrYfZmIzh0iwJ1XKdbhxKEK2FtA%3D%3D"
                     + "&gpsLati=" + requestNearBusDto.getLatitude()
                     + "&gpsLong=" + requestNearBusDto.getLongitude();
+
+
 
             URL url = new URL(apiUrl);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -79,6 +85,8 @@ public class NearBusStopController {
                     .nodeNm(String.valueOf(targetItem.get("nodenm")))  // 버스 정류소 이름
                     .cityCode(String.valueOf(targetItem.get("citycode")))  // 도시 코드
                     .build();
+            busstopLatitude = String.valueOf(targetItem.get("gpslati"));
+            busstopLongtitude =  String.valueOf(targetItem.get("gpslong"));
 
             System.out.println("가장 가까이 있는 버스 정류소의 이름 = " + responseNearBusDto.getNodeNm());
             System.out.println("가장 가까이 있는 버스 정류소의 ID = " + responseNearBusDto.getNodeId());
@@ -89,17 +97,17 @@ public class NearBusStopController {
         // 가장 가까운 버스 정류소 추출
 
         // 사용자가 입력한 버스 번호를 토대로 DB 조회
-        List<String> targetRoutes = new ArrayList<>();
-
-        if (busRouteRepository.existsByRouteNo(requestNearBusDto.getBusNumber())) {
-
-            busRouteRepository.findAllByRouteNo(requestNearBusDto.getBusNumber()).stream().filter(
-                    item -> item.getCityCode().equals(responseNearBusDto.getCityCode())
-            ).forEach(
-                    item -> targetRoutes.add(item.getRouteId()));
-        } else {
-            throw new NoSuchBusArriverStatusExecption("버스 도착 정보가 존재하지 않습니다.");
-        }
+//        List<String> targetRoutes = new ArrayList<>();
+//
+//        if (busRouteRepository.existsByRouteNo(requestNearBusDto.getBusNumber())) {
+//
+//            busRouteRepository.findAllByRouteNo(requestNearBusDto.getBusNumber()).stream().filter(
+//                    item -> item.getCityCode().equals(responseNearBusDto.getCityCode())
+//            ).forEach(
+//                    item -> targetRoutes.add(item.getRouteId()));
+//        } else {
+//            throw new NoSuchBusArriverStatusExecption("버스 도착 정보가 존재하지 않습니다.");
+//        }
         // step2. 사용자가 입력한 버스 정류장에 이동하는 버스의 routeId를 들고 옴
         int page = 0;
         boolean next = true;
@@ -323,6 +331,7 @@ public class NearBusStopController {
                     .token(requestNearBusDto.getToken())
                     .state(targetBus.getState())
                     .build();
+            System.out.println("reservationDto = " + reservationDto);
 
             reservationService.addReservation(reservationDto);
 
@@ -330,7 +339,7 @@ public class NearBusStopController {
             Packet packet = new StringPacket(
                     "RESERVATION_NOTICE",
                     "#",
-                    responseNearBusDto.getNodeNm()+"#"+requestNearBusDto.getLatitude()+"#"+requestNearBusDto.getLongitude()
+                    responseNearBusDto.getNodeNm()+"#"+busstopLatitude+"#"+busstopLongtitude
             );
             ServerManager.instance.sendTarget(targetBus.getUuid(), packet);
         }

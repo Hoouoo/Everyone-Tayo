@@ -47,6 +47,7 @@ class LoginService {
                     }catch (e:SocketTimeoutException){
                         result = Result.Error(e)
                     }catch (e: Exception){
+                        e.printStackTrace()
                         result = Result.Error(e)
                     }
                 })

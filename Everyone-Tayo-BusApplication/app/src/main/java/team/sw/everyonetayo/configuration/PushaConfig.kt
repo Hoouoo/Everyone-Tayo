@@ -1,5 +1,6 @@
 package team.sw.everyonetayo.configuration;
 
+import android.util.Log
 import pusha.client.manager.ClientManager
 import pusha.packet.Packet
 import pusha.service.ClientPacketRecieveService
@@ -18,6 +19,7 @@ public class PushaConfig {
     }
 
     constructor(){
+        Log.d("inittest", "pusha init")
         if(ClientManager.instance==null) ClientManager.use();
         ClientPacketRecieveService.instance.addOrder("RESERVATION_NOTICE" ,Reservation())
         ClientPacketRecieveService.instance.addOrder("GET_OFF", GetOff())
@@ -54,7 +56,7 @@ public class PushaConfig {
 
                 busDriverView.speakGreenBell()
                 busDriverView.lightOnOfGreenBlink()
-                busDriverView.additems(busStop, 1)
+                busDriverView.additems(busStop)
             }
         }
     }
