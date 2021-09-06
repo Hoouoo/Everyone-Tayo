@@ -96,7 +96,7 @@
 ## 실행하기 앞서
 
 ### 서비스 아키텍처
-<p align ="center"><img height=400 src= https://user-images.githubusercontent.com/56144682/132202886-f1a9f99d-3492-4a02-a772-1d405375e76c.jpg></p>
+<p align ="center"><img height=600 src= https://user-images.githubusercontent.com/56144682/132202886-f1a9f99d-3492-4a02-a772-1d405375e76c.jpg></p>
 
 
 **모바일**
