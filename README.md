@@ -83,7 +83,7 @@ dependencies {
 
 1. 해당 코드 내려받기(HTTPS)  
 ``` 
-git clone "https://github.com/golagola2020/hango-server.git"
+git clone "https://github.com/Hoouoo/Everyone-Tayo.git"
 ```
 
 2. 데이터 베이스 구축을 위한 MariaDB를 도커로 환경 구축
