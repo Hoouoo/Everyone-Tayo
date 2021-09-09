@@ -110,6 +110,19 @@ GCP, NCP, AWS와 같은 클라우드 서버를 이용하는 경우 다음 포트
 - 웹 `8080` 포트 할당
 
 > 만약 서버 IP 변경 시 수정할 파일 내용
+
+### Custom 설정
+
+**버스 정류소 db에 저장하기**
+전국의 버스 정류소를 가져오기 위해 `localhost:8080/toJsonBusStoppAll`을 입력하여 전국의 버스 정류소를 db에 저장한다.
+> 만약 필요한 지역의 버스 데이터를 가져오고 싶으면 `/toJsonBusStop/[citycode]`에서 `citycode` 값을 변경
+
+**`Route`를 db에 저장하기**
+`/toJsonBusRoute/[citycode]` 에서 citycode 값에 해당하는 버스 노선 데이터 저장
+
+**Bus uuid를 db에 저장하기**  
+- `/toJsonBusUuid/[citycode]`에서 citycode 값에 해당하는 차량 데이터 저장
+
 ```gradle
 package team.sw.everyonetayo.configuration
 
