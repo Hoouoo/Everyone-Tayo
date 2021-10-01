@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import pusha.packet.Packet;
-import pusha.packet.StringPacket;
-import pusha.server.manager.ServerManager;
+import pusha2.container.ServerContainer;
+import pusha2.domain.SockDto;
+import pusha2.server.ServerManager;
 import team.sw.everyonetayo.reservation.table.Reservation;
 import team.sw.everyonetayo.reservation.table.ReservationService;
 
@@ -32,13 +32,14 @@ public class GetOffController {
         Reservation reservation = reservationList.get(reservationList.size() - 1);
         String uuid = reservation.getUuid();
 
-        //Push message by Pusha
-        Packet packet = new StringPacket(
+        //Push message by Pusha2
+        SockDto sockDto = new SockDto("Server",
                 "GET_OFF",
                 "#",
-                ""
-        );
-        ServerManager.instance.sendTarget(uuid, packet);
+                "",
+                null);
+        ServerManager serverManager = ServerContainer.Companion.serverManager();
+        serverManager.sendData(uuid, sockDto);
 
         ResponseGetOffDto responseGetOffDto = new ResponseGetOffDto.ResponseGetOffDtoBuilder()
                 .state("OK").build();

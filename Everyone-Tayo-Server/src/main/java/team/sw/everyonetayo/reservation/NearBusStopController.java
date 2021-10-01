@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pusha.packet.Packet;
-import pusha.packet.StringPacket;
-import pusha.server.manager.ServerManager;
+import pusha2.container.ServerContainer;
+import pusha2.domain.SockDto;
+import pusha2.server.ServerManager;
 import team.sw.everyonetayo.api.busroute.BusRouteRepository;
 import team.sw.everyonetayo.exception.NoSuchBusArriverStatusExecption;
 import team.sw.everyonetayo.exception.NoSuchItemsException;
@@ -335,13 +335,15 @@ public class NearBusStopController {
 
             reservationService.addReservation(reservationDto);
 
-            //Push message by Pusha
-            Packet packet = new StringPacket(
-                    "RESERVATION_NOTICE",
-                    "#",
-                    responseNearBusDto.getNodeNm()+"#"+busstopLatitude+"#"+busstopLongtitude
-            );
-            ServerManager.instance.sendTarget(targetBus.getUuid(), packet);
+            //Push message by Pusha2
+            SockDto sockDto = new SockDto("Server",
+                            "RESERVATION_NOTICE",
+                            "#",
+                            responseNearBusDto.getNodeNm()+"#"+busstopLatitude+"#"+busstopLongtitude,
+                            null);
+            ServerManager serverManager = ServerContainer.Companion.serverManager();
+            serverManager.sendData(targetBus.getUuid(), sockDto);
+
         }
         return ResponseEntity.ok(targetBus);
     }
