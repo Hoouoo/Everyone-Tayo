@@ -1,5 +1,6 @@
 package team.sw.everyonetayo.model.location
 
+import android.os.Looper
 import retrofit2.Call
 import team.sw.everyonetayo.domain.LoggedInUser
 import team.sw.everyonetayo.domain.Result
@@ -23,6 +24,7 @@ class LocationService {
 
         val thread: Thread = Thread(Runnable {
             try {
+                Looper.prepare()
                 val locationResponse: LocationResponse? = postLocation.execute().body()
                 if(locationResponse != null) {
                     val busstopName: String = locationResponse!!.name

@@ -12,7 +12,6 @@ class ToastWithSpeech {
     }
 
     fun toastShowWithSpeach (out:String) {
-        Looper.prepare()
         Handler().postDelayed ({
             Toast.makeText(ApplicationContext.context(), out, Toast.LENGTH_SHORT).show()
         }, 0)
