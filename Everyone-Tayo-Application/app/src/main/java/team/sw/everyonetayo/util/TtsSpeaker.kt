@@ -22,6 +22,8 @@ class TtsSpeaker : TextToSpeech.OnInitListener {
 
     constructor(){
         tts = TextToSpeech(ApplicationContext.context(), this)
+        tts!!.setSpeechRate(0.99f);
+        tts!!.setPitch(1.01f)
     }
 
     // TextToSpeech.OnInitListener를 상속하는 과정에서 필요한 부분

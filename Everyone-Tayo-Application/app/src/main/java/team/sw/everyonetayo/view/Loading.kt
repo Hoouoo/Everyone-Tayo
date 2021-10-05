@@ -19,8 +19,13 @@ class Loading : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                    loadingThread.interrupt()
+                    try {
+                        Thread.sleep(333)
+                    }catch (e:InterruptedException){
+                        loadingThread.interrupt()
+                    }
                 }
-                Thread.sleep(300)
             }
         })
 

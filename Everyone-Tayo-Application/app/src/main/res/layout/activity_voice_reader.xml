@@ -1,75 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
-    tools:context=".view.VoiceReader">
+    tools:context=".view.VoiceReader"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/stateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:fontFamily="@font/nanum_square_r"
+        android:text="위쪽 버튼은 음성입력, 아래쪽 버튼은 키패드입력"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/keypad_call"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/keypad_call"
-        android:layout_width="312dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="1"
+        android:id="@+id/voiceRecodeButton"
+        android:layout_width="match_parent"
         android:layout_height="96dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="60dp"
-        android:background="@drawable/press_button1"
-        android:fontFamily="@font/nanum_square_r"
+        android:background="@drawable/press_button2"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="음성 입력"
+        android:textAlignment="center"
+        android:textColor="#005490"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/stateTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidTextView" />
+
+    <Button
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/keypad_call"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:background="@drawable/press_button2"
+        android:fontFamily="@font/nanum_square_round_eb"
         android:text="키패드 입력"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textColor="#005490"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stateTextView" />
 
-    <TextView
-        android:id="@+id/guidTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/nanum_square_r"
-        android:text="버스의 번호를 말해주세요."
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/voiceRecodeButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/stateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="476dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginBottom="13dp"
-        android:fontFamily="@font/nanum_square_r"
-        android:text="이미지를 누르세요"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/keypad_call"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/voiceRecodeButton"
-        android:layout_width="283dp"
-        android:layout_height="265dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/stateTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guidTextView"
-        app:srcCompat="@drawable/voice" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

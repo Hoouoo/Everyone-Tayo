@@ -1,49 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
+    android:orientation="vertical"
 
     tools:context=".view.DropOff">
 
 
-    <Button
-        android:id="@+id/yesButton"
-        android:layout_width="320dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="46dp"
-        android:background="@drawable/riding"
-        android:fontFamily="@font/nanum_square_r"
-        android:text="예"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="302dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/nanum_square_r"
         android:text="이번 정류장에서 하차하십니까?"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="40sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/yesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/yesButton"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/press_button2"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="예"
+        android:textAlignment="center"
+        android:textColor="#005490"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:layout_marginBottom="20dp"
+        android:id="@+id/noButton"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/press_button2"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="아니요"
+        android:textAlignment="center"
+        android:textColor="#005490"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+</LinearLayout>

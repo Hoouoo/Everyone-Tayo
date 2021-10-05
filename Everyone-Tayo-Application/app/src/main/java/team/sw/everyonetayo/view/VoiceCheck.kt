@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.speech.tts.TextToSpeech
+import android.support.v7.app.ActionBar
 import android.util.Log
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_select_service.*
@@ -27,17 +28,6 @@ class VoiceCheck : AppCompatActivity() {
         setContentView(R.layout.activity_voice_check)
 
         setTitle("음성인식 번호 확인")
-
-
-        home.setOnClickListener{
-            // tts 음성 출력 후 액티비티 이동을 위한 딜레이
-            Handler().postDelayed({
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                startActivity(intent)
-                finish()
-            }, DURATION)
-        }
 
         yesButton.setOnClickListener{
             Handler().postDelayed({
@@ -80,9 +70,13 @@ class VoiceCheck : AppCompatActivity() {
                 SttContainer.instance.sttRepository().recodeString.myString
                         + "번 버스가 맞습니까?"
                 )
+        TtsSpeaker.instance.speakOut(confirmStateOfBus+"\n위쪽 버튼은 예, 아래쪽 버튼은 아니요")
 
-        TtsSpeaker.instance.speakOut(confirmStateOfBus)
         confirmTextView.setText(confirmStateOfBus)
+
+        var actionBar : ActionBar?
+        actionBar = supportActionBar
+        actionBar?.hide()
     }
 
     //뒤로가기 버튼 동작 코드

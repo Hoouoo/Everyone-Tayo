@@ -17,6 +17,8 @@ import team.sw.everyonetayo.container.SttContainer
 import team.sw.everyonetayo.domain.WrappedString
 import team.sw.everyonetayo.repository.stt.SttRepository
 import team.sw.everyonetayo.util.NumberExtractor
+import team.sw.everyonetayo.util.ToastWithSpeech
+import team.sw.everyonetayo.util.TtsSpeaker
 import team.sw.everyonetayo.view.SelectService
 import team.sw.everyonetayo.view.VoiceCheck
 
@@ -94,7 +96,7 @@ class SttService {
                 SpeechRecognizer.ERROR_NETWORK -> "네트워크 에러"
                 SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "네트웍 타임아웃"
                 SpeechRecognizer.ERROR_NO_MATCH -> "찾을 수 없음"
-                SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "RECOGNIZER가 바쁨"
+                SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "Reconizer가 바쁨"
                 SpeechRecognizer.ERROR_SERVER -> "서버가 이상함"
                 SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "말하는 시간초과"
                 else -> "알 수 없는 오류임"
@@ -104,6 +106,9 @@ class SttService {
                 "에러가 발생하였습니다. : $message",
                 Toast.LENGTH_SHORT
             ).show()
+
+            TtsSpeaker.instance.speakOut(message)
+
             result.myString=message
             textView!!.setText(result.myString)
         }
