@@ -1,7 +1,9 @@
 package team.sw.everyonetayo.util
 
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
+
 
 class ToastWithSpeech {
 
@@ -10,7 +12,11 @@ class ToastWithSpeech {
     }
 
     fun toastShowWithSpeach (out:String) {
-        Toast.makeText(ApplicationContext.context(), out, Toast.LENGTH_SHORT).show()
+        Looper.prepare()
+        Handler().postDelayed ({
+            Toast.makeText(ApplicationContext.context(), out, Toast.LENGTH_SHORT).show()
+        }, 0)
+
         if (TtsSpeaker.instance.isReady) {
             TtsSpeaker.instance.speakOut(out)
         }

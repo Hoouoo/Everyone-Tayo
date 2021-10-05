@@ -11,8 +11,10 @@ import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.container.LocationContainer
 import team.sw.everyonetayo.container.LoginContainer
 import team.sw.everyonetayo.container.SttContainer
+import team.sw.everyonetayo.controller.location.LocationController
 import team.sw.everyonetayo.controller.login.LoginController
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.repository.login.LoginRepository
@@ -25,6 +27,8 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    val locationController:LocationController = LocationContainer.instance.locationController()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +64,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+        }
+
+        location_button.setOnClickListener{
+            locationController.locationCheck()
         }
 
 
