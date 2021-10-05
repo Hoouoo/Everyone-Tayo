@@ -6,6 +6,7 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_select_service.*
 import kotlinx.android.synthetic.main.activity_select_service.home
@@ -81,8 +82,8 @@ class Success : AppCompatActivity() {
                 SttContainer.instance.sttRepository().recodeString.myString
               val latitude:String = GpsTracker(ApplicationContext.context()).latitude.toString()
               val longitude:String = GpsTracker(ApplicationContext.context()).longitude.toString()
-//            val latitude: String = "35.569997"
-//            val longitude: String = "129.247934"
+//            val latitude: String = "35.23253136003475"
+//            val longitude: String = "128.88178850903677"
             val token: String =
                 LoginContainer.instance.loginRepository().getLoggedInUser()!!.token;
 
@@ -120,15 +121,17 @@ class Success : AppCompatActivity() {
                     //예약 성공 텍스트 적용
                     TtsSpeaker.instance.speakOut(errorStatusOfBus)
                     runOnUiThread { confirmTextView.setText(errorStatusOfBus) }
+                    check2.visibility = View.INVISIBLE;
                 }
 
             } else if (result is Result.Error) {
                 //예약 실패 텍스트
                 val confirmStateOfBus: String = ("서버와 연결되지 않았습니다.")
+                println(result.exception.message)
                 //예약 실패 텍스트 적용
                 TtsSpeaker.instance.speakOut(confirmStateOfBus)
                 runOnUiThread { confirmTextView.setText(confirmStateOfBus) }
-
+                check2.visibility = View.INVISIBLE;
             }
         }
     }
