@@ -15,6 +15,7 @@ import team.sw.everyonetayo.util.ToastWithSpeech
 import java.io.IOException
 import java.lang.Exception
 import java.net.SocketTimeoutException
+import kotlin.math.roundToInt
 
 class LocationService {
 
@@ -26,6 +27,10 @@ class LocationService {
             try {
                 Looper.prepare()
                 val locationResponse: LocationResponse? = postLocation.execute().body()
+
+
+                println(locationResponse)
+
                 if(locationResponse != null) {
                     val busstopName: String = locationResponse!!.name
                     val busstopLatitude: Double = locationResponse!!.latitude.toDouble()
@@ -35,8 +40,8 @@ class LocationService {
                     val longitudeD:Double = longitude.toDouble()
 
                     val distance:Double = Distance.distance(latitudeD, longitudeD, busstopLatitude, busstopLongitude, "meter")
-
-                    ToastWithSpeech.instance.toastShowWithSpeach("가장 가까운 역은 $busstopName 이고, 거리는 $distance 미터")
+                    val distanceInt = distance.roundToInt()
+                    ToastWithSpeech.instance.toastShowWithSpeach("가장 가까운 역은 $busstopName 이고, 거리는 $distanceInt 미터 떨어져있습니다.")
 
                 }else{
                     ToastWithSpeech.instance.toastShowWithSpeach("통신 실패")

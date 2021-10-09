@@ -1,5 +1,6 @@
 package team.sw.everyonetayo.view
 
+import android.graphics.Color
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
@@ -14,17 +15,26 @@ import kotlinx.android.synthetic.main.activity_bus_driver.*
 import team.sw.everyonetayo.R
 import team.sw.everyonetayo.container.ReservationContainer
 import team.sw.everyonetayo.container.ViewContainer
+import team.sw.everyonetayo.domain.ReservationDto
 
 
 class BusDriver : AppCompatActivity() {
 
 
     val items = mutableListOf<ListViewItem>()
+    var listViewRefreshThread:Thread? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_driver)
-        
+
+        listViewRefreshThread = Thread {
+            val adapter = ListViewAdapter(items)
+            listView.adapter = adapter
+        }
+
+        listViewRefreshThread!!.start()
+
         //뷰 콘테이너에 추가
         ViewContainer.instance.add("BusDriver",this)
 
@@ -47,6 +57,20 @@ class BusDriver : AppCompatActivity() {
         drop_test.setOnClickListener{
             lightOffOfRed()
         }
+
+        items.add(ListViewItem("hi"))
+
+        val reservationDto: ReservationDto = ReservationDto(
+            "hi",
+            "0",
+            "0",
+            false,
+            false
+        )
+        ReservationContainer.instance.reservationsRepository().getReservationList().add(reservationDto)
+
+        val adapter = ListViewAdapter(items)
+        listView.adapter = adapter
 
     }
 
@@ -135,5 +159,21 @@ class BusDriver : AppCompatActivity() {
         //예약 리스트 자동 관리 종료
         ReservationContainer.instance.reservationManagement().stop()
         super.onDestroy()
+    }
+
+    fun listGreenBlink(converView:View):Thread{
+        val tempThread:Thread = Thread(Runnable {
+            for (i in 1..2){
+                if(i % 2 == 1){
+                    runOnUiThread{ converView.setBackgroundColor(Color.GREEN) }
+
+                }else{
+                    runOnUiThread{ converView.setBackgroundColor(Color.WHITE) }
+                }
+                Thread.sleep(333)
+            }
+        })
+        tempThread.start()
+        return tempThread
     }
 }

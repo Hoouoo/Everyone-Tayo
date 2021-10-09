@@ -1,5 +1,8 @@
 package team.sw.everyonetayo.model.reservation
 
+import android.widget.Adapter
+import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.activity_bus_driver.*
 import team.sw.everyonetayo.container.LoginContainer
 import team.sw.everyonetayo.container.ViewContainer
 import team.sw.everyonetayo.domain.ReservationDto
@@ -11,6 +14,7 @@ import team.sw.everyonetayo.util.Distance
 import team.sw.everyonetayo.util.GpsTracker
 import team.sw.everyonetayo.util.TtsSpeaker
 import team.sw.everyonetayo.view.BusDriver
+import team.sw.everyonetayo.view.ListViewAdapter
 
 class ManagementRunnable : Runnable {
 
@@ -35,6 +39,8 @@ class ManagementRunnable : Runnable {
         }
 
         while(!Thread.interrupted()){
+
+            // 위도 경도 받기 (버스)
             var busLatitude:Double = GpsTracker(ApplicationContext.context()).latitude
             var busLongitude:Double = GpsTracker(ApplicationContext.context()).longitude
 
@@ -84,6 +90,11 @@ class ManagementRunnable : Runnable {
             for (reservationDto in removed) {
                 busDriver!!.deleteitems(reservationDto.busStop)
                 reservationList.remove(reservationDto)
+            }
+            try {
+                Thread.sleep(100)
+            }catch (e:InterruptedException){
+                e.printStackTrace()
             }
         }
     }
