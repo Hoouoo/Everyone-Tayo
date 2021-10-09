@@ -4,33 +4,28 @@ import lombok.SneakyThrows;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import team.sw.everyonetayo.exception.NoSuchItemsException;
-import team.sw.everyonetayo.reservation.ResponseNearBusDto;
+import org.springframework.web.bind.annotation.*;
+import team.sw.everyonetayo.exception.NoSuchBusStopException;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
-import java.util.Objects;
 
 @RestController
 public class CheckUserLocationController {
     private UserLocationResponseDto userLocationResponseDto;
 
-    @GetMapping("user-location")
+    @PostMapping("user-location")
 
     @SneakyThrows
     public ResponseEntity<UserLocationResponseDto> checkUserLocation(@RequestBody UserLocationRequestDto userLocationRequestDto) {
         StringBuffer result = new StringBuffer();
 
+        System.out.println("userLocationResponseDto.getLatitude() = " + userLocationRequestDto.getLatitude());
+        System.out.println("userLocationRequestDto.getLongitude() = " + userLocationRequestDto.getLongitude());
         boolean next = true;
         String apiUrl = "http://openapi.tago.go.kr/openapi/service/BusSttnInfoInqireService/getCrdntPrxmtSttnList?"
                 + "ServiceKey=tO6fJs7AxOJ%2Bf9N5nWEgSE16%2BuOewB1LlIMM%2Fs5NB6bHtZ%2B3iO%2BcOIKgzK4QrYfZmIzh0iwJ1XKdbhxKEK2FtA%3D%3D"
@@ -51,10 +46,16 @@ public class CheckUserLocationController {
         result.setLength(0);
         JSONObject responseObject = (JSONObject) jsonObject.get("response");
         JSONObject bodyObject = (JSONObject) responseObject.get("body");
-        JSONObject itemObject = (JSONObject) bodyObject.get("items");
+        Integer totalCounts = (Integer) bodyObject.get("totalCount");
+        Integer pageNumbers = (Integer) bodyObject.get("pageNo");
 
+        if (totalCounts == 0 && pageNumbers == 1 ){
+            throw new NoSuchBusStopException("Can not find Bus Stop");
+        }
+        JSONObject itemObject = (JSONObject) bodyObject.get("items");
         JSONArray item = (JSONArray) itemObject.get("item");
         JSONObject targetItem = (JSONObject) item.get(0);
+
         userLocationResponseDto = new UserLocationResponseDto.UserLocationResponseDtoBuilder()
                 .name(String.valueOf(targetItem.get("nodenm")))  // 버스 정류소 이름
                 .latitude(String.valueOf(targetItem.get("gpslati")))  // 버스 정류소 위도
@@ -62,11 +63,7 @@ public class CheckUserLocationController {
                 .build();
 
 
-        if (Objects.isNull(userLocationResponseDto)) {
-            throw new NoSuchItemsException("Can not find Bus stop");
-        }
-
-        return new ResponseEntity<>(this.userLocationResponseDto, HttpStatus.OK);
+        return ResponseEntity.ok().body(userLocationResponseDto);
     }
 
     public UserLocationResponseDto getUserLocationResponseDto() {
