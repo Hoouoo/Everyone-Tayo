@@ -85,10 +85,10 @@ class Success : AppCompatActivity() {
             //예약을 위한 변수 정의
             val busNumber: String =
                 SttContainer.instance.sttRepository().recodeString.myString
-//              val latitude:String = GpsTracker(ApplicationContext.context()).latitude.toString()
-//              val longitude:String = GpsTracker(ApplicationContext.context()).longitude.toString()
-            val latitude: String = "35.23253136003475"
-            val longitude: String = "128.88178850903677"
+              val latitude:String = GpsTracker(ApplicationContext.context()).latitude.toString()
+              val longitude:String = GpsTracker(ApplicationContext.context()).longitude.toString()
+//            val latitude: String = "35.23253136003475"
+//            val longitude: String = "128.88178850903677"
             val token: String =
                 LoginContainer.instance.loginRepository().getLoggedInUser()!!.token;
 
