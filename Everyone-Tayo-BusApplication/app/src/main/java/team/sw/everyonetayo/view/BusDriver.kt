@@ -22,18 +22,10 @@ class BusDriver : AppCompatActivity() {
 
 
     val items = mutableListOf<ListViewItem>()
-    var listViewRefreshThread:Thread? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_driver)
-
-        listViewRefreshThread = Thread {
-            val adapter = ListViewAdapter(items)
-            listView.adapter = adapter
-        }
-
-        listViewRefreshThread!!.start()
 
         //뷰 콘테이너에 추가
         ViewContainer.instance.add("BusDriver",this)
@@ -57,21 +49,6 @@ class BusDriver : AppCompatActivity() {
         drop_test.setOnClickListener{
             lightOffOfRed()
         }
-
-        items.add(ListViewItem("hi"))
-
-        val reservationDto: ReservationDto = ReservationDto(
-            "hi",
-            "0",
-            "0",
-            false,
-            false
-        )
-        ReservationContainer.instance.reservationsRepository().getReservationList().add(reservationDto)
-
-        val adapter = ListViewAdapter(items)
-        listView.adapter = adapter
-
     }
 
 
