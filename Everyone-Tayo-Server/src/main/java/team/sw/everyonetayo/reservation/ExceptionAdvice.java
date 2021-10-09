@@ -25,17 +25,7 @@ public class ExceptionAdvice {
         return ResponseEntity.ok().body(responseReservationDto);
     }
 
-<<<<<<< HEAD
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ResponseReservationDto> exceptionHandler(Exception e){
-        log.debug("존재하지 않는 버스 정보", e);
-        System.out.println("Exception?");
-        System.out.println(e.getMessage());
-        ResponseReservationDto responseReservationDto = new ResponseReservationDto.ResponseReservationDtoBuilder()
-                .uuid("nope").busNumber("nope").state("nope").nodeId("nope").time(LocalDateTime.now()).build();
-        return ResponseEntity.ok().body(responseReservationDto);
-    }
-=======
+
 //    @ExceptionHandler(Exception.class)
 //    public ResponseEntity<ResponseReservationDto> exceptionHandler(Exception e){
 //        log.debug("존재하지 않는 버스 정보", e);
@@ -44,8 +34,6 @@ public class ExceptionAdvice {
 //                .uuid("nope").busNumber("nope").state("nope").nodeId("nope").time(LocalDateTime.now()).build();
 //        return ResponseEntity.ok().body(responseReservationDto);
 //    }
->>>>>>> 64e656fb0c64879b90cd0cd3e5d561542d44e2e4
-
     @ExceptionHandler(NoSuchBusArriverStatusExecption.class)
     public ResponseEntity<ResponseReservationDto> busArriverStatusExceptionHandler(NoSuchBusArriverStatusExecption e){
         log.debug("존재하지 않는 버스 정보", e);
