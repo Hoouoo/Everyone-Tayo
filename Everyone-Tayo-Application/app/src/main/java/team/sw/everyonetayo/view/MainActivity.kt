@@ -3,6 +3,7 @@ package team.sw.everyonetayo.view
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.support.v7.app.ActionBar
 
@@ -11,7 +12,10 @@ import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import team.sw.everyonetayo.R
+import team.sw.everyonetayo.container.LocationContainer
 import team.sw.everyonetayo.container.LoginContainer
+import team.sw.everyonetayo.container.SttContainer
+import team.sw.everyonetayo.controller.location.LocationController
 import team.sw.everyonetayo.controller.login.LoginController
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.repository.login.LoginRepository
@@ -19,14 +23,19 @@ import team.sw.everyonetayo.repository.login.LoginRepository
 import team.sw.everyonetayo.util.NetworkStatus
 import team.sw.everyonetayo.util.PermissionCheck
 import team.sw.everyonetayo.util.ToastWithSpeech
+import team.sw.everyonetayo.util.TtsSpeaker
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
+    val locationController:LocationController = LocationContainer.instance.locationController()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        TtsSpeaker.instance.speakOut("위쪽 버튼은 예약하기, 아래쪽 버튼은 현재 위치 확인")
 
         start_button.setOnClickListener{
 
@@ -56,6 +65,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+        }
+
+        location_button.setOnClickListener{
+            locationController.locationCheck()
         }
 
 

@@ -29,6 +29,7 @@ public class ExceptionAdvice {
     public ResponseEntity<ResponseReservationDto> exceptionHandler(Exception e){
         log.debug("존재하지 않는 버스 정보", e);
         System.out.println("Exception?");
+        System.out.println(e.getMessage());
         ResponseReservationDto responseReservationDto = new ResponseReservationDto.ResponseReservationDtoBuilder()
                 .uuid("nope").busNumber("nope").state("nope").nodeId("nope").time(LocalDateTime.now()).build();
         return ResponseEntity.ok().body(responseReservationDto);

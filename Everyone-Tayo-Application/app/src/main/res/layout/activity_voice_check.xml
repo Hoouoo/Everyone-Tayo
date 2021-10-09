@@ -1,56 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
+    android:orientation="vertical"
     tools:context=".view.VoiceCheck">
 
 
-    <Button
-        android:id="@+id/home"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="156dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/home_button"
-        android:drawableTop="@drawable/home_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noButton" />
-
-    <Button
-        android:id="@+id/yesButton"
-        android:layout_width="320dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/riding"
-        android:fontFamily="@font/nanum_square_r"
-        android:text="예"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/noButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmTextView" />
-
     <TextView
+        android:layout_marginTop="30dp"
         android:id="@+id/confirmTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="43dp"
         android:fontFamily="@font/nanum_square_r"
         android:text='"0번 버스가 맞습니까?"'
         android:textAlignment="center"
@@ -63,18 +26,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/noButton"
-        android:layout_width="320dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="1"
+        android:id="@+id/yesButton"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="60dp"
         android:background="@drawable/stopover"
-        android:fontFamily="@font/nanum_square_r"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="예"
+        android:textAlignment="center"
+        android:textColor="#005490"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/noButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmTextView" />
+
+    <Button
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:id="@+id/noButton"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/stopover"
+        android:fontFamily="@font/nanum_square_round_eb"
         android:text="아니오"
         android:textAlignment="center"
-        android:textColor="#00307C"
+        android:textColor="#005490"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/home"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,4 +62,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yesButton" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

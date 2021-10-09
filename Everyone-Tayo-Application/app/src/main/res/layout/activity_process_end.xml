@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
+    android:orientation="vertical"
 
     tools:context=".view.ProcessEnd">
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="321dp"
-        android:layout_height="134dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="23dp"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/nanum_square_r"
-        android:text="모든 과정이\n 완료되었습니다. \n 감사합니다."
+        android:text="모든 과정 완료"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="40sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/exit_button"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/start_button"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="종료하기"
+        android:textColor="#005490"
+        android:textSize="48sp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+</LinearLayout>

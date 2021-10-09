@@ -4,10 +4,7 @@ import com.google.gson.annotations.JsonAdapter
 import retrofit2.Call
 import retrofit2.http.*
 import team.sw.everyonetayo.domain.GetOffResponse
-import team.sw.everyonetayo.http.domain.GetOffRequest
-import team.sw.everyonetayo.http.domain.LoginResponse
-import team.sw.everyonetayo.http.domain.ReservationRequest
-import team.sw.everyonetayo.http.domain.ReservationResponse
+import team.sw.everyonetayo.http.domain.*
 import java.sql.SQLOutput
 
 public interface HttpService {
@@ -33,4 +30,10 @@ public interface HttpService {
     fun getOff(
         @Body body: GetOffRequest
     ) : Call<GetOffResponse>
+
+    @Headers("accept: application/json", "content-type: application/json")
+    @POST("/user-location")
+    fun location(
+        @Body body: LocationRequest
+    ) : Call<LocationResponse>
 }
