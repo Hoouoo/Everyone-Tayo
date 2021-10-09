@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=tayo
+      - MYSQL_PASSWORD=1234
+      - MYSQL_DATABASE=everyonetayo
+    volumes:
+      - ./dbdata:/var/lib/mysql
+    ports:
+      - 3306:3306
