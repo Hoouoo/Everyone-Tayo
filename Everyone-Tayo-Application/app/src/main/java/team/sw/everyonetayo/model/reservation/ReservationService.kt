@@ -34,11 +34,11 @@ class ReservationService {
                     val reservationResponse: ReservationResponse? =
                         postReservation.execute().body()
 
-                    Log.d("reservation", "${reservationResponse!!.nodeId}  ${reservationResponse!!.state}  ${reservationResponse!!.time}" )
-
                     if (reservationResponse == null) {
                         throw Exception();
                     }
+
+                    Log.d("reservation", "${reservationResponse!!.nodeId}  ${reservationResponse!!.state}  ${reservationResponse!!.time}" )
 
                     val busNumber = busNumber;
                     val busStop = reservationResponse.nodeId;

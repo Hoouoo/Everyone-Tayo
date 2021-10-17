@@ -104,7 +104,14 @@ class BusDriver : AppCompatActivity() {
     }
 
     fun lightOnOfGreen(){
-        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_ride_textview))
+        runOnUiThread {
+            ride_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.color_ride_textview
+                )
+            )
+        }
     }
 
     fun lightOnOfGreenBlink(){
@@ -121,15 +128,36 @@ class BusDriver : AppCompatActivity() {
     }
 
     fun lightOffOfGreen(){
-        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+        runOnUiThread {
+            ride_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.custom_textview
+                )
+            )
+        }
     }
 
     fun lightOnOfRed(){
-        drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_drop_textview))
+        runOnUiThread {
+            drop_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.color_drop_textview
+                )
+            )
+        }
     }
 
     fun lightOffOfRed(){
-        drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+        runOnUiThread {
+            drop_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.custom_textview
+                )
+            )
+        }
     }
 
     override fun onDestroy() {

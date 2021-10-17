@@ -56,7 +56,6 @@ public class PushaConfig {
                 //busDriver 뷰 가져오기
                 val busDriverView:BusDriver  = viewResult.data as BusDriver
                 //TODO 예약들어올 때 액션 추가
-
                 busDriverView.speakGreenBell()
                 busDriverView.lightOnOfGreenBlink()
                 busDriverView.additems(busStop)
