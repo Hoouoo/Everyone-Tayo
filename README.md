@@ -23,7 +23,43 @@
 버스 전용 애플리케이션의 버스 관련 계정 정보를 관리하기 위한 웹 서버를 구축하였다..  
 해당 웹 서버에서 버스 계정을 추가, 삭제, 조회 가능하며 사용자 애플리케이션에서 예약된 예약 정보도 조회가능하다.  
 
----
+---  
+  
+## 청와대 청원내용과 해결
+
+<p align='center'><img width=800 src=https://user-images.githubusercontent.com/35298140/137614998-cc48d32b-b6a3-4602-ba59-66d740317996.png></p>
+
+### 청원 내용 1 : 버스 정류장 정보를 알 수 없습니다.
+
+<p align='center'><img width=1000 src=https://user-images.githubusercontent.com/35298140/137615126-1f9956ae-1c24-4d8d-840e-274d7d30a9e4.png></p>
+
+### 해결 1
+
+<p align='center'><img height=400 src=https://user-images.githubusercontent.com/35298140/137615235-446c2a6b-0c1a-408a-8f9d-fd90219d1946.png></p>
+
+'현재위치확인' 버튼을 누르면 현재위치에서 가장 가까운 정류소이름과 그 정류소와 사용자의 거리가 음성으로 출력됩니다. 버스정류소에 도착후 자신이 올바른 위치에 서있는지 확인할 수 있습니다. 
+
+### 청원 내용 2:  버스 번호를 파악할 수 없어 탑승이 어렵습니다.  
+
+<p align='center'><img width=1000 src=https://user-images.githubusercontent.com/35298140/137615431-5e0c2246-b36e-4639-9cd0-848f9919618c.png></p>  
+
+### 해결2  
+
+<p align='center'><img height=750 src=https://user-images.githubusercontent.com/35298140/137616688-2ea93b13-69c6-43c7-b378-d65316763758.png></p>  
+
+사용자는 앱을 사용해서 버스번호로 가장 빨리 도착하는 버스를 예약할 수 있다. 해당 버스에는 시각장애인이 위치한 버스 정류소의 정보가 서버로 부터 도착하여 등록된다. 버스가 예약된 정류소에 접근하면(gps정보로 알 수 있음) '버스앱 단말기'에 연결된 스피커로 해당 버스번호를 음성으로 출력한다. 시각장애인은 버스입구쪽 스피커로 자신이 타야할 버스가 어디에 있는지 알 수 있고 입구를 쉽게 찾을 수 있다.  
+
+### 청원 내용 3:    
+
+<p align='center'><img width=1000 src=https://user-images.githubusercontent.com/35298140/137616850-04723edd-10f1-46cc-accf-2ccea74af2cd.png></p>
+
+### 해결3  
+
+<p align='center'><img height=400 src=https://user-images.githubusercontent.com/35298140/137617054-0c019d25-e8bb-4556-8928-01d021b82bb1.png></p>
+
+사용자 앱에서 버스를 예약하면 하차버튼을 누를 수 있다. 하차버튼을 누르면 버스앱에  서버를 통해 하차정보가 전달된다. 버스기사는 전달된 하차정보를 인식하고 버스를 정차한다.  
+
+---  
 
 ## 실행하기 앞서
 
