@@ -134,10 +134,13 @@ class TayoConfig {
 ### 버스 전용 App 환경설정
 
 #### 로그인 계정 추가하는 방법 (localhost 기준)
+
+도시코드(citycode) 목록표
+> https://zesty-airbus-18b.notion.site/8d72635ab494438cae03d46f51c2edae
  
 **Step 1. 버스 정류소 db에 저장하기**  
 전국의 버스 정류소를 가져오기 위해 `localhost:8080/toJsonBusStoppAll`을 입력하여 전국의 버스 정류소를 db에 저장한다.  
-> 만약 필요한 지역의 버스 데이터를 가져오고 싶으면 `/toJsonBusStop/[citycode]`에서 `citycode` 값을 변경  
+> 특정 지역의 버스 데이터만 가져오고 싶으면 `/toJsonBusStop/[citycode]`에서 `citycode` 값을 변경  
    
 **Step 2. `Route`를 db에 저장하기**  
 URL : `127.0.0.1:8080/toJsonBusRoute/[citycode]` 에서 citycode 값에 해당하는 버스 노선 데이터 저장  
