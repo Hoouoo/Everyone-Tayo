@@ -11,15 +11,15 @@
 어플리케이션은 버스 전용 애플리케이션과 사용자 전용 애플리케이션 두 개로 나뉜다.  
 각 어플리케이션의 간략한 설명은 다음과 같다.  
 
-+ **버스 전용 애플리케이션**  
++ **버스 전용 App**  
 시각 장애인이 버스를 승차 예약 및 하차를 할 때 알림을 받을 수 있어야한다.  
 이에 "해당 버스에 사용자가 승/하차 예정이다."라는 알림을 전송하기 위해 버스 전용 애플리케이션을 개발하였다.  
  
-+ **사용자 전용 애플리케이션**  
++ **사용자 전용 App**  
 서비스 이용 대상자를 기준으로 예약 과정을 최대한 간소화하여 시작하기 버튼 클릭을 시장으로 예약까지 음성으로 단 번에 진행된다.  
 예약을 성공하면 하차 버튼을 눌러 사용자의 승차부터 하차까지 도울 수 있는 애플리케이션이다.  
 
-+ **계정 관리자용 웹 서버**  
++ **계정 관리자용 Web Server**  
 버스 전용 애플리케이션의 버스 관련 계정 정보를 관리하기 위한 웹 서버를 구축하였다..  
 해당 웹 서버에서 버스 계정을 추가, 삭제, 조회 가능하며 사용자 애플리케이션에서 예약된 예약 정보도 조회가능하다.  
 
@@ -42,13 +42,14 @@
 
 ---
 
-### 개발 환경 (서버) 및 기술 명세
+### 개발 환경 (서버)
 
 **개발 환경**
 - IDE : IntelliJ IDEA ultimate
 - Java 11
 - MariaDB 10.5.12
 - Docker
+- PuSha
 
 **Dependency**
 ```gradle
@@ -75,15 +76,17 @@ dependencies {
 
 ---
  
-### 개발 환경(애플리케이션)
+### 개발 환경 (App)
 
 **개발 환경**
 - IDE : Android Studio
 - Kotlin 1.5.30
+- PuSha
 
 
 ## 시작하기
 
+### 공통 
 1. 해당 코드 내려받기(HTTPS)  
 ``` 
 git clone "https://github.com/Hoouoo/Everyone-Tayo.git"
@@ -94,7 +97,6 @@ git clone "https://github.com/Hoouoo/Everyone-Tayo.git"
 cd Everone-Tayo-db
 (sudo) docker-compose up -d
 ```
-
 > docker docs : https://docs.docker.com/get-started/
 
 3. 실행하기  
@@ -102,35 +104,24 @@ cd Everone-Tayo-db
 3.2-1. Server의 경우 :  
 `EveryOne-Tayo-Server.jar` 실행  
 3.2-2. Application의 경우 :  
-(Android Os 기기에서 이용 가능) `Bus-EveryOne-Tayo.apk` 또는 `User-EveryOne-Tayo.apk` 실행
+(Android Os 기기에서 이용 가능) `Bus-EveryOne-Tayo.apk` 또는 `User-EveryOne-Tayo.apk` 실행  
+  
+4. 버스 전용 App에 로그인을 진행한다.
+4.1. 로그인 계정은 웹 서버에 로그인하여 버스 계정 목록을 통해 조회 가능하다. 
+> URL `127.0.0.1:8080/read_bus_driver` 
+
+5. 사용자 전용 App의 안내에 따라 버스 탑승 신청을 하면된다.
 
 **부가 설명**
 GCP, NCP, AWS와 같은 클라우드 서버를 이용하는 경우 다음 포트를 할당해주어야 한다.
 - Pusha `9090`, `9091` 포트 할당
 - 웹 `8080` 포트 할당
 
-> 만약 서버 IP 변경 시 수정할 파일 내용
-
-### Custom 설정  
- 
-**버스 정류소 db에 저장하기**  
-전국의 버스 정류소를 가져오기 위해 `localhost:8080/toJsonBusStoppAll`을 입력하여 전국의 버스 정류소를 db에 저장한다.  
-> 만약 필요한 지역의 버스 데이터를 가져오고 싶으면 `/toJsonBusStop/[citycode]`에서 `citycode` 값을 변경  
-   
-**`Route`를 db에 저장하기**  
-`/toJsonBusRoute/[citycode]` 에서 citycode 값에 해당하는 버스 노선 데이터 저장  
-
-**Bus uuid를 db에 저장하기**  
-- `/toJsonBusUuid/[citycode]`에서 citycode 값에 해당하는 차량 데이터 저장  
-
-**버스 애플리케이션 계정 자동 생성**
-- `/bus_account_auto_save`를 통해 db에 autoincrement된 값 저장  
-
-
+> 서버 IP 변경 시 TayoConfig.Class 파일 수정
 ```gradle
 package team.sw.everyonetayo.configuration
 
-class Config {
+class TayoConfig {
 
     companion object{
         val BASE_URL:String = [접속할 서버 주소:포트]
@@ -139,6 +130,24 @@ class Config {
     }
 }
 ```
+
+### 버스 전용 App 환경설정
+
+#### 로그인 계정 추가하는 방법 (localhost 기준)
+ 
+**Step 1. 버스 정류소 db에 저장하기**  
+전국의 버스 정류소를 가져오기 위해 `localhost:8080/toJsonBusStoppAll`을 입력하여 전국의 버스 정류소를 db에 저장한다.  
+> 만약 필요한 지역의 버스 데이터를 가져오고 싶으면 `/toJsonBusStop/[citycode]`에서 `citycode` 값을 변경  
+   
+**Step 2. `Route`를 db에 저장하기**  
+URL : `127.0.0.1:8080/toJsonBusRoute/[citycode]` 에서 citycode 값에 해당하는 버스 노선 데이터 저장  
+
+**Step 3. `Busu uid`를 db에 저장하기**  
+- `127.0.0.1:8080/toJsonBusUuid/[citycode]`에서 citycode 값에 해당하는 차량 데이터 저장  
+
+**Step 4. 버스 애플리케이션 계정 자동 생성**
+- `127.0.0.1:8080/bus_account_auto_save`를 통해 db에 autoincrement된 값 저장  
+
 
 ---
 ## 실행 화면
