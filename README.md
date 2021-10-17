@@ -169,7 +169,7 @@ class TayoConfig {
 **Step 2. `Route`를 db에 저장하기**  
 URL : `127.0.0.1:8080/toJsonBusRoute/[citycode]` 에서 citycode 값에 해당하는 버스 노선 데이터 저장  
 
-**Step 3. `Busu uid`를 db에 저장하기**  
+**Step 3. `Bus uuid`를 DB에 저장하기**  
 - `127.0.0.1:8080/toJsonBusUuid/[citycode]`에서 citycode 값에 해당하는 차량 데이터 저장  
 
 **Step 4. 버스 애플리케이션 계정 자동 생성**
