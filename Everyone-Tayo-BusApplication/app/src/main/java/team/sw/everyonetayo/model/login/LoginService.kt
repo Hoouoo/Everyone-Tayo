@@ -1,6 +1,7 @@
 package team.sw.everyonetayo.model.login
 
-import pusha.client.manager.ClientManager
+import pusha2.client.ClientManager
+import pusha2.container.ClientContainer
 import retrofit2.Call
 import retrofit2.Response
 import team.sw.everyonetayo.configuration.Config
@@ -27,6 +28,7 @@ import kotlin.math.log
 class LoginService {
 
     val loginRepository:LoginRepository;
+    val clientManager: ClientManager = ClientContainer.clientManager()
 
     constructor(loginRepository: LoginRepository){
         this.loginRepository = loginRepository;
@@ -72,9 +74,10 @@ class LoginService {
                 println("Config.PORT = ${Config.PORT}")
                 println("loginRepository = ${loginRepository.getLoggedInUser()!!.uuid}")
 
-
-                ClientManager.instance.connect(
-                    Config.IP, Config.PORT, loginRepository.getLoggedInUser()!!.uuid
+                ClientManager.ip = Config.IP
+                ClientManager.port = Config.PORT
+                clientManager.connect(
+                    loginRepository.getLoggedInUser()!!.uuid
                 );
 
                 result = Result.Success(loggedInUser)
@@ -94,7 +97,7 @@ class LoginService {
         thread.start() // 통신시작
         thread.join() // 통신종료 까지 대기
 
-        ClientManager.instance.process();
+        clientManager.processing()
 
 
         return result!!
@@ -105,7 +108,6 @@ class LoginService {
     fun logout() {
         // TODO: revoke authentication
         loginRepository.logout()
-        ClientManager.instance.socket.close();
-        ClientManager.instance.clientProcessingThread.interrupt();
+        clientManager.socket!!.close()
     }
 }

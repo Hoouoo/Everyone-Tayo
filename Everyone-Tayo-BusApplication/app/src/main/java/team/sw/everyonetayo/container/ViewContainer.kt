@@ -14,8 +14,7 @@ class ViewContainer {
 
     fun add(name:String ,Object: Any):Boolean{
         try {
-            if (appCompatActivityContext.containsKey(name)
-                && appCompatActivityContext.containsValue(Object)) {
+            if (appCompatActivityContext.containsKey(name)) {
                 appCompatActivityContext.remove(name)
                 appCompatActivityContext.put(name, Object)
             } else {

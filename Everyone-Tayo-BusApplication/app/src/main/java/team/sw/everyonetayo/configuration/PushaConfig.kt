@@ -1,11 +1,13 @@
 package team.sw.everyonetayo.configuration;
 
 import android.util.Log
-import pusha.client.manager.ClientManager
-import pusha.packet.Packet
-import pusha.service.ClientPacketRecieveService
-import pusha.service.default_order.Order
-import pusha.socket.WrappedSocket
+import pusha2.client.ClientManager
+import pusha2.client.handler.recieve.ClientRecieveHandler
+import pusha2.client.handler.recieve.excutor.ClientRecieveExcutor
+import pusha2.container.ClientContainer
+import pusha2.domain.SockDto
+import pusha2.server.ServerManager
+
 import team.sw.everyonetayo.container.ReservationContainer
 import team.sw.everyonetayo.container.ViewContainer
 import team.sw.everyonetayo.domain.ReservationDto
@@ -18,23 +20,24 @@ public class PushaConfig {
         val pushaConfig = PushaConfig()
     }
 
+    val clientManager:ClientManager = ClientContainer.clientManager()
+    val clientRecieveHandler:ClientRecieveHandler = ClientContainer.clientRecieveHandler()
+
     constructor(){
         Log.d("inittest", "pusha init")
-        if(ClientManager.instance==null) ClientManager.use();
-        ClientPacketRecieveService.instance.addOrder("RESERVATION_NOTICE" ,Reservation())
-        ClientPacketRecieveService.instance.addOrder("GET_OFF", GetOff())
+        clientRecieveHandler.addCommand("RESERVATION_NOTICE" ,Reservation())
+        clientRecieveHandler.addCommand("GET_OFF", GetOff())
     }
 
     /**
      *
      */
 
-    inner class Reservation: Order {
-        override fun excute(wrappedSocket: WrappedSocket, data: Any?) {
-            val packet: Packet = data as Packet;
-            val busStop:String = packet.data.toString().split("#")[0]
-            val latitude:String = packet.data.toString().split("#")[1]
-            val longitude:String = packet.data.toString().split("#")[2]
+    inner class Reservation: ClientRecieveExcutor {
+        override fun excute(sockDto: SockDto) {
+            val busStop:String = sockDto.data.split("#")[0]
+            val latitude:String = sockDto.data.split("#")[1]
+            val longitude:String = sockDto.data.split("#")[2]
 
             val reservationsRepository:ReservationsRepository = ReservationContainer.instance.reservationsRepository()
 
@@ -53,7 +56,6 @@ public class PushaConfig {
                 //busDriver 뷰 가져오기
                 val busDriverView:BusDriver  = viewResult.data as BusDriver
                 //TODO 예약들어올 때 액션 추가
-
                 busDriverView.speakGreenBell()
                 busDriverView.lightOnOfGreenBlink()
                 busDriverView.additems(busStop)
@@ -61,10 +63,9 @@ public class PushaConfig {
         }
     }
 
-    inner class GetOff: Order {
-        override fun excute(wrappedSocket: WrappedSocket, data: Any?) {
-            val packet: Packet = data as Packet;
-            val busStop:String = packet.data.toString();
+    inner class GetOff: ClientRecieveExcutor {
+        override fun excute(sockDto: SockDto) {
+            val busStop:String = sockDto.data
 
             val viewResult:Result<Any> = ViewContainer.instance.get("BusDriver")
 

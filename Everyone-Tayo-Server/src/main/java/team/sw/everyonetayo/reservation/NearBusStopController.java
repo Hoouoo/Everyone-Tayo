@@ -6,16 +6,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pusha.packet.Packet;
-import pusha.packet.StringPacket;
-import pusha.server.manager.ServerManager;
+import pusha2.container.ServerContainer;
+import pusha2.domain.SockDto;
+import pusha2.server.ServerManager;
 import team.sw.everyonetayo.api.busroute.BusRouteRepository;
-import team.sw.everyonetayo.exception.NoSuchBusArriverStatusExecption;
 import team.sw.everyonetayo.exception.NoSuchItemsException;
-import team.sw.everyonetayo.pusha.PushaConfiguration;
 import team.sw.everyonetayo.reservation.table.ReservationService;
 
 import java.io.*;
@@ -54,7 +51,8 @@ public class NearBusStopController {
 
         System.out.println("requestNearBusDto = " + requestNearBusDto.getBusNumber() + " "+ requestNearBusDto.getLongitude() + " "+requestNearBusDto.getLatitude() + " "+ requestNearBusDto.getToken());
         // Step 1. 가장 가까운 버스 정류소 추출
-        try {
+
+        {
             boolean next = true;
             String apiUrl = "http://openapi.tago.go.kr/openapi/service/BusSttnInfoInqireService/getCrdntPrxmtSttnList?"
                     + "ServiceKey=tO6fJs7AxOJ%2Bf9N5nWEgSE16%2BuOewB1LlIMM%2Fs5NB6bHtZ%2B3iO%2BcOIKgzK4QrYfZmIzh0iwJ1XKdbhxKEK2FtA%3D%3D"
@@ -76,6 +74,13 @@ public class NearBusStopController {
             result.setLength(0);
             JSONObject responseObject = (JSONObject) jsonObject.get("response");
             JSONObject bodyObject = (JSONObject) responseObject.get("body");
+            Integer totalCounts = (Integer) bodyObject.get("totalCount");
+            Integer pageNumbers = (Integer) bodyObject.get("pageNo");
+
+            if (totalCounts == 0 && pageNumbers == 1 ){
+                throw new NoSuchItemsException("Can not find Bus");
+            }
+
             JSONObject itemObject = (JSONObject) bodyObject.get("items");
 
             JSONArray item = (JSONArray) itemObject.get("item");
@@ -91,9 +96,8 @@ public class NearBusStopController {
             System.out.println("가장 가까이 있는 버스 정류소의 이름 = " + responseNearBusDto.getNodeNm());
             System.out.println("가장 가까이 있는 버스 정류소의 ID = " + responseNearBusDto.getNodeId());
 
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
         // 가장 가까운 버스 정류소 추출
 
         // 사용자가 입력한 버스 번호를 토대로 DB 조회
@@ -132,6 +136,8 @@ public class NearBusStopController {
             result.setLength(0);
             JSONObject responseObject = (JSONObject) jsonObject.get("response");
             JSONObject bodyObject = (JSONObject) responseObject.get("body");
+
+
             JSONObject itemObject = null;
             if (bodyObject.get("items") != "") {
                 itemObject = (JSONObject) bodyObject.get("items");
@@ -335,13 +341,15 @@ public class NearBusStopController {
 
             reservationService.addReservation(reservationDto);
 
-            //Push message by Pusha
-            Packet packet = new StringPacket(
-                    "RESERVATION_NOTICE",
-                    "#",
-                    responseNearBusDto.getNodeNm()+"#"+busstopLatitude+"#"+busstopLongtitude
-            );
-            ServerManager.instance.sendTarget(targetBus.getUuid(), packet);
+            //Push message by Pusha2
+            SockDto sockDto = new SockDto("Server",
+                            "RESERVATION_NOTICE",
+                            "#",
+                            responseNearBusDto.getNodeNm()+"#"+busstopLatitude+"#"+busstopLongtitude,
+                            null);
+            ServerManager serverManager = ServerContainer.Companion.serverManager();
+            serverManager.sendData(targetBus.getUuid(), sockDto);
+
         }
         return ResponseEntity.ok(targetBus);
     }

@@ -1,36 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
+    android:orientation="vertical"
     tools:context=".view.KeyPad">
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="259dp"
-        android:layout_height="94dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="65dp"
-        android:fontFamily="@font/nanum_square_r"
-        android:text="버스 번호를 입력해주세요."
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="44sp"
-        app:layout_constraintBottom_toTopOf="@+id/busnum"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
+        android:layout_marginTop="30dp"
         android:id="@+id/busnum"
-        android:layout_width="160dp"
+        android:layout_width="match_parent"
         android:layout_height="76dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="44dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="2dp"
         android:autofillHints="@string/action_busnum"
@@ -45,28 +28,35 @@
         app:layout_constraintBottom_toTopOf="@+id/check"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="1"
         android:id="@+id/check"
-        android:layout_width="284dp"
+        android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="300dp"
         android:background="@drawable/press_button2"
-        android:fontFamily="@font/nanum_square_round_r"
+        android:fontFamily="@font/nanum_square_round_eb"
         android:text="확인"
         android:textColor="#005490"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/busnum" />
+        android:textSize="48sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="1"
+        android:id="@+id/keypad_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@drawable/press_button2"
+        android:fontFamily="@font/nanum_square_round_eb"
+        android:text="취소"
+        android:textColor="#005490"
+        android:textSize="48sp"
+        android:textStyle="bold" />
 
 
-</android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

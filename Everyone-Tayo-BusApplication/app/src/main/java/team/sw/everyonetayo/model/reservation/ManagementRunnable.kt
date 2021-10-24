@@ -1,18 +1,27 @@
 package team.sw.everyonetayo.model.reservation
 
-import android.location.Location
+import android.widget.Adapter
+import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.activity_bus_driver.*
+import team.sw.everyonetayo.container.LoginContainer
 import team.sw.everyonetayo.container.ViewContainer
 import team.sw.everyonetayo.domain.ReservationDto
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.repository.heap.ReservationsRepository
+import team.sw.everyonetayo.repository.login.LoginRepository
 import team.sw.everyonetayo.util.ApplicationContext
 import team.sw.everyonetayo.util.Distance
 import team.sw.everyonetayo.util.GpsTracker
+import team.sw.everyonetayo.util.TtsSpeaker
 import team.sw.everyonetayo.view.BusDriver
+import team.sw.everyonetayo.view.ListViewAdapter
 
 class ManagementRunnable : Runnable {
 
     private val reservationsRepository:ReservationsRepository
+    private val errorRange:Int = 10
+    private val correctRange:Int = 3
+    private var announcementThread:Thread? = null
 
     constructor(reservationsRepository: ReservationsRepository){
         this.reservationsRepository = reservationsRepository
@@ -30,9 +39,12 @@ class ManagementRunnable : Runnable {
         }
 
         while(!Thread.interrupted()){
-            val busLatitude:Double = GpsTracker(ApplicationContext.context()).latitude
-            val busLongitude:Double = GpsTracker(ApplicationContext.context()).longitude
-            
+
+            // 위도 경도 받기 (버스)
+            var busLatitude:Double = GpsTracker(ApplicationContext.context()).latitude
+            var busLongitude:Double = GpsTracker(ApplicationContext.context()).longitude
+
+
             // 삭제 예정 리스트
             val removed:ArrayList<ReservationDto> = ArrayList()
             
@@ -42,20 +54,33 @@ class ManagementRunnable : Runnable {
                 val longitude:Double = reservationDto.longitude.toDouble()
 
                 val distance = Distance.distance(
-                    busLatitude,
-                    busLongitude,
+                    0.0,
+                    0.0,
                     latitude,
                     longitude,
                     "meter"
                 )
 
+
+
                 if(!reservationDto.isArrived){
-                    if(distance<=6){
+                    if(distance<=correctRange + errorRange){
                         reservationDto.isArrived = true
+                        
+                        // 안내 소리 발생 스레드 시작
+                        announcementThread = Thread(AnnouncementRunnable())
+                        announcementThread!!.start()
                     }
                 }else{
-                    if(distance>6){
+                    if(distance>correctRange + errorRange){
                         reservationDto.isGone = true
+                        
+                        //안내 소리 발생 스레드 정지 및 삭제
+                        if(announcementThread!=null) {
+                            announcementThread!!.interrupt()
+                            announcementThread = null
+                        }
+                        
                         removed.add(reservationDto)
                     }
                 }
@@ -65,6 +90,40 @@ class ManagementRunnable : Runnable {
             for (reservationDto in removed) {
                 busDriver!!.deleteitems(reservationDto.busStop)
                 reservationList.remove(reservationDto)
+            }
+            try {
+                Thread.sleep(100)
+            }catch (e:InterruptedException){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    inner class AnnouncementRunnable:Runnable{
+
+        val repository:LoginRepository = LoginContainer.instance.loginRepository()
+        val busnum:String
+        val announcementComment:String
+
+        constructor(){
+            if(repository.isLogin()) {
+                this.busnum = LoginContainer.instance.loginRepository().getLoggedInUser()!!.displayName
+            }else{
+                this.busnum = "-1"
+            }
+
+            announcementComment = "${busnum}번 버스"
+        }
+
+        override fun run() {
+            while (!Thread.interrupted()){
+                println("speak")
+                TtsSpeaker.instance.speakOut(announcementComment)
+                try {
+                    Thread.sleep(3000)
+                }catch (e:InterruptedException){
+                    e.printStackTrace()
+                }
             }
         }
     }

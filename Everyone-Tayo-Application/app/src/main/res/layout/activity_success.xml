@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4699FF"
+    android:orientation="vertical"
     tools:context=".view.VoiceCheck">
 
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/confirmTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/nanum_square_r"
+        android:text='예약 중 입니다.'
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
+        android:layout_marginBottom="20dp"
         android:id="@+id/check2"
-        android:layout_width="284dp"
+        android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="274dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="1"
         android:background="@drawable/press_button2"
         android:fontFamily="@font/nanum_square_round_r"
         android:text="하차"
@@ -28,20 +43,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmTextView" />
 
-    <TextView
-        android:id="@+id/confirmTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="188dp"
-        android:layout_marginEnd="44dp"
-        android:fontFamily="@font/nanum_square_r"
-        android:text='예약 중 입니다.'
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

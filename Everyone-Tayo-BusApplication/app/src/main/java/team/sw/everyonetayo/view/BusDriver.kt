@@ -1,5 +1,6 @@
 package team.sw.everyonetayo.view
 
+import android.graphics.Color
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_bus_driver.*
 import team.sw.everyonetayo.R
 import team.sw.everyonetayo.container.ReservationContainer
 import team.sw.everyonetayo.container.ViewContainer
+import team.sw.everyonetayo.domain.ReservationDto
 
 
 class BusDriver : AppCompatActivity() {
@@ -24,9 +26,10 @@ class BusDriver : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_driver)
-        
+
         //뷰 콘테이너에 추가
-        ViewContainer.instance.add("BusDriver",this)
+        ViewContainer.instance.add("BusDriver", this)
+
 
         //예약 리스트 자동 관리 시작
         ReservationContainer.instance.reservationManagement().start()
@@ -47,7 +50,6 @@ class BusDriver : AppCompatActivity() {
         drop_test.setOnClickListener{
             lightOffOfRed()
         }
-
     }
 
 
@@ -103,7 +105,14 @@ class BusDriver : AppCompatActivity() {
     }
 
     fun lightOnOfGreen(){
-        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_ride_textview))
+        runOnUiThread {
+            ride_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.color_ride_textview
+                )
+            )
+        }
     }
 
     fun lightOnOfGreenBlink(){
@@ -120,20 +129,57 @@ class BusDriver : AppCompatActivity() {
     }
 
     fun lightOffOfGreen(){
-        ride_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+        runOnUiThread {
+            ride_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.custom_textview
+                )
+            )
+        }
     }
 
     fun lightOnOfRed(){
-        drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.color_drop_textview))
+        runOnUiThread {
+            drop_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.color_drop_textview
+                )
+            )
+        }
     }
 
     fun lightOffOfRed(){
-        drop_test.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.custom_textview))
+        runOnUiThread {
+            drop_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.custom_textview
+                )
+            )
+        }
     }
 
     override fun onDestroy() {
         //예약 리스트 자동 관리 종료
         ReservationContainer.instance.reservationManagement().stop()
         super.onDestroy()
+    }
+
+    fun listGreenBlink(converView:View):Thread{
+        val tempThread:Thread = Thread(Runnable {
+            for (i in 1..2){
+                if(i % 2 == 1){
+                    runOnUiThread{ converView.setBackgroundColor(Color.GREEN) }
+
+                }else{
+                    runOnUiThread{ converView.setBackgroundColor(Color.WHITE) }
+                }
+                Thread.sleep(333)
+            }
+        })
+        tempThread.start()
+        return tempThread
     }
 }
