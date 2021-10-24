@@ -28,7 +28,8 @@ class BusDriver : AppCompatActivity() {
         setContentView(R.layout.activity_bus_driver)
 
         //뷰 콘테이너에 추가
-        ViewContainer.instance.add("BusDriver",this)
+        ViewContainer.instance.add("BusDriver", this)
+
 
         //예약 리스트 자동 관리 시작
         ReservationContainer.instance.reservationManagement().start()
