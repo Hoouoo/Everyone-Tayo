@@ -199,18 +199,3 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
-
----  
-List of libraries used in the project  
-
-- lombok : MIT License
-- spring frame work : Apache 2.0
-- thymeleaf : Apache 2.0
-- jpa : Apache 2.0
-- bootstrap : MIT license
-- mariadb -java-client:  LGPL 2.1
-- jquery : MIT License
-- jjwt :  Apache 2.0
-- retrofit : Apache License 2.0
-- junit4: Eclipse Public *License* - v 1.0 (EPL-1.0)
