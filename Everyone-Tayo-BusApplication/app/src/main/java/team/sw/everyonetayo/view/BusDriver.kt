@@ -47,6 +47,7 @@ class BusDriver : AppCompatActivity() {
 //        }
 
         setTitle("운행 정보")
+        /*
         logo.setOnClickListener {
             println("click")
             if(tick) {
@@ -61,6 +62,7 @@ class BusDriver : AppCompatActivity() {
                 tick = true
             }
         }
+         */
 
         ride_test.setOnClickListener{
             testAddItem()
