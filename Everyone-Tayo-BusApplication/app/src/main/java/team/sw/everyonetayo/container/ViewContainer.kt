@@ -37,4 +37,13 @@ class ViewContainer {
             return Result.Error(e)
         }
     }
+
+    fun remove(name:String):Boolean{
+        if(appCompatActivityContext.containsKey(name)){
+            appCompatActivityContext.remove(name);
+            return false
+        }else{
+            return false
+        }
+    }
 }

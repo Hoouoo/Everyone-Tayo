@@ -16,12 +16,17 @@ import team.sw.everyonetayo.R
 import team.sw.everyonetayo.container.ReservationContainer
 import team.sw.everyonetayo.container.ViewContainer
 import team.sw.everyonetayo.domain.ReservationDto
+import team.sw.everyonetayo.domain.Result
+import team.sw.everyonetayo.repository.heap.ReservationsRepository
 
 
 class BusDriver : AppCompatActivity() {
 
 
     val items = mutableListOf<ListViewItem>()
+
+    //test
+    var tick:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,24 @@ class BusDriver : AppCompatActivity() {
 //        }
 
         setTitle("운행 정보")
+        logo.setOnClickListener {
+            println("click")
+            if(tick) {
+                println("on")
+                ReservationContainer.instance.reservationManagement().managementRunnable.testBusLatitude = 36.43535
+                ReservationContainer.instance.reservationManagement().managementRunnable.testBusLongitude = 127.3863
+                tick = false
+            }else{
+                println("off")
+                ReservationContainer.instance.reservationManagement().managementRunnable.testBusLatitude = 34.0
+                ReservationContainer.instance.reservationManagement().managementRunnable.testBusLongitude = 128.0
+                tick = true
+            }
+        }
+
+        ride_test.setOnClickListener{
+            testAddItem()
+        }
 
         var actionBar : ActionBar?
         actionBar = supportActionBar
@@ -52,6 +75,32 @@ class BusDriver : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+    }
+
+    fun testAddItem(){
+        val reservationsRepository: ReservationsRepository = ReservationContainer.instance.reservationsRepository()
+
+        val reservationDto:ReservationDto = ReservationDto(
+            "busStop",
+            "36.43535",
+            "127.3863",
+            false,
+            false
+        )
+        reservationsRepository.getReservationList().add(reservationDto)
+
+        val viewResult: Result<Any> = ViewContainer.instance.get("BusDriver")
+
+        if(viewResult is Result.Success){
+            //busDriver 뷰 가져오기
+            val busDriverView:BusDriver  = viewResult.data as BusDriver
+            //TODO 예약들어올 때 액션 추가
+            busDriverView.speakGreenBell()
+            busDriverView.lightOnOfGreenBlink()
+            busDriverView.additems("busStop")
+        }
+    }
 
     fun additems(busstop: String) {
         runOnUiThread(Runnable {
@@ -152,7 +201,29 @@ class BusDriver : AppCompatActivity() {
 
     fun lightOffOfRed(){
         runOnUiThread {
-            drop_test.setBackgroundDrawable(
+            ride_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.custom_textview
+                )
+            )
+        }
+    }
+
+    fun lightOnSky(){
+        runOnUiThread {
+            ride_test.setBackgroundDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.color_arrive_textview
+                )
+            )
+        }
+    }
+
+    fun lightOffOfSky(){
+        runOnUiThread {
+            ride_test.setBackgroundDrawable(
                 ContextCompat.getDrawable(
                     this,
                     R.drawable.custom_textview

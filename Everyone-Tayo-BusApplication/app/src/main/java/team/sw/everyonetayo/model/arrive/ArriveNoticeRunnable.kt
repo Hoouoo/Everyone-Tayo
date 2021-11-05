@@ -5,7 +5,7 @@ import android.view.View
 import team.sw.everyonetayo.container.ViewContainer
 import team.sw.everyonetayo.domain.Result
 import team.sw.everyonetayo.view.BusDriver
-
+/*
 class ArriveNoticeRunnable : Runnable {
 
     val convertView:View
@@ -21,9 +21,14 @@ class ArriveNoticeRunnable : Runnable {
             //busDriver 뷰 가져오기
             busDriverView = viewResult.data as BusDriver
         }
-        while (!Thread.interrupted()){
+        while (!Thread.currentThread().isInterrupted){
             val blinkThread:Thread = busDriverView!!.listGreenBlink(convertView)
-            blinkThread.join()
+            try{
+                blinkThread.join()
+            }catch (e:InterruptedException){
+            }
         }
     }
+
 }
+*/

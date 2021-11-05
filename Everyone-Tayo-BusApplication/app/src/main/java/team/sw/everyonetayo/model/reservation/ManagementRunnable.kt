@@ -22,6 +22,12 @@ class ManagementRunnable : Runnable {
     private val errorRange:Int = 10
     private val correctRange:Int = 3
     private var announcementThread:Thread? = null
+    private var blinkThread:Thread? = null
+
+    var testBusLatitude:Double = 0.0
+    var testBusLongitude:Double = 0.0
+    var speakable:Boolean = false
+    var blinkable:Boolean = false
 
     constructor(reservationsRepository: ReservationsRepository){
         this.reservationsRepository = reservationsRepository
@@ -44,6 +50,9 @@ class ManagementRunnable : Runnable {
             var busLatitude:Double = GpsTracker(ApplicationContext.context()).latitude
             var busLongitude:Double = GpsTracker(ApplicationContext.context()).longitude
 
+//            var busLatitude:Double = testBusLatitude
+//            var busLongitude:Double = testBusLongitude
+
 
             // 삭제 예정 리스트
             val removed:ArrayList<ReservationDto> = ArrayList()
@@ -53,9 +62,10 @@ class ManagementRunnable : Runnable {
                 val latitude:Double =  reservationDto.latitude.toDouble()
                 val longitude:Double = reservationDto.longitude.toDouble()
 
+
                 val distance = Distance.distance(
-                    0.0,
-                    0.0,
+                    busLatitude,
+                    busLongitude,
                     latitude,
                     longitude,
                     "meter"
@@ -66,10 +76,15 @@ class ManagementRunnable : Runnable {
                 if(!reservationDto.isArrived){
                     if(distance<=correctRange + errorRange){
                         reservationDto.isArrived = true
-                        
+                        speakable=true
+                        blinkable=true
+
                         // 안내 소리 발생 스레드 시작
                         announcementThread = Thread(AnnouncementRunnable())
                         announcementThread!!.start()
+
+                        blinkThread =Thread(BlinkRunnable())
+                        blinkThread!!.start()
                     }
                 }else{
                     if(distance>correctRange + errorRange){
@@ -77,10 +92,17 @@ class ManagementRunnable : Runnable {
                         
                         //안내 소리 발생 스레드 정지 및 삭제
                         if(announcementThread!=null) {
+                            speakable=false
                             announcementThread!!.interrupt()
                             announcementThread = null
                         }
-                        
+
+                        if(blinkThread!=null){
+                            blinkThread!!.interrupt()
+                            blinkable = false
+                            blinkThread = null
+                        }
+
                         removed.add(reservationDto)
                     }
                 }
@@ -91,8 +113,9 @@ class ManagementRunnable : Runnable {
                 busDriver!!.deleteitems(reservationDto.busStop)
                 reservationList.remove(reservationDto)
             }
+
             try {
-                Thread.sleep(100)
+                Thread.sleep(300)
             }catch (e:InterruptedException){
                 e.printStackTrace()
             }
@@ -116,13 +139,35 @@ class ManagementRunnable : Runnable {
         }
 
         override fun run() {
-            while (!Thread.interrupted()){
+            while (speakable){
                 println("speak")
                 TtsSpeaker.instance.speakOut(announcementComment)
                 try {
                     Thread.sleep(3000)
                 }catch (e:InterruptedException){
-                    e.printStackTrace()
+                    //e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    inner class BlinkRunnable:Runnable {
+        override fun run() {
+            // 버스 뷰 불러오기
+            val viewResult:Result<Any> = ViewContainer.instance.get("BusDriver")
+            var busDriver:BusDriver? = null
+            if(viewResult is Result.Success){
+                busDriver = viewResult.data as BusDriver
+            }
+
+            while(blinkable){
+                try {
+                    busDriver!!.lightOnSky()
+                    Thread.sleep(300)
+                    busDriver!!.lightOffOfSky()
+                    Thread.sleep(300)
+                }catch (e:InterruptedException){
+                    busDriver!!.lightOffOfSky()
                 }
             }
         }

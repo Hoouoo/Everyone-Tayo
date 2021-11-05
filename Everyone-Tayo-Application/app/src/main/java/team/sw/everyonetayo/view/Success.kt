@@ -87,8 +87,8 @@ class Success : AppCompatActivity() {
                 SttContainer.instance.sttRepository().recodeString.myString
               val latitude:String = GpsTracker(ApplicationContext.context()).latitude.toString()
               val longitude:String = GpsTracker(ApplicationContext.context()).longitude.toString()
-//            val latitude: String = "35.55521925976061"
-//            val longitude: String = "129.26577127257917"
+//            val latitude: String = "36.43541104407053"
+//            val longitude: String = "127.38633905932612"
             val token: String =
                 LoginContainer.instance.loginRepository().getLoggedInUser()!!.token;
 

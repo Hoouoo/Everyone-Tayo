@@ -5,14 +5,16 @@ import team.sw.everyonetayo.repository.heap.ReservationsRepository
 class ReservationManagement {
 
     private val reservationsRepository:ReservationsRepository
-    private lateinit var managementThread:Thread
+    lateinit var managementThread:Thread
+    var managementRunnable:ManagementRunnable;
 
     constructor(reservationsRepository: ReservationsRepository){
         this.reservationsRepository = reservationsRepository
+        this.managementRunnable = ManagementRunnable(reservationsRepository)
     }
 
     fun start(){
-        managementThread = Thread(ManagementRunnable(reservationsRepository))
+        managementThread = Thread(managementRunnable)
         managementThread.start()
     }
 

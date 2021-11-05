@@ -16,6 +16,7 @@ class LocationController {
     fun locationCheck(){
         val latitude:String = GpsTracker(ApplicationContext.context()).latitude.toString()
         val longitude:String = GpsTracker(ApplicationContext.context()).longitude.toString()
+
 //        val latitude:String = "35.56977"
 //        val longitude:String = "129.24821"
         locationService.locationCheck(latitude, longitude)

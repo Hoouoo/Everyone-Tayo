@@ -1,5 +1,6 @@
 package team.sw.everyonetayo.container
 
+/*
 import team.sw.everyonetayo.controller.login.LoginController
 import team.sw.everyonetayo.model.arrive.ArriveNoticeService
 import team.sw.everyonetayo.model.login.LoginService
@@ -22,3 +23,4 @@ class ArriveContainer {
         }
     }
 }
+ */
