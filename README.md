@@ -298,8 +298,8 @@ URL : `127.0.0.1:8080/toJsonBusRoute/[citycode]` 에서 citycode 값에 해당�
 <p align ="center"><img height=400 src= "https://user-images.githubusercontent.com/56144682/132202429-2fd4679a-2701-44ac-accc-c485c2d9eff3.png"></p>
 
 ---
-**Application Download**
-> https://drive.google.com/file/d/1skhBm36kjiGsvrhomuY_IFiGW3HhB-5R/view?usp=sharing
+<!-- **Application Download**
+> https://drive.google.com/file/d/1skhBm36kjiGsvrhomuY_IFiGW3HhB-5R/view?usp=sharing -->
 ---
 ## 팀 구성원
 <p align ="center"><img height=400 src= https://user-images.githubusercontent.com/56144682/132203353-a8ee5ace-a06e-4294-a4f2-a8a7e9835110.png></p>
